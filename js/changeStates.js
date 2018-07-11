@@ -1,58 +1,62 @@
 // Change Valve state
 function changeValveState(valve) {
-    switch (valve) {
-        case "valve1":
-            if (valve1) {
-                $("#valve1").removeClass("btn-success");
-                $("#valve1").addClass("btn-danger");
-                valve1 = false;
-                console.log("Valve 1 desligada.");
-            } else {
-                $("#valve1").removeClass("btn-danger");
-                $("#valve1").addClass("btn-success");
-                valve1 = true;
-                console.log("Valve 1 ligada.");
-            }
-            break;
-        case "valve2":
-            if (valve2) {
-                $("#valve2").removeClass("btn-success");
-                $("#valve2").addClass("btn-danger");
-                valve2 = false;
-                console.log("Valve 2 desligada.");
-            } else {
-                $("#valve2").removeClass("btn-danger");
-                $("#valve2").addClass("btn-success");
-                valve2 = true;
-                console.log("Valve 2 ligada.");
-            }
-            break;
-        case "valve3":
-            if (valve3) {
-                $("#valve3").removeClass("btn-success");
-                $("#valve3").addClass("btn-danger");
-                valve3 = false;
-                console.log("Valve 3 desligada.");
-            } else {
-                $("#valve3").removeClass("btn-danger");
-                $("#valve3").addClass("btn-success");
-                valve3 = true;
-                console.log("Valve 3 ligada.");
-            }
-            break;
-        case "valve4":
-            if (valve4) {
-                $("#valve4").removeClass("btn-success");
-                $("#valve4").addClass("btn-danger");
-                valve4 = false;
-                console.log("Valve 4 desligada.");
-            } else {
-                $("#valve4").removeClass("btn-danger");
-                $("#valve4").addClass("btn-success");
-                valve4 = true;
-                console.log("Valve 4 ligada.");
-            }
-            break;
+    if (authValves == true) {
+        switch (valve) {
+            case "valve1":
+                if (valve1) {
+                    $("#valve1").removeClass("btn-success");
+                    $("#valve1").addClass("btn-danger");
+                    valve1 = false;
+                    console.log("Valve 1 desligada.");
+                } else {
+                    $("#valve1").removeClass("btn-danger");
+                    $("#valve1").addClass("btn-success");
+                    valve1 = true;
+                    console.log("Valve 1 ligada.");
+                }
+                break;
+            case "valve2":
+                if (valve2) {
+                    $("#valve2").removeClass("btn-success");
+                    $("#valve2").addClass("btn-danger");
+                    valve2 = false;
+                    console.log("Valve 2 desligada.");
+                } else {
+                    $("#valve2").removeClass("btn-danger");
+                    $("#valve2").addClass("btn-success");
+                    valve2 = true;
+                    console.log("Valve 2 ligada.");
+                }
+                break;
+            case "valve3":
+                if (valve3) {
+                    $("#valve3").removeClass("btn-success");
+                    $("#valve3").addClass("btn-danger");
+                    valve3 = false;
+                    console.log("Valve 3 desligada.");
+                } else {
+                    $("#valve3").removeClass("btn-danger");
+                    $("#valve3").addClass("btn-success");
+                    valve3 = true;
+                    console.log("Valve 3 ligada.");
+                }
+                break;
+            case "valve4":
+                if (valve4) {
+                    $("#valve4").removeClass("btn-success");
+                    $("#valve4").addClass("btn-danger");
+                    valve4 = false;
+                    console.log("Valve 4 desligada.");
+                } else {
+                    $("#valve4").removeClass("btn-danger");
+                    $("#valve4").addClass("btn-success");
+                    valve4 = true;
+                    console.log("Valve 4 ligada.");
+                }
+                break;
+        }
+    } else {
+        console.log("authValves is " + authValves + " (false).");
     }
     //console.log("---");
 }

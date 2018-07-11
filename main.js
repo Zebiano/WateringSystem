@@ -10,7 +10,12 @@ var tanqueC = false;
 var agua = false;
 var chuva = false;
 
+var authPump = false;
+var authValves = false;
+
 var cancelAnimate = true;
+
+var repeat = true;
 
 /* -- jQuery -- */
 $(document).ready(function () {
@@ -22,69 +27,104 @@ $(document).ready(function () {
     }, 1000);
 });
 
-// Animate
 function animate() {
-    //console.log("Animate()");
+    while (repeat == true) {
+        //console.log("repeat()");
 
-    /* -- Ifs dos tanques -- */
-    // Caso ambos os tanques estiverem vazios
-    if (tanqueB == false && tanqueC == false) {
-        console.log("Ambos os tanques estao vazios!");
+        changeValveState("valve1");
+        repeat = false;
 
-        // Desligar todas as valvulas
-        valve1 = false;
-        valve2 = false;
-        valve3 = false;
-        valve4 = false;
-        console.log("Todas as valvulas foram fechadas.");
+        /* -- Ifs dos tanques -- */
+        // Caso ambos os tanques estiverem vazios
+        if (tanqueB == false && tanqueC == false) {
+            console.log("Ambos os tanques estao vazios!");
 
-        // Se estiver a chover
-        if (chuva == true) {
-            console.log("Esta a chover.");
+            // Desligar todas as valvulas
+            valve1 = false;
+            valve2 = false;
+            valve3 = false;
+            valve4 = false;
+            console.log("Todas as valvulas foram fechadas.");
 
-            // Caso a agua estiver ligada
-            if (agua == true) {
-                console.log("Agua desligada ja que esta a chover.");
-                agua = false;
-                
-                /*cancelAnimate = true;
-                setTimeout(function () {
-                    changeAguaState();
-                    cancelAnimate = false;
-                    requestAnimationFrame(animate);
-                }, 2000);*/
+            // Desligar bomba
+            pump = false;
+            console.log("Bomba desligada.");
+
+            // Se estiver a chover
+            if (chuva == true) {
+                console.log("Esta a chover.");
+
+                // Caso a agua estiver ligada
+                if (agua == true) {
+                    console.log("Agua desligada ja que esta a chover.");
+                    agua = false;
+
+                    /*cancelAnimate = true;
+                    setTimeout(function () {
+                        changeAguaState();
+                        cancelAnimate = false;
+                        requestAnimationFrame(animate);
+                    }, 2000);*/
+                }
+
+                changeTanqueState("tanqueB");
             }
+            // Se nao estiver a chover
+            else {
+                console.log("Nao esta a chover.");
 
-            changeTanqueState("tanqueB");
-        }
-        // Se nao estiver a chover
-        else {
-            console.log("Nao esta a chover.");
+                // Caso a agua nao estiver ligada
+                if (agua == false) {
+                    console.log("Agua ligada para encher tanqueB.");
+                    agua = true;
+                }
 
-            // Caso a agua nao estiver ligada
-            if (agua == false) {
-                console.log("Agua ligada para encher tanqueB.");
-                agua = true;
+                changeTanqueState("tanqueB");
+                changeAguaState();
             }
+        }
+        // Caso tanqueB estiver cheio e tanqueC vazio
+        else if (tanqueB == true && tanqueC == false) {
+            if (valve1 == true || valve2 == true || valve3 == true || valve4 == true) {
 
-            changeTanqueState("tanqueB");
-            changeAguaState();
+            } else {
+
+            }
+            // Se estiver a chover
+            if (chuva == true) {
+                console.log("Esta a chover.");
+
+                // Caso a agua estiver ligada
+                if (agua == true) {
+                    console.log("Agua desligada ja que esta a chover.");
+                    agua = false;
+                }
+
+                // Caso a bomba estiver desligada
+                if (pump == false) {
+                    pump = true;
+                    console.log("Bomba ligada para encher o TanqueC.");
+                }
+
+            }
+            // Se nao estiver a chover
+            else {
+
+            }
+        }
+        // Caso tanqueB estiver vazio e tanqueC cheio
+        else if (tanqueB == false && tanqueC == true) {
+
+        }
+        // Caso ambos os tanques estiverem cheios
+        else if (tanqueB == true && tanqueC == true) {
+
         }
     }
-    // Caso tanqueB estiver cheio e tanqueC vazio
-    else if (tanqueB == true && tanqueC == false) {
+}
 
-    }
-    // Caso tanqueB estiver vazio e tanqueC cheio
-    else if (tanqueB == false && tanqueC == true) {
-
-    }
-    // Caso ambos os tanques estiverem cheios
-    else if (tanqueB == true && tanqueC == true) {
-
-    }
-
-
+// Animate
+function animate2() {
     /*// Caso ambos os tanques estejam vazios e a agua nao estiver a correr
     if (tanqueB == false && tanqueC == false && agua == false) {
         console.log("Ambos os tanques estao vazios e a agua nao esta a correr. A liga-la...");
