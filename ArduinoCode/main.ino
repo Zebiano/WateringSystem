@@ -76,23 +76,23 @@ void myTimerEvent()
   // Please don't send more that 10 values per second.
   Blynk.virtualWrite(V5, millis() / 1000);
 
-  pln("---");
+  //pln("---");
 
   // Get States
   getHrdBoiaState(); // Hardware Boia
   getHrdWaterState(); // Hardware Water
   getSftWaterState(); // Software Water
   getSftRainState(); // Software Rain
-  getHrdMinusControllerState();
-  getHrdMinusArduinoState();
-  getHrdValveState(4);
-  getHrdValveState(5);
-  getHrdValveState(6);
-  getHrdValveState(7);
-  getSftValveState(16);
-  getSftValveState(17);
-  getSftValveState(18);
-  getSftValveState(19);
+  getHrdMinusControllerState(); // Hardware Minus Controller
+  getHrdMinusArduinoState(); // Hardware Minus Arduino
+  getHrdValveState(4); // Hardware Valve 1
+  getHrdValveState(5); // Hardware Valve 2
+  getHrdValveState(6); // Hardware Valve 3
+  getHrdValveState(7); // Hardware Valve 4
+  getSftValveState(16); // Software Valve 1
+  getSftValveState(17); // Software Valve 2
+  getSftValveState(18); // Software Valve 3
+  getSftValveState(19); // Software Valve 4
 
   if (hrdBoia == false) {
     if (hrdMinusController == true || hrdMinusArduino == true) {
@@ -110,16 +110,19 @@ void myTimerEvent()
     if (sftRain == false) {
       if (hrdWater == false) {
         setHrdWater(true);
+        //sendInfo("Tank empty. Water on.");
       }
     } else {
       if (hrdWater == true) {
         setHrdWater(false);
+        //sendInfo("Tank empty. It's raining. Water off.");
       }
     }
   } else {
     if (sftValve1 == true || sftValve2 == true || sftValve3 == true || sftValve4 == true) {
       setHrdMinusController(false);
       setHrdMinusArduino(true);
+      //sendInfo("Tank full. Arduino controls valves.");
 
       // Valve 1
       if (sftValve1 == true && hrdValve1 == false) {
@@ -130,8 +133,6 @@ void myTimerEvent()
 
       // Valve 2
       if (sftValve2 == true && hrdValve2 == false) {
-        setHrdMinusController(false);
-        setHrdMinusArduino(true);
         setHrdValve(5, true);
       } else if (sftValve2 == false && hrdValve2 == true) {
         setHrdValve(5, false);
@@ -139,8 +140,6 @@ void myTimerEvent()
 
       // Valve 3
       if (sftValve3 == true && hrdValve3 == false) {
-        setHrdMinusController(false);
-        setHrdMinusArduino(true);
         setHrdValve(6, true);
       } else if (sftValve3 == false && hrdValve3 == true) {
         setHrdValve(6, false);
@@ -148,8 +147,6 @@ void myTimerEvent()
 
       // Valve 4
       if (sftValve4 == true && hrdValve4 == false) {
-        setHrdMinusController(false);
-        setHrdMinusArduino(true);
         setHrdValve(7, true);
       } else if (sftValve4 == false && hrdValve4 == true) {
         setHrdValve(7, false);
@@ -157,6 +154,27 @@ void myTimerEvent()
     } else {
       setHrdMinusController(true);
       setHrdMinusArduino(false);
+      //sendInfo("Tank full. Controller controls valves.");
+
+      // Valve 1
+      if (sftValve1 == false && hrdValve1 == true) {
+        setHrdValve(4, false);
+      }
+
+      // Valve 2
+      if (sftValve2 == false && hrdValve2 == true) {
+        setHrdValve(5, false);
+      }
+
+      // Valve 3
+      if (sftValve3 == false && hrdValve3 == true) {
+        setHrdValve(6, false);
+      }
+
+      // Valve 4
+      if (sftValve4 == false && hrdValve4 == true) {
+        setHrdValve(7, false);
+      }
     }
 
     if (sftRain == true) {
@@ -166,6 +184,7 @@ void myTimerEvent()
     } else {
       if (sftWater == true && hrdWater == false) {
         setHrdWater(true);
+        //sendInfo("Tank full. Water still on!");
       } else if (sftWater == false && hrdWater == true) {
         setHrdWater(false);
       }
@@ -215,21 +234,21 @@ void loop()
 // Hardware Boia
 void getHrdBoiaState() {
   if (digitalRead(A0) == LOW) {
-    /*// Send notification if tank changed value
-      if (hrdBoia == false) {
+    // Send notification if tank changed value
+    if (hrdBoia == false) {
       sendNotification("Tank is Full!");
-      }*/
+      sendInfo("Tank is Full!");
+    }
     hrdBoia = true;
-    //Blynk.virtualWrite(V1, "Full");
-    pln("Tank is Full!");
+    //pln("Tank is Full!");
   } else {
-    /*// Send notification if tank changed value
-      if (hrdBoia == true) {
+    // Send notification if tank changed value
+    if (hrdBoia == true) {
       sendNotification("Tank is Empty!");
-      }*/
+      sendInfo("Tank is Empty!");
+    }
     hrdBoia = false;
-    //Blynk.virtualWrite(V1, "Empty");
-    pln("Tank is Empty!");
+    //pln("Tank is Empty!");
   }
 }
 
@@ -439,7 +458,6 @@ void sendInfo(String info) {
 // Send notification
 void sendNotification(String msg) {
   Blynk.notify(msg);
-  pln("Sent a notification: " + msg);
 }
 
 /* -- Serial -- */
