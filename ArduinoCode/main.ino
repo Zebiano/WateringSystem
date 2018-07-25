@@ -49,12 +49,8 @@ char auth[] = "50cc198faae14a129f57ccc6f903346a";
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-/*char ssid[] = "GardenWifi";
-  char pass[] = "aaaaaaaaaa";*/
-char ssid[] = "AsusBoi";
-char pass[] = "aaaaaaaaaa";
-/*char ssid[] = "Sebas";
-  char pass[] = "barros98";*/
+char ssid[] = "WifiSSID";
+char pass[] = "Password";
 
 // or Software Serial on Uno, Nano...
 #include <SoftwareSerial.h>
