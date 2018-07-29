@@ -7,9 +7,9 @@
   D5: Relay 2 (Valve 2)
   D6: Relay 3 (Valve 3)
   D7: Relay 4 (Valve 4)
-  D8: Relay 5 (Valve 5: Water)
-  D9: Relay 6 (minusController)
-  D10: Relay 7 (minusArduino)
+  D9: Relay 5 (minusController)
+  D10: Relay 6 (minusArduino)
+  D8: Relay 7 (Valve 5: Water)
   D11: Relay 8
   D12: sftWater
   D13: sftRain
@@ -49,8 +49,8 @@ char auth[] = "50cc198faae14a129f57ccc6f903346a";
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "WifiSSID";
-char pass[] = "Password";
+char ssid[] = "SSID";
+char pass[] = "PASSWORD";
 
 // or Software Serial on Uno, Nano...
 #include <SoftwareSerial.h>
@@ -148,8 +148,8 @@ void myTimerEvent()
         setHrdValve(7, false);
       }
     } else {
-      setHrdMinusController(true);
       setHrdMinusArduino(false);
+      setHrdMinusController(true);
       //sendInfo("Tank full. Controller controls valves.");
 
       // Valve 1
@@ -211,9 +211,9 @@ void setup()
   pinMode(5, OUTPUT); // Valve 2
   pinMode(6, OUTPUT); // Valve 3
   pinMode(7, OUTPUT); // Valve 4
-  pinMode(8, OUTPUT); // Hardware Water
-  pinMode(9, OUTPUT); // Hardware Minus Controller
+  pinMode(9, OUTPUT); // Hardware Water
   pinMode(10, OUTPUT); // Hardware Minus Arduino
+  pinMode(11, OUTPUT); // Hardware Minus Controller
   pinMode(A0, INPUT_PULLUP); // Boia
 }
 
@@ -250,23 +250,12 @@ void getHrdBoiaState() {
 
 // Hardware Water
 void getHrdWaterState() {
-  if (digitalRead(8) == LOW) {
+  if (digitalRead(9) == LOW) {
     hrdWater = false;
     //pln("D8: Relay 5 (Valve 5: Water) is Off!");
   } else {
     hrdWater = true;
     //pln("D8: Relay 5 (Valve 5: Water) is On!");
-  }
-}
-
-// Hardware Minus Controller
-void getHrdMinusControllerState() {
-  if (digitalRead(9) == LOW) {
-    hrdMinusController = false;
-    //pln("D9: Relay 6 (minusController) is Off!");
-  } else {
-    hrdMinusController = true;
-    //pln("D9: Relay 6 (minusController) is On!");
   }
 }
 
@@ -278,6 +267,17 @@ void getHrdMinusArduinoState() {
   } else {
     hrdMinusArduino = true;
     //pln("D10: Relay 7 (minusArduino) is On!");
+  }
+}
+
+// Hardware Minus Controller
+void getHrdMinusControllerState() {
+  if (digitalRead(11) == LOW) {
+    hrdMinusController = false;
+    //pln("D9: Relay 6 (minusController) is Off!");
+  } else {
+    hrdMinusController = true;
+    //pln("D9: Relay 6 (minusController) is On!");
   }
 }
 
@@ -394,21 +394,11 @@ void getSftValveState(int pin) {
 // Hardware Water
 void setHrdWater(bool state) {
   if (state == true) {
-    digitalWrite(8, HIGH);
-  } else {
-    digitalWrite(8, LOW);
-  }
-  hrdWater = state;
-}
-
-// Hardware Minus Controller
-void setHrdMinusController(bool state) {
-  if (state == true) {
     digitalWrite(9, HIGH);
   } else {
     digitalWrite(9, LOW);
   }
-  hrdMinusController = state;
+  hrdWater = state;
 }
 
 // Hardware Minus Arduino
@@ -419,6 +409,16 @@ void setHrdMinusArduino(bool state) {
     digitalWrite(10, LOW);
   }
   hrdMinusArduino = state;
+}
+
+// Hardware Minus Controller
+void setHrdMinusController(bool state) {
+  if (state == true) {
+    digitalWrite(11, HIGH);
+  } else {
+    digitalWrite(11, LOW);
+  }
+  hrdMinusController = state;
 }
 
 // Hardware Valve
