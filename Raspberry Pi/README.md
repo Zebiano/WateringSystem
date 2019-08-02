@@ -1,0 +1,1 @@
+if you're having trouble with `onoff` module while `npm install`, try [this](https://catalin.me/how-to-fix-node-js-gyp-err-cant-find-python-executable-python-on-windows/).

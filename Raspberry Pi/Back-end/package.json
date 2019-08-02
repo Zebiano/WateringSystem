@@ -1,0 +1,21 @@
+{
+  "name": "garden-api",
+  "version": "1.0.0",
+  "description": "API for the Pi",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "API"
+  ],
+  "author": "Sebastião Barros - @Zebiano",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1",
+    "onoff": "^4.1.3"
+  }
+}
