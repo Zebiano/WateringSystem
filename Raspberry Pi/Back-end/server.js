@@ -5,11 +5,6 @@ const Express = require("express");
 const api = Express();
 const port = 3000;
 
-// Starts Server
-api.listen(port, () => {
-    console.log("API running on localhost:" + port + "!");
-});
-
 // Exports
 module.exports = {
     api: api
@@ -17,3 +12,8 @@ module.exports = {
 
 // Requires: Files
 require("./API/Routes");
+
+// Starts Server
+api.listen(port, () => {
+    console.log("API running on localhost:" + port + "!");
+});
