@@ -7,9 +7,9 @@ const Config = require('../config');
 Server.api
     .get('/', (req, res) => {
         if (Config.config.console.routes) console.log("GET: /");
-        Controller.get(res, res);
+        Controller.getRoot(res, res);
     })
     /*.get('/hehe', (req, res) => {
-        if (Config.config.console.routes) console.log("GET: /hehe");
-        Controller.get(res, res);
-    })*/
+    if (Config.config.console.routes) console.log("GET: /hehe");
+    Controller.get(res, res);
+})*/

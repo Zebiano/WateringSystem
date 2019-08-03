@@ -1,9 +1,7 @@
-// Get
-exports.get = (req, res) => {
-    res
-        .send({
-            'Info1': 'haha',
-            'Info2': 'hehe',
-            'Info3': 'hihi'
-        });
+// Requires: Files
+const Variables = require('./Variables');
+
+// Get Root
+exports.getRoot = (req, res) => {
+    res.send(Variables.variables);
 };
