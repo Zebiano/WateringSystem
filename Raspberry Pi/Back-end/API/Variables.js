@@ -11,6 +11,11 @@ exports.variables = {
         2: false,
         3: false
     },
+    tanks: {
+        1: false,
+        2: false,
+        3: false
+    },
     rain: false,
-    pump: false
+    pump: false,
 }

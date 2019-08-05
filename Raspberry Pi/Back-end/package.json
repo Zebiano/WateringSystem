@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "clear && nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "keywords": [
     "API"
@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chalk": "^2.4.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "nodemon": "^1.19.1",

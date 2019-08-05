@@ -1,15 +1,22 @@
 // Requires: Files
 const Server = require('../server');
 const Controller = require('./Controller');
-const Config = require('../config');
+const Config = require('../Config');
 
 // Routes
 Server.api
+    // Root
     .get('/', (req, res) => {
         if (Config.config.console.routes) console.log("GET: /");
-        Controller.getRoot(res, res);
+        Controller.getAll(res, res);
     })
-    /*.get('/hehe', (req, res) => {
-    if (Config.config.console.routes) console.log("GET: /hehe");
-    Controller.get(res, res);
-})*/
+    // Opens Valve
+    .get('/valves/open/:id', (req, res) => {
+        if (Config.config.console.routes) console.log("GET: /valves/open/" + req.params.id);
+        Controller.valveOpen(req, res);
+    })
+    // Closes Valve
+    .get('/valves/close/:id', (req, res) => {
+        if (Config.config.console.routes) console.log("GET: /valves/close/" + req.params.id);
+        Controller.valveClose(req, res);
+    })
