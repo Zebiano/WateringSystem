@@ -1,9 +1,12 @@
 // Config
 exports.config = {
-    simulation: true,
+    simulation: false,
     console: {
         routes: true,
-        valves: true
+        valves: true,
+        water: true,
+        rain: true,
+        simulation: true
     },
     rpiGpioPins: {
         valve1: 2,

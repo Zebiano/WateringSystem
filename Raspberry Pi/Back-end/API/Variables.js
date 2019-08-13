@@ -4,18 +4,15 @@ exports.variables = {
         2: false,
         3: false,
         4: false,
+        transferWater: false,
         fillTanks: false
     },
     floaters: {
         1: false,
         2: false,
-        3: false
-    },
-    tanks: {
-        1: false,
-        2: false,
-        3: false
+        3: false,
+        4: false
     },
     rain: false,
-    pump: false,
+    water: false
 }

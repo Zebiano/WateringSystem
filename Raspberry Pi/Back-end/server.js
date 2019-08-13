@@ -26,5 +26,8 @@ require('./loader');
 // Starts Server
 api.listen(port, () => {
     Functions.scream('success', "API running on " + Chalk.red('localhost') + ":" + Chalk.red(port) + "!");
-    if (Config.config.simulation) Simulation.runLogic();
+    if (Config.config.simulation) {
+        Functions.scream('info', 'Starting simulation...');
+        Simulation.runLogic();
+    }
 });
