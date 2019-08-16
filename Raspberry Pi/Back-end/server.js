@@ -24,10 +24,16 @@ module.exports = {
 require('./loader');
 
 // Starts Server
-api.listen(port, () => {
+const server = api.listen(port, () => {
     Functions.scream('success', "API running on " + Chalk.red('localhost') + ":" + Chalk.red(port) + "!");
     if (Config.config.simulation) {
         Functions.scream('info', 'Starting simulation...');
         Simulation.runLogic();
     }
+    stopServer();
 });
+
+// Function to stop server
+function stopServer() {
+    server.close();
+}

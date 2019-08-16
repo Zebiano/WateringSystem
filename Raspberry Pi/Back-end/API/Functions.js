@@ -4,7 +4,7 @@ const Chalk = require('chalk');
 // Requires: Files
 const Variables = require('./Variables');
 const Config = require('../Config');
-//const Server = require('../server');
+const Server = require('../server');
 
 // Simulation On
 function simulationOn() {
@@ -14,8 +14,8 @@ function simulationOn() {
 
 // Simulation Off
 function simulationOff() {
-    Config.config.simulation = false;
-    resetVariables();
+    //Config.config.simulation = false;
+    //resetVariables();
     if (Config.config.console.simulation) scream('info', "Changed simulation to " + Chalk.yellow(Config.config.simulation) + ".");
 }
 
@@ -68,7 +68,14 @@ function sendNotification(info) {
 
 // Reset Variables
 function resetVariables() {
-    // hm.
+    for (i in Variables.variables.valves) {
+        Variables.variables.valves[i] = false
+    }
+    for (i in Variables.variables.floaters) {
+        Variables.variables.floaters[i] = false;
+    }
+    Variables.variables.rain = false;
+    Variables.variables.water = false;
 }
 
 // Exports

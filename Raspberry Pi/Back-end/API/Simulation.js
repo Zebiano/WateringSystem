@@ -6,7 +6,7 @@ const Functions = require('./Functions');
 function runLogic() {
     // If water == true
     if (Variables.variables.water) {
-        Functions.scream('warn', 'Water on!');
+        //Functions.scream('warn', 'Water on!');
 
         // If valve fillTanks == false
         if (!Variables.variables.valves.fillTanks) {
@@ -16,12 +16,15 @@ function runLogic() {
     }
     // If water == false
     else {
-        Functions.scream('warn', 'Water off!');
+        //Functions.scream('warn', 'Water off!');
 
         // If valve fillTanks == true
         if (Variables.variables.valves.fillTanks) {
-            // Close valve fillTanks
-            Functions.valveClose("fillTanks");
+            // If all floaters == false
+            if (!(!Variables.variables.floaters[1] && !Variables.variables.floaters[2] && !Variables.variables.floaters[3] && !Variables.variables.floaters[4])) {
+                // Close valve fillTanks
+                Functions.valveClose("fillTanks");
+            }
         }
     }
 

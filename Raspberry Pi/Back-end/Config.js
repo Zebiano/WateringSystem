@@ -1,6 +1,9 @@
+// Requires: Modules
+const Chalk = require('chalk');
+
 // Config
 exports.config = {
-    simulation: false,
+    simulation: true,
     console: {
         routes: true,
         valves: true,
@@ -20,9 +23,6 @@ exports.config = {
         pump: 23
     }
 }
-
-// Requires: Modules
-const Chalk = require('chalk');
 
 // Chalk color setings
 exports.chalkInfo = Chalk.blue;
