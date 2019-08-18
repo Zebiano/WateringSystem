@@ -14,9 +14,12 @@ function simulationOn() {
 
 // Simulation Off
 function simulationOff() {
-    //Config.config.simulation = false;
-    //resetVariables();
-    if (Config.config.console.simulation) scream('info', "Changed simulation to " + Chalk.yellow(Config.config.simulation) + ".");
+    Config.config.simulation = false;
+    if (Config.config.console.simulation) {
+        scream('info', "Changed simulation to " + Chalk.yellow(Config.config.simulation) + ".");
+    } else {
+        scream('error', 'Unable to change simulation to false!');
+    }
 }
 
 // Opens valve

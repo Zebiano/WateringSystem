@@ -7,6 +7,7 @@ const Chalk = require('chalk');
 const Config = require('./Config');
 const Simulation = require('./API/Simulation');
 const Functions = require('./API/Functions');
+const Loader = require('./loader');
 
 // Variables
 const api = Express();
@@ -21,7 +22,7 @@ module.exports = {
 }
 
 // Loads necessary files before starting server
-require('./loader');
+Loader.loadProject();
 
 // Starts Server
 const server = api.listen(port, () => {
@@ -30,10 +31,4 @@ const server = api.listen(port, () => {
         Functions.scream('info', 'Starting simulation...');
         Simulation.runLogic();
     }
-    stopServer();
 });
-
-// Function to stop server
-function stopServer() {
-    server.close();
-}

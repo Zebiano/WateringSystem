@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start-simulation": "node server.js",
+    "dev": "nodemon server.js",
+    "dev-simulation": "node -e \"require('./Config').enableSimulation()\" && nodemon server.js"
   },
   "keywords": [
     "API"

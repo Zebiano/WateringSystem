@@ -2,7 +2,7 @@
 const Chalk = require('chalk');
 
 // Config
-exports.config = {
+let config = {
     simulation: true,
     console: {
         routes: true,
@@ -25,7 +25,30 @@ exports.config = {
 }
 
 // Chalk color setings
-exports.chalkInfo = Chalk.blue;
-exports.chalkSuccess = Chalk.green;
-exports.chalkWarn = Chalk.yellow;
-exports.chalkError = Chalk.red;
+const chalkInfo = Chalk.blue;
+const chalkSuccess = Chalk.green;
+const chalkWarn = Chalk.yellow;
+const chalkError = Chalk.red;
+
+// Enables simultion
+function enableSimulation() {
+    console.log("puta");
+    config.simulation = true;
+    console.log(config.simulation);
+}
+
+// Disables simultion
+function disableSimulation() {
+    config.simulation = false;
+}
+
+// Exports
+module.exports = {
+    config: config,
+    chalkInfo: chalkInfo,
+    chalkSuccess: chalkSuccess,
+    chalkWarn: chalkWarn,
+    chalkError: chalkError,
+    enableSimulation: enableSimulation,
+    disableSimulation: disableSimulation
+}
