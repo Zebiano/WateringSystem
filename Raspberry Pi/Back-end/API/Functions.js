@@ -5,7 +5,7 @@ const Chalk = require('chalk');
 const Variables = require('./Variables');
 const Config = require('../Config');
 const Server = require('../server');
-const Pins = require('./Pins');
+const Pins = require('./Pins'); // Basicamente Isto nao pode tar aqui quando usamos simulation = true, mas quando simulation = false e perciso que esteja aqui (suposatmente, mas provavelmente nao)
 
 // Simulation On
 function simulationOn() {
