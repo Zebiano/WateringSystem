@@ -5,6 +5,7 @@ const Chalk = require('chalk');
 const Variables = require('./Variables');
 const Config = require('../Config');
 const Server = require('../server');
+const Pins = require('./Pins');
 
 // Simulation On
 function simulationOn() {
@@ -80,6 +81,13 @@ function resetVariables() {
     Variables.variables.rain = false;
     Variables.variables.water = false;
 }
+
+/* -- Automatic functions -- */
+Pins.floater1.watch((err, value) => {
+    if (err) console.log(err);
+    // value == 1: ha contacto
+    // value == 0: nao ha contacto
+});
 
 // Exports
 module.exports = {

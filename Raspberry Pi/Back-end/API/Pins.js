@@ -17,10 +17,3 @@ exports.floater1 = new gpio(Config.config.rpiGpioPins.floater1, 'in');
 exports.floater2 = new gpio(Config.config.rpiGpioPins.floater2, 'in');
 exports.floater3 = new gpio(Config.config.rpiGpioPins.floater3, 'in');
 exports.pump = new gpio(Config.config.rpiGpioPins.pump, 'out');
-
-/* -- Automatic functions -- */
-Pins.floater1.watch((err, value) => {
-    if (err) console.log(err);
-    // value == 1: ha contacto
-    // value == 0: nao ha contacto
-});
