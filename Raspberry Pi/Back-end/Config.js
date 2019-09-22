@@ -3,7 +3,7 @@ const Chalk = require('chalk');
 
 // Config
 let config = {
-    simulation: true,
+    simulation: false,
     console: {
         routes: true,
         valves: true,
