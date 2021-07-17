@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watering System</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchValveOne" onclick="toggleValve(1, this.checked)">
+            <label class="form-check-label" for="switchValve1">Valve 1</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchValveTwo" onclick="toggleValve(2, this.checked)">
+            <label class="form-check-label" for="switchValveTwo">Valve 2</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchValveThree" onclick="toggleValve(3, this.checked)">
+            <label class="form-check-label" for="switchValveThree">Valve 3</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchValveFour" onclick="toggleValve(4, this.checked)">
+            <label class="form-check-label" for="switchValveFour">Valve 4</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchRain" onclick="toggleRain(this.checked)">
+            <label class="form-check-label" for="switchRain">Rain</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchPump" onclick="togglePump(this.checked)">
+            <label class="form-check-label" for="switchPump">Pump</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchTapWater" onclick="toggleTapWater(this.checked)">
+            <label class="form-check-label" for="switchTapWater">TapWater</label>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/frontend/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{
+  "name": "wateringsystem",
+  "version": "0.1.0",
+  "description": "Automatic watering system for our garden",
+  "main": "main.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zebiano/WateringSystem.git"
+  },
+  "keywords": [
+    "express",
+    "iot",
+    "raspberrypi",
+    "rpi",
+    "watering-system"
+  ],
+  "author": "Sebastião Barros - @Zebiano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zebiano/WateringSystem/issues"
+  },
+  "homepage": "https://github.com/Zebiano/WateringSystem#readme",
+  "dependencies": {
+    "bootstrap": "^5.0.2",
+    "bootstrap-icons": "^1.5.0",
+    "chalk": "^4.1.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "nodemon": "^2.0.12",
+    "onoff": "^6.0.3",
+    "socket.io": "^4.1.3"
+  }
+}

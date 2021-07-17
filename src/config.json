@@ -1,0 +1,25 @@
+{
+    "states": {
+        "valveOne": false,
+        "valveTwo": false,
+        "valveThree": false,
+        "valveFour": false,
+        "floaterOne": false,
+        "floaterTwo": false,
+        "floaterThree": false,
+        "tapWater": false,
+        "pump": false,
+        "rain": false
+    },
+    "rpiGpioPins": {
+        "valveOne": 2,
+        "valveTwo": 3,
+        "valveThree": 4,
+        "valveFour": 17,
+        "valveFillTanks": 27,
+        "floaterOne": 14,
+        "floaterTwo": 15,
+        "floaterThree": 18,
+        "pump": 23
+    }
+}
