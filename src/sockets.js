@@ -11,40 +11,47 @@ io.on('connection', (socket) => {
     // Return states when asked
     socket.on("states", (callback) => {
         callback(wateringSystem.states)
-    });
+    })
 
     // Valve One
-    socket.on('valveOne', (state) => {
+    socket.on('valveOne', (state, callback) => {
         wateringSystem.states.valveOne = state
+        callback(wateringSystem.states)
     })
 
     // Valve Two
-    socket.on('valveTwo', (state) => {
+    socket.on('valveTwo', (state, callback) => {
         wateringSystem.states.valveTwo = state
+        callback(wateringSystem.states)
     })
 
     // Valve Three
-    socket.on('valveThree', (state) => {
+    socket.on('valveThree', (state, callback) => {
         wateringSystem.states.valveThree = state
+        callback(wateringSystem.states)
     })
 
     // Valve Four
-    socket.on('valveFour', (state) => {
+    socket.on('valveFour', (state, callback) => {
         wateringSystem.states.valveFour = state
+        callback(wateringSystem.states)
     })
 
     // Rain
-    socket.on('rain', (state) => {
+    socket.on('rain', (state, callback) => {
         wateringSystem.states.rain = state
+        callback(wateringSystem.states)
     })
 
     // Pump
-    socket.on('pump', (state) => {
+    socket.on('pump', (state, callback) => {
         wateringSystem.states.pump = state
+        callback(wateringSystem.states)
     })
 
-    // Pump
-    socket.on('tapWater', (state) => {
+    // Tap Water
+    socket.on('tapWater', (state, callback) => {
         wateringSystem.states.tapWater = state
+        callback(wateringSystem.states)
     })
 })
