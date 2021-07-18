@@ -135,9 +135,9 @@ function toggleRain(state) {
  * @param {boolean} state
  */
  function toggleFloater1(state) {
-    io().emit('floater1', state, true, (res) => {
+    io().emit('floater1', state, false, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates(false)
     })
 }
 
@@ -146,9 +146,9 @@ function toggleRain(state) {
  * @param {boolean} state
  */
 function toggleFloater2(state) {
-    io().emit('floater2', state, true, (res) => {
+    io().emit('floater2', state, false, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates(false)
     })
 }
 
@@ -157,9 +157,9 @@ function toggleFloater2(state) {
  * @param {boolean} state
  */
 function toggleFloater3(state) {
-    io().emit('floater3', state, true, (res) => {
+    io().emit('floater3', state, false, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates(false)
     })
 }
 
@@ -168,9 +168,9 @@ function toggleFloater3(state) {
  * @param {boolean} state
  */
 function toggleFloater4(state) {
-    io().emit('floater4', state, true, (res) => {
+    io().emit('floater4', state, false, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates(false)
     })
 }
 
@@ -179,8 +179,8 @@ function toggleFloater4(state) {
  * @param {boolean} state
  */
 function toggleFloater5(state) {
-    io().emit('floater5', state, true, (res) => {
+    io().emit('floater5', state, false, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates(false)
     })
 }

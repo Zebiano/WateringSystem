@@ -80,7 +80,7 @@ function toggleValve4(state) {
  * @param {boolean} state
  */
 function toggleTapWater(state) {
-    io().emit('tapWater', state, (res) => {
+    io().emit('tapWater', state, true, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates(true)
     })
