@@ -7,8 +7,8 @@ router.get('/', (req, res) => {
 })
 
 // Config (manually set states)
-router.get('/config', (req, res) => {
-    res.sendFile(`${__dirname}/frontend/html/config.html`)
+router.get('/test', (req, res) => {
+    res.sendFile(`${__dirname}/frontend/html/test.html`)
 })
 
 // Exports

@@ -32,24 +32,13 @@ function updateStates(force) {
 }
 
 /**
- * Toggle ignoreLogic
- * @param {boolean} state
- */
-function toggleIgnoreLogic(state) {
-    io().emit('ignoreLogic', state, false, (res) => {
-        if (!res.stateAllowed) alert(res.msg)
-        updateStates(false)
-    })
-}
-
-/**
  * Toggle valve1
  * @param {boolean} state
  */
 function toggleValve1(state) {
-    io().emit('valve1', state, false, (res) => {
+    io().emit('valve1', state, true, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(false)
+        updateStates(true)
     })
 }
 
@@ -58,9 +47,9 @@ function toggleValve1(state) {
  * @param {boolean} state
  */
 function toggleValve2(state) {
-    io().emit('valve2', state, false, (res) => {
+    io().emit('valve2', state, true, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(false)
+        updateStates(true)
     })
 }
 
@@ -69,9 +58,9 @@ function toggleValve2(state) {
  * @param {boolean} state
  */
 function toggleValve3(state) {
-    io().emit('valve3', state, false, (res) => {
+    io().emit('valve3', state, true, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(false)
+        updateStates(true)
     })
 }
 
@@ -80,9 +69,9 @@ function toggleValve3(state) {
  * @param {boolean} state
  */
 function toggleValve4(state) {
-    io().emit('valve4', state, false, (res) => {
+    io().emit('valve4', state, true, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(false)
+        updateStates(true)
     })
 }
 
@@ -91,9 +80,9 @@ function toggleValve4(state) {
  * @param {boolean} state
  */
 function toggleTapWater(state) {
-    io().emit('tapWater', state, false, (res) => {
+    io().emit('tapWater', state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(false)
+        updateStates(true)
     })
 }
 
@@ -102,9 +91,9 @@ function toggleTapWater(state) {
  * @param {boolean} state
  */
 function togglePumpWaterUp(state) {
-    io().emit('pumpWaterUp', state, false, (res) => {
+    io().emit('pumpWaterUp', state, true, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(false)
+        updateStates(true)
     })
 }
 
@@ -113,9 +102,9 @@ function togglePumpWaterUp(state) {
  * @param {boolean} state
  */
 function toggleTransferWaterDown(state) {
-    io().emit('transferWaterDown', state, false, (res) => {
+    io().emit('transferWaterDown', state, true, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(false)
+        updateStates(true)
     })
 }
 
@@ -124,9 +113,9 @@ function toggleTransferWaterDown(state) {
  * @param {boolean} state
  */
 function toggleRain(state) {
-    io().emit('rain', state, false, (res) => {
+    io().emit('rain', state, true, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(false)
+        updateStates(true)
     })
 }
 
@@ -134,7 +123,7 @@ function toggleRain(state) {
  * Toggle floater1
  * @param {boolean} state
  */
- function toggleFloater1(state) {
+function toggleFloater1(state) {
     io().emit('floater1', state, true, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates(true)

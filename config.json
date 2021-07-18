@@ -1,27 +1,31 @@
 {
+    "ignoreLogic": false,
     "states": {
-        "valveOne": false,
-        "valveTwo": false,
-        "valveThree": false,
-        "valveFour": false,
-        "rain": false,
-        "pump": false,
+        "valve1": false,
+        "valve2": false,
+        "valve3": false,
+        "valve4": false,
         "tapWater": false,
-        "floaterOne": false,
-        "floaterTwo": false,
-        "floaterThree": false,
-        "floaterFour": false,
-        "floaterFive": false
+        "pumpWaterUp": false,
+        "transferWaterDown": false,
+        "rain": false,
+        "floater1": false,
+        "floater2": false,
+        "floater3": false,
+        "floater4": false,
+        "floater5": false
     },
     "rpiGpioPins": {
-        "valveOne": 2,
-        "valveTwo": 3,
-        "valveThree": 4,
-        "valveFour": 17,
-        "valveFillTanks": 27,
-        "floaterOne": 14,
-        "floaterTwo": 15,
-        "floaterThree": 18,
-        "pump": 23
+        "valve1": 2,
+        "valve2": 3,
+        "valve3": 4,
+        "valve4": 17,
+        "valve5": -1,
+        "valve6": -1,
+        "valve7": -1,
+        "floater1": 14,
+        "floater2": 15,
+        "floater3": 18,
+        "pumpWaterUp": 23
     }
 }

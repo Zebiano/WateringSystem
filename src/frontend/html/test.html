@@ -14,8 +14,8 @@
 <body>
     <div class="container">
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchIgnoreLogic" onclick="toggleIgnoreLogic(this.checked)">
-            <label class="form-check-label" for="switchIgnoreLogic">I take total control</label>
+            <input class="form-check-input" type="checkbox" id="switchIgnoreLogic" onclick="toggleIgnoreLogic(this.checked)" disabled>
+            <label class="form-check-label" for="switchIgnoreLogic">I take total control (Read-only, everything here has control by default)</label>
         </div>
         <hr>
         <div class="form-check form-switch">
@@ -36,15 +36,15 @@
         </div>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="switchTapWater" onclick="toggleTapWater(this.checked)">
-            <label class="form-check-label" for="switchTapWater">TapWater</label>
+            <label class="form-check-label" for="switchTapWater">TapWater (Valve 5)</label>
         </div>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="switchPumpWaterUp" onclick="togglePumpWaterUp(this.checked)">
-            <label class="form-check-label" for="switchPumpWaterUp">Pump water up</label>
+            <label class="form-check-label" for="switchPumpWaterUp">Pump water up (Valve 6)</label>
         </div>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="switchTransferWaterDown" onclick="toggleTransferWaterDown(this.checked)">
-            <label class="form-check-label" for="switchTransferWaterDown">Transfer water down</label>
+            <label class="form-check-label" for="switchTransferWaterDown">Transfer water down (Valve 7)</label>
         </div>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="switchRain" onclick="toggleRain(this.checked)">
@@ -52,23 +52,23 @@
         </div>
         <hr>
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFloater5" onclick="toggleFloater5(this.checked)" disabled>
+            <input class="form-check-input" type="checkbox" id="switchFloater5" onclick="toggleFloater5(this.checked)">
             <label class="form-check-label" for="switchFloater5">Floater 5</label>
         </div>
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFloater4" onclick="toggleFloater4(this.checked)" disabled>
+            <input class="form-check-input" type="checkbox" id="switchFloater4" onclick="toggleFloater4(this.checked)">
             <label class="form-check-label" for="switchFloater4">Floater 4</label>
         </div>
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFloater3" onclick="toggleFloater3(this.checked)" disabled>
+            <input class="form-check-input" type="checkbox" id="switchFloater3" onclick="toggleFloater3(this.checked)">
             <label class="form-check-label" for="switchFloater3">Floater 3</label>
         </div>
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFloater2" onclick="toggleFloater2(this.checked)" disabled>
+            <input class="form-check-input" type="checkbox" id="switchFloater2" onclick="toggleFloater2(this.checked)">
             <label class="form-check-label" for="switchFloater2">Floater 2</label>
         </div>
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFloater1" onclick="toggleFloater1(this.checked)" disabled>
+            <input class="form-check-input" type="checkbox" id="switchFloater1" onclick="toggleFloater1(this.checked)">
             <label class="form-check-label" for="switchFloater1">Floater 1</label>
         </div>
     </div>
@@ -77,7 +77,7 @@
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Scripts -->
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/frontend/js/main.js"></script>
+    <script src="/frontend/js/test.js"></script>
 </body>
 
 </html>

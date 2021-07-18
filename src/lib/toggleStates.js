@@ -2,21 +2,71 @@
 const logic = require('../logic')
 
 /**
- * Toggle specific Valve if possible
- * @param {number} valve Which valve to toggle
+ * Toggle ignoreLogic
  * @param {boolean} state
  */
-exports.valve = (valve, state) => {
-    switch (valve) {
-        case 1: wateringSystem.states.valveOne = state; break
-        case 2: wateringSystem.states.valveTwo = state; break
-        case 3: wateringSystem.states.valveThree = state; break
-        case 4: wateringSystem.states.valveFour = state; break
-    }
+ exports.ignoreLogic = (state) => {
+    wateringSystem.ignoreLogic = state
 }
 
 /**
- * Toggle rain if possible
+ * Toggle valve 1
+ * @param {boolean} state
+ */
+exports.valve1 = (state) => {
+    wateringSystem.states.valve1 = state
+}
+
+/**
+ * Toggle valve 2
+ * @param {boolean} state
+ */
+ exports.valve2 = (state) => {
+    wateringSystem.states.valve2 = state
+}
+
+/**
+ * Toggle valve 3
+ * @param {boolean} state
+ */
+ exports.valve3 = (state) => {
+    wateringSystem.states.valve3 = state
+}
+
+/**
+ * Toggle valve 4
+ * @param {boolean} state
+ */
+ exports.valve4 = (state) => {
+    wateringSystem.states.valve4 = state
+}
+
+/**
+ * Toggle tap water (valve 5)
+ * @param {boolean} state
+ */
+ exports.tapWater = (state) => {
+    wateringSystem.states.tapWater = state
+}
+
+/**
+ * Toggle pumpWaterUp (valve 6)
+ * @param {boolean} state
+ */
+ exports.pumpWaterUp = (state) => {
+    wateringSystem.states.pumpWaterUp = state
+}
+
+/**
+ * Toggle transferWaterDown (valve 7)
+ * @param {boolean} state
+ */
+ exports.transferWaterDown = (state) => {
+    wateringSystem.states.transferWaterDown = state
+}
+
+/**
+ * Toggle rain
  * @param {boolean} state
  */
 exports.rain = (state) => {
@@ -24,17 +74,38 @@ exports.rain = (state) => {
 }
 
 /**
- * Toggle pump if possible
+ * Toggle floater1
  * @param {boolean} state
  */
-exports.pump = (state) => {
-    wateringSystem.states.pump = state
+ exports.floater1 = (state) => {
+    wateringSystem.states.floater1 = state
 }
 
 /**
- * Toggle tap water if possible
+ * Toggle floater2
  * @param {boolean} state
  */
-exports.tapWater = (state) => {
-    wateringSystem.states.tapWater = state
+ exports.floater2 = (state) => {
+    wateringSystem.states.floater2 = state
+}
+/**
+ * Toggle floater3
+ * @param {boolean} state
+ */
+ exports.floater3 = (state) => {
+    wateringSystem.states.floater3 = state
+}
+/**
+ * Toggle floater4
+ * @param {boolean} state
+ */
+ exports.floater4 = (state) => {
+    wateringSystem.states.floater4 = state
+}
+/**
+ * Toggle floater5
+ * @param {boolean} state
+ */
+ exports.floater5 = (state) => {
+    wateringSystem.states.floater5 = state
 }
