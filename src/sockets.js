@@ -3,8 +3,11 @@ const server = require(`../main`)
 const socketServer = require('socket.io').Server
 const io = new socketServer(server)
 
-// Require: Lib
-const scream = require(`./lib/scream`)
+// Require: libs
+const toggle = require('./lib/toggleStates')
+
+// Require: Files
+const logic = require('./logic')
 
 // Start io server
 io.on('connection', (socket) => {
@@ -15,43 +18,50 @@ io.on('connection', (socket) => {
 
     // Valve One
     socket.on('valveOne', (state, callback) => {
-        wateringSystem.states.valveOne = state
-        callback(wateringSystem.states)
+        const logicRes = logic.valve(1, state)
+        if (logicRes.stateAllowed) toggle.valve(1, state)
+        callback(logicRes)
     })
 
     // Valve Two
     socket.on('valveTwo', (state, callback) => {
-        wateringSystem.states.valveTwo = state
-        callback(wateringSystem.states)
+        const logicRes = logic.valve(2, state)
+        if (logicRes.stateAllowed) toggle.valve(2, state)
+        callback(logicRes)
     })
 
     // Valve Three
     socket.on('valveThree', (state, callback) => {
-        wateringSystem.states.valveThree = state
-        callback(wateringSystem.states)
+        const logicRes = logic.valve(3, state)
+        if (logicRes.stateAllowed) toggle.valve(3, state)
+        callback(logicRes)
     })
 
     // Valve Four
     socket.on('valveFour', (state, callback) => {
-        wateringSystem.states.valveFour = state
-        callback(wateringSystem.states)
+        const logicRes = logic.valve(4, state)
+        if (logicRes.stateAllowed) toggle.valve(4, state)
+        callback(logicRes)
     })
 
     // Rain
     socket.on('rain', (state, callback) => {
-        wateringSystem.states.rain = state
-        callback(wateringSystem.states)
+        const logicRes = logic.rain(state)
+        if (logicRes.stateAllowed) toggle.rain(state)
+        callback(logicRes)
     })
 
     // Pump
     socket.on('pump', (state, callback) => {
-        wateringSystem.states.pump = state
-        callback(wateringSystem.states)
+        const logicRes = logic.pump(state)
+        if (logicRes.stateAllowed) toggle.pump(state)
+        callback(logicRes)
     })
 
     // Tap Water
     socket.on('tapWater', (state, callback) => {
-        wateringSystem.states.tapWater = state
-        callback(wateringSystem.states)
+        const logicRes = logic.tapWater(state)
+        if (logicRes.stateAllowed) toggle.tapWater(state)
+        callback(logicRes)
     })
 })

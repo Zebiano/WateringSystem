@@ -28,10 +28,30 @@ function updateStates() {
  */
 function toggleValve(valve, state) {
     switch (valve) {
-        case 1: io().emit('valveOne', state, (states) => { updateStates() }); break
-        case 2: io().emit('valveTwo', state, (states) => { updateStates() }); break
-        case 3: io().emit('valveThree', state, (states) => { updateStates() }); break
-        case 4: io().emit('valveFour', state, (states) => { updateStates() }); break
+        case 1:
+            io().emit('valveOne', state, (res) => {
+                if (!res.stateAllowed) alert(res.msg)
+                updateStates()
+            })
+            break
+        case 2:
+            io().emit('valveTwo', state, (res) => {
+                if (!res.stateAllowed) alert(res.msg)
+                updateStates()
+            })
+            break
+        case 3:
+            io().emit('valveThree', state, (res) => {
+                if (!res.stateAllowed) alert(res.msg)
+                updateStates()
+            })
+            break
+        case 4:
+            io().emit('valveFour', state, (res) => {
+                if (!res.stateAllowed) alert(res.msg)
+                updateStates()
+            })
+            break
     }
 }
 
@@ -40,7 +60,10 @@ function toggleValve(valve, state) {
  * @param {boolean} state
  */
 function toggleRain(state) {
-    io().emit('rain', state, (states) => { updateStates() })
+    io().emit('rain', state, (res) => {
+        if (!res.stateAllowed) alert(res.msg)
+        updateStates()
+    })
 }
 
 /**
@@ -48,7 +71,10 @@ function toggleRain(state) {
  * @param {boolean} state
  */
 function togglePump(state) {
-    io().emit('pump', state, (states) => { updateStates() })
+    io().emit('pump', state, (res) => {
+        if (!res.stateAllowed) alert(res.msg)
+        updateStates()
+    })
 }
 
 /**
@@ -56,5 +82,8 @@ function togglePump(state) {
  * @param {boolean} state
  */
 function toggleTapWater(state) {
-    io().emit('tapWater', state, (states) => { updateStates() })
+    io().emit('tapWater', state, (res) => {
+        if (!res.stateAllowed) alert(res.msg)
+        updateStates()
+    })
 }

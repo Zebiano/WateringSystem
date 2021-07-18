@@ -4,12 +4,14 @@
         "valveTwo": false,
         "valveThree": false,
         "valveFour": false,
+        "rain": false,
+        "pump": false,
+        "tapWater": false,
         "floaterOne": false,
         "floaterTwo": false,
         "floaterThree": false,
-        "tapWater": false,
-        "pump": false,
-        "rain": false
+        "floaterFour": false,
+        "floaterFive": false
     },
     "rpiGpioPins": {
         "valveOne": 2,

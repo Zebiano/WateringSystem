@@ -9,7 +9,7 @@ const fs = require('fs')
 module.exports = server
 
 // Load config.json into global scope
-global.wateringSystem = JSON.parse(fs.readFileSync(`./src/config.json`, 'utf8'))
+global.wateringSystem = JSON.parse(fs.readFileSync(`./config.json`, 'utf8'))
 
 // Require: Lib
 const scream = require(`./src/lib/scream`)
@@ -24,7 +24,7 @@ app.use('/frontend', express.static(`./src/frontend`))
 
 // Require: Files
 require(`./src/sockets`)
-require(`./src/logic`)
+require(`./src/logic`).run()
 
 // Start server
 server.listen(process.env.WS_PORT, () => {

@@ -1,9 +1,12 @@
+// Require: Files
+const logic = require('../logic')
+
 /**
- * Toggle specific Valve
+ * Toggle specific Valve if possible
  * @param {number} valve Which valve to toggle
  * @param {boolean} state
  */
-exports.toggleValve = (valve, state) => {
+exports.valve = (valve, state) => {
     switch (valve) {
         case 1: wateringSystem.states.valveOne = state; break
         case 2: wateringSystem.states.valveTwo = state; break
@@ -13,25 +16,25 @@ exports.toggleValve = (valve, state) => {
 }
 
 /**
- * Toggle rain
+ * Toggle rain if possible
  * @param {boolean} state
  */
-exports.toggleRain = (state) => {
+exports.rain = (state) => {
     wateringSystem.states.rain = state
 }
 
 /**
- * Toggle pump
+ * Toggle pump if possible
  * @param {boolean} state
  */
-exports.togglePump = (state) => {
+exports.pump = (state) => {
     wateringSystem.states.pump = state
 }
 
 /**
- * Toggle tap water
+ * Toggle tap water if possible
  * @param {boolean} state
  */
-exports.toggleTapWater = (state) => {
+exports.tapWater = (state) => {
     wateringSystem.states.tapWater = state
 }
