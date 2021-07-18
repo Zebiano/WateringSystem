@@ -42,15 +42,15 @@ exports.run = () => {
     }
     // If pumpWaterUp is enabled
     else if (ws.pumpWaterUp) {
-        // If floater5 is true or floater1 is false, disable pumpWaterUp
-        if (ws.floater5 || !ws.floater1 || !ws.floater2) toggle.pumpWaterUp(false)
+        // If floater5 is true or floater1 or floater2 or floater3 is false, disable pumpWaterUp
+        if (ws.floater5 || !ws.floater1 || !ws.floater2 || !ws.floater3) toggle.pumpWaterUp(false)
     }
 
     /* --- transferWaterDown --- */
     // If transferWaterDown is disabled
     if (!ws.transferWaterDown) {
         // If floater2 is false and floater4 or floater5 are true, enable transferWaterDown
-        if (!ws.floater2 && (ws.floater4 && ws.floater5)) toggle.transferWaterDown(true)
+        if (!ws.floater2 && (ws.floater4 || ws.floater5)) toggle.transferWaterDown(true)
     }
     // If transferWaterDown is enabled
     else if (ws.transferWaterDown) {
