@@ -37,8 +37,8 @@ exports.run = () => {
     /* --- pumpWaterUp --- */
     // If pumpWaterUp is disabled
     if (!ws.pumpWaterUp) {
-        // If floater3 is true and floater5 false, enable pumpWaterUp
-        if (ws.floater3 && !ws.floater5) toggle.pumpWaterUp(true)
+        // If floater1 to 3 are true and floater5 false, enable pumpWaterUp
+        if (ws.floater1 && ws.floater2 && ws.floater3 && !ws.floater5) toggle.pumpWaterUp(true)
     }
     // If pumpWaterUp is enabled
     else if (ws.pumpWaterUp) {
