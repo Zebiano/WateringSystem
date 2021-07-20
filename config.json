@@ -16,16 +16,17 @@
         "floater5": false
     },
     "rpiGpioPins": {
-        "valve1": 2,
-        "valve2": 3,
-        "valve3": 4,
-        "valve4": 17,
-        "valve5": -1,
-        "valve6": -1,
-        "valve7": -1,
+        "valve1": 11,
+        "valve2": 0,
+        "valve3": 5,
+        "valve4": 6,
+        "valve5": 13,
+        "valve6": 19,
+        "valve7": 26,
         "floater1": 14,
         "floater2": 15,
         "floater3": 18,
-        "pumpWaterUp": 23
+        "floater4": 23,
+        "floater5": 24
     }
 }

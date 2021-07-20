@@ -13,5 +13,6 @@ GPIO pins are always written in [BCM pin numbers](https://www.raspberrypi.org/do
 ## `.env`
 Here's an example for the `.env` file:
 ```
+WS_ENV=test
 WS_PORT=3000
 ```
