@@ -13,6 +13,7 @@ global.wateringSystem = JSON.parse(fs.readFileSync(`./config.json`, 'utf8'))
 
 // Require: Lib
 const scream = require(`./src/lib/scream`)
+require(`./src/hardware`)
 
 // Middleware
 app.use('/', require(`./src/routes`))
