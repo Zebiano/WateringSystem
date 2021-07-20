@@ -32,7 +32,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "nodemon": "^2.0.12",
-    "onoff": "^6.0.3",
+    "pigpio": "^3.3.1",
     "socket.io": "^4.1.3"
   }
 }
