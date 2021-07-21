@@ -5,7 +5,17 @@ const toggle = require(`./lib/toggleStates`)
 const ws = wateringSystem.states
 
 /**
- * Run logic and act upon states
+ * Run logic and act upon states.
+ * 
+ * The following logic has been coded with the minimum amount of floaters in mind.
+ * For example, instead of checking if floaters 1, 2 and 3 are full to turn the pump on, floater 3 is enough to enable it.
+ * This has pros and cons.
+ * A pro being that it relies on less floaters and so a smaller chance of being a floater that breaks.
+ * A con being that on some cases, if a floater breaks, the system may break completely.
+ * 
+ * Here's a list of said examples:
+ * Floaters 1, 3 and 4 will trigger both valves 6 and 7 (pump and transfer)
+ * Floaters 1, 3, 4 and 5 will trigger valve 7 on and off (transfer)
  */
 exports.run = () => {
     /* --- valve1 to valve4 --- */
@@ -23,41 +33,39 @@ exports.run = () => {
     /* --- tapWater --- */
     // If tapWater and rain are disabled
     if (!ws.tapWater && !ws.rain) {
-        // If all floaters are false, enable tapWater
-        if (!ws.floater1 && !ws.floater2 && !ws.floater3 && !ws.floater4 && !ws.floater5) toggle.tapWater(true)
+        // If floater1 and 4 are false, enable tapWater
+        if (!ws.floater1 && !ws.floater4) toggle.tapWater(true)
     }
     // If tapWater is enabled
     else if (ws.tapWater) {
         // If rain is enabled
         if (ws.rain) toggle.tapWater(false)
-        // If any floater is true, disable tapWater
-        else if (ws.floater1 || ws.floater2 || ws.floater3 || ws.floater4 || ws.floater5) toggle.tapWater(false)
+        // If floater1 and 4 are true, disable tapWater
+        else if (ws.floater1 || ws.floater4) toggle.tapWater(false)
     }
 
     /* --- pumpWaterUp --- */
     // If pumpWaterUp is disabled
     if (!ws.pumpWaterUp) {
-        // If floater1 to 3 are true and floater5 false, enable pumpWaterUp
-        if (ws.floater1 && ws.floater2 && ws.floater3 && !ws.floater5) toggle.pumpWaterUp(true)
+        // If floater3 is true and floater5 false, enable pumpWaterUp
+        if (ws.floater3 && !ws.floater5) toggle.pumpWaterUp(true)
     }
     // If pumpWaterUp is enabled
     else if (ws.pumpWaterUp) {
-        // If floater5 is true or floater1 or floater2 or floater3 is false, disable pumpWaterUp
-        if (ws.floater5 || !ws.floater1 || !ws.floater2 || !ws.floater3) toggle.pumpWaterUp(false)
+        // If floater5 is true or floater3 false, disable pumpWaterUp
+        if (ws.floater5 || !ws.floater3) toggle.pumpWaterUp(false)
     }
 
     /* --- transferWaterDown --- */
     // If transferWaterDown is disabled
     if (!ws.transferWaterDown) {
         // If floater2 is false and floater4 or floater5 are true, enable transferWaterDown
-        if (!ws.floater2 && (ws.floater4 || ws.floater5)) toggle.transferWaterDown(true)
+        if (!ws.floater2 && ws.floater4) toggle.transferWaterDown(true)
     }
     // If transferWaterDown is enabled
     else if (ws.transferWaterDown) {
-        // If floater4 is false, disable transferWaterDown
-        if (!ws.floater4) toggle.transferWaterDown(false)
-        // If floater3 is true, disable transferWaterDown
-        else if (ws.floater3) toggle.transferWaterDown(false)
+        // If floater4 is false or floater3 true, disable transferWaterDown
+        if (!ws.floater4 || ws.floater3) toggle.transferWaterDown(false)
     }
 }
 

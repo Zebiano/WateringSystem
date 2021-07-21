@@ -72,3 +72,17 @@ floater2.glitchFilter(10000)
 floater3.glitchFilter(10000)
 floater4.glitchFilter(10000)
 floater5.glitchFilter(10000)
+
+// Valve 1
+const valve1 = new gpio(wateringSystem.rpiGpioPins.valve1, {
+    mode: gpio.INPUT,
+    pullUpDown: gpio.PUD_DOWN,
+    edge: gpio.EITHER_EDGE,
+    alert: true
+})
+let i = 0
+
+// Set valve1 state when updated
+valve1.on('alert', (level) => {
+    console.log(level, i++)
+})
