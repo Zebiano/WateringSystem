@@ -80,3 +80,13 @@ floater5.glitchFilter(10000)
 exports.valve1 = new gpio(wateringSystem.rpiGpioPins.valve1, {
     mode: gpio.INPUT
 })
+
+// Valve 2
+exports.valve2 = new gpio(wateringSystem.rpiGpioPins.valve2, {
+    mode: gpio.INPUT
+})
+
+// Valve 3
+exports.valve3 = new gpio(wateringSystem.rpiGpioPins.valve3, {
+    mode: gpio.INPUT
+})
