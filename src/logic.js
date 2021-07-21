@@ -4,6 +4,9 @@ const toggle = require(`./lib/toggleStates`)
 // Variables
 const ws = wateringSystem.states
 
+// TODO: 1 3 4 and for makes a  call stack size exceeded
+// TODO: Check for impossible situations and let user know something isn't right and turn manual mode on with everything false
+
 /**
  * Run logic and act upon states.
  * 
@@ -69,6 +72,7 @@ exports.run = () => {
     }
 }
 
+// TODO: Check for 'force' in lib/toggleStates.js
 // Run logic every x amount of time
 if (!wateringSystem.ignoreLogic) setInterval(exports.run, 1000)
 

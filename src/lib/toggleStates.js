@@ -3,8 +3,6 @@ const logic = require('../logic')
 let hardware = null
 if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') hardware = require(`../hardware`)
 
-// TODO: logic.run() most likely fucks up manual and/or force mode here
-
 /**
  * Toggle ignoreLogic
  * @param {boolean} state
@@ -23,7 +21,6 @@ exports.valve1 = (state) => {
         if (state) hardware.valve1.digitalWrite(1)
         else hardware.valve1.digitalWrite(0)
     }
-    logic.run()
 }
 
 /**
@@ -36,7 +33,6 @@ exports.valve2 = (state) => {
         if (state) hardware.valve2.digitalWrite(1)
         else hardware.valve2.digitalWrite(0)
     }
-    logic.run()
 }
 
 /**
@@ -49,7 +45,6 @@ exports.valve3 = (state) => {
         if (state) hardware.valve3.digitalWrite(1)
         else hardware.valve3.digitalWrite(0)
     }
-    logic.run()
 }
 
 /**
@@ -62,7 +57,6 @@ exports.valve4 = (state) => {
         if (state) hardware.valve4.digitalWrite(1)
         else hardware.valve4.digitalWrite(0)
     }
-    logic.run()
 }
 
 /**
@@ -75,7 +69,6 @@ exports.tapWater = (state) => {
         if (state) hardware.tapWater.digitalWrite(1)
         else hardware.tapWater.digitalWrite(0)
     }
-    logic.run()
 }
 
 /**
@@ -88,7 +81,6 @@ exports.pumpWaterUp = (state) => {
         if (state) hardware.pumpWaterUp.digitalWrite(1)
         else hardware.pumpWaterUp.digitalWrite(0)
     }
-    logic.run()
 }
 
 /**
@@ -101,7 +93,6 @@ exports.transferWaterDown = (state) => {
         if (state) hardware.transferWaterDown.digitalWrite(1)
         else hardware.transferWaterDown.digitalWrite(0)
     }
-    logic.run()
 }
 
 /**
@@ -110,7 +101,6 @@ exports.transferWaterDown = (state) => {
  */
 exports.rain = (state) => {
     wateringSystem.states.rain = state
-    logic.run()
 }
 
 /**
@@ -119,7 +109,6 @@ exports.rain = (state) => {
  */
 exports.floater1 = (state) => {
     wateringSystem.states.floater1 = state
-    logic.run()
 }
 
 /**
@@ -128,7 +117,6 @@ exports.floater1 = (state) => {
  */
 exports.floater2 = (state) => {
     wateringSystem.states.floater2 = state
-    logic.run()
 }
 /**
  * Toggle floater3
@@ -136,7 +124,6 @@ exports.floater2 = (state) => {
  */
 exports.floater3 = (state) => {
     wateringSystem.states.floater3 = state
-    logic.run()
 }
 /**
  * Toggle floater4
@@ -144,7 +131,6 @@ exports.floater3 = (state) => {
  */
 exports.floater4 = (state) => {
     wateringSystem.states.floater4 = state
-    logic.run()
 }
 /**
  * Toggle floater5
@@ -152,5 +138,4 @@ exports.floater4 = (state) => {
  */
 exports.floater5 = (state) => {
     wateringSystem.states.floater5 = state
-    logic.run()
 }
