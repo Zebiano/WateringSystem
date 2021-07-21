@@ -90,3 +90,23 @@ exports.valve2 = new gpio(wateringSystem.rpiGpioPins.valve2, {
 exports.valve3 = new gpio(wateringSystem.rpiGpioPins.valve3, {
     mode: gpio.INPUT
 })
+
+// Valve 4
+exports.valve4 = new gpio(wateringSystem.rpiGpioPins.valve4, {
+    mode: gpio.INPUT
+})
+
+// Valve 5
+exports.tapWater = new gpio(wateringSystem.rpiGpioPins.tapWater, {
+    mode: gpio.INPUT
+})
+
+// Valve 6
+exports.pumpWaterUp = new gpio(wateringSystem.rpiGpioPins.pumpWaterUp, {
+    mode: gpio.INPUT
+})
+
+// Valve 7
+exports.transferWaterDown = new gpio(wateringSystem.rpiGpioPins.transferWaterDown, {
+    mode: gpio.INPUT
+})

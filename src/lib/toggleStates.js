@@ -22,7 +22,6 @@ exports.valve1 = (state) => {
     if (hardware) {
         if (state) hardware.valve1.digitalWrite(1)
         else hardware.valve1.digitalWrite(0)
-        console.log(hardware.valve1.digitalRead())
     }
     logic.run()
 }
@@ -36,7 +35,6 @@ exports.valve2 = (state) => {
     if (hardware) {
         if (state) hardware.valve2.digitalWrite(1)
         else hardware.valve2.digitalWrite(0)
-        console.log(hardware.valve2.digitalRead())
     }
     logic.run()
 }
@@ -47,6 +45,10 @@ exports.valve2 = (state) => {
  */
 exports.valve3 = (state) => {
     wateringSystem.states.valve3 = state
+    if (hardware) {
+        if (state) hardware.valve3.digitalWrite(1)
+        else hardware.valve3.digitalWrite(0)
+    }
     logic.run()
 }
 
@@ -56,6 +58,10 @@ exports.valve3 = (state) => {
  */
 exports.valve4 = (state) => {
     wateringSystem.states.valve4 = state
+    if (hardware) {
+        if (state) hardware.valve4.digitalWrite(1)
+        else hardware.valve4.digitalWrite(0)
+    }
     logic.run()
 }
 
@@ -65,6 +71,10 @@ exports.valve4 = (state) => {
  */
 exports.tapWater = (state) => {
     wateringSystem.states.tapWater = state
+    if (hardware) {
+        if (state) hardware.tapWater.digitalWrite(1)
+        else hardware.tapWater.digitalWrite(0)
+    }
     logic.run()
 }
 
@@ -74,6 +84,10 @@ exports.tapWater = (state) => {
  */
 exports.pumpWaterUp = (state) => {
     wateringSystem.states.pumpWaterUp = state
+    if (hardware) {
+        if (state) hardware.pumpWaterUp.digitalWrite(1)
+        else hardware.pumpWaterUp.digitalWrite(0)
+    }
     logic.run()
 }
 
@@ -83,6 +97,10 @@ exports.pumpWaterUp = (state) => {
  */
 exports.transferWaterDown = (state) => {
     wateringSystem.states.transferWaterDown = state
+    if (hardware) {
+        if (state) hardware.transferWaterDown.digitalWrite(1)
+        else hardware.transferWaterDown.digitalWrite(0)
+    }
     logic.run()
 }
 
