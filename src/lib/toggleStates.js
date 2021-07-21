@@ -1,7 +1,7 @@
 // Require: Files
 const logic = require('../logic')
 let hardware = null
-if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') hardware = require(`./src/hardware`)
+if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') hardware = require(`../hardware`)
 
 // TODO: logic.run() most likely fucks up manual and/or force mode here
 
@@ -20,8 +20,9 @@ exports.ignoreLogic = (state) => {
 exports.valve1 = (state) => {
     wateringSystem.states.valve1 = state
     if (hardware) {
+        if (state) hardware.valve1.digitalWrite(1)
+        else hardware.valve1.digitalWrite(0)
         console.log(hardware.valve1.digitalRead())
-        hardware.valve1.digitalWrite(1)
     }
     logic.run()
 }
@@ -32,6 +33,11 @@ exports.valve1 = (state) => {
  */
 exports.valve2 = (state) => {
     wateringSystem.states.valve2 = state
+    if (hardware) {
+        if (state) hardware.valve2.digitalWrite(1)
+        else hardware.valve2.digitalWrite(0)
+        console.log(hardware.valve2.digitalRead())
+    }
     logic.run()
 }
 

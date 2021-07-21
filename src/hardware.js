@@ -78,7 +78,5 @@ floater5.glitchFilter(10000)
 
 // Valve 1
 exports.valve1 = new gpio(wateringSystem.rpiGpioPins.valve1, {
-    mode: gpio.INPUT,
-    pullUpDown: gpio.PUD_DOWN,
-    edge: gpio.EITHER_EDGE
+    mode: gpio.INPUT
 })
