@@ -21,7 +21,7 @@ exports.run = () => {
     /* --- valve1 to valve4 --- */
     // If any valve1 to valve4 is enabled
     if (ws.valve1 || ws.valve2 || ws.valve3 || ws.valve4) {
-        // If floater1 is false, disable all valve1 to valve4
+        // If floater1 is false, disable all valves 1 to 4
         if (!ws.floater1) {
             toggle.valve1(false)
             toggle.valve2(false)
@@ -68,6 +68,9 @@ exports.run = () => {
         if (!ws.floater4 || ws.floater3) toggle.transferWaterDown(false)
     }
 }
+
+// Run logic every x amount of time
+if (!wateringSystem.ignoreLogic) setInterval(exports.run, 1000)
 
 /**
  * Run logic related to `valve1`

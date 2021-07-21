@@ -24,7 +24,7 @@ app.use('/frontend', express.static(`./src/frontend`))
 
 // Require: Files
 require(`./src/sockets`)
-require(`./src/logic`).run()
+require(`./src/logic`)
 
 // Start server
 server.listen(process.env.WS_PORT, () => {

@@ -13,7 +13,8 @@ const logic = require('./logic')
 io.on('connection', (socket) => {
     // Return states when asked
     socket.on("states", (force, callback) => {
-        if (!force && !wateringSystem.ignoreLogic) logic.run()
+        // TODO: Not calling logic.run() here anymore, but how will you call force?
+        // if (!force && !wateringSystem.ignoreLogic) logic.run()
         callback(wateringSystem)
     })
 
