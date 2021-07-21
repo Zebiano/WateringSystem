@@ -4,6 +4,8 @@ const gpio = require('pigpio').Gpio
 // Require: Libs
 const toggle = require(`./lib/toggleStates`)
 
+// TODO: GPIO 13 is on by default
+
 // Floater 1
 const floater1 = new gpio(wateringSystem.rpiGpioPins.floater1, {
     mode: gpio.INPUT,
@@ -98,7 +100,8 @@ exports.valve4 = new gpio(wateringSystem.rpiGpioPins.valve4, {
 
 // Valve 5
 exports.tapWater = new gpio(wateringSystem.rpiGpioPins.tapWater, {
-    mode: gpio.INPUT
+    mode: gpio.INPUT,
+    pullUpDown: gpio.PUD_DOWN
 })
 
 // Valve 6
