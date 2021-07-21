@@ -6,6 +6,7 @@ const ws = wateringSystem.states
 
 // TODO: 1 3 4 and for makes a  call stack size exceeded
 // TODO: Check for impossible situations and let user know something isn't right and turn manual mode on with everything false
+// TODO: Maybe if only 4 is enabled, turn on Valve 5 and 7 (tap water and transfer water)
 
 /**
  * Run logic and act upon states.
@@ -73,6 +74,9 @@ exports.run = () => {
 }
 
 // TODO: Check for 'force' in lib/toggleStates.js
+// TODO: A way to fix it, is by simply enabling manual when running anything from /test. 
+// TODO: User has to actively disable manual again after they're done (or after x mins).
+// TODO: Button should not be disabled then
 // Run logic every x amount of time
 if (!wateringSystem.ignoreLogic) setInterval(exports.run, 1000)
 
