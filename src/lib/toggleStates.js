@@ -4,11 +4,44 @@ let hardware = null
 if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') hardware = require(`../hardware`)
 
 /**
- * Toggle ignoreLogic
+ * Toggle manual
  * @param {boolean} state
+ * @param {boolean} neverExit If true, does not start timer to put manual mode back to false
  */
-exports.ignoreLogic = (state) => {
-    wateringSystem.ignoreLogic = state
+exports.manual = (state, neverExit) => {
+    wateringSystem.manual = state
+
+    // Turn manual mode back off after x amount of time
+    if (state && !neverExit) setTimeout(() => { wateringSystem.manual = false }, process.env.WS_MANUAL_TIMEOUT)
+}
+
+/**
+ * Set state of every user changeable state entry
+ * @param {boolean} state 
+ */
+exports.all = (state) => {
+    wateringSystem.states.valve1 = state
+    wateringSystem.states.valve2 = state
+    wateringSystem.states.valve3 = state
+    wateringSystem.states.valve4 = state
+    wateringSystem.states.tapWater = state
+    wateringSystem.states.pumpWaterUp = state
+    wateringSystem.states.transferWaterDown = state
+    wateringSystem.states.rain = state
+}
+
+/**
+ * Set status data
+ * @param {string} msg 
+ * @param {boolean} manual 
+ * @param {boolean} neverExit 
+ */
+exports.status = (msg, manual, neverExit) => {
+    wateringSystem.status.msg = msg
+    if (manual) {
+        exports.manual(true, neverExit)
+        exports.all(false)
+    }
 }
 
 /**

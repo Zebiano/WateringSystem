@@ -1,5 +1,5 @@
 {
-    "ignoreLogic": false,
+    "manual": false,
     "states": {
         "valve1": false,
         "valve2": false,
@@ -14,6 +14,9 @@
         "floater4": false,
         "floater5": false,
         "rain": false
+    },
+    "status": {
+        "msg": "All seems good! :)"
     },
     "rpiGpioPins": {
         "valve1": 11,

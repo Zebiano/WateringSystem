@@ -1,27 +1,29 @@
 // Require: Libs
 const toggle = require(`./lib/toggleStates`)
+const sockets = require(`./sockets`)
 
 // Variables
 const ws = wateringSystem.states
 
-// TODO: 1 3 4 and for makes a  call stack size exceeded
-// TODO: Check for impossible situations and let user know something isn't right and turn manual mode on with everything false
-// TODO: Maybe if only 4 is enabled, turn on Valve 5 and 7 (tap water and transfer water)
+// Run logic every x amount of time if not in manual mode
+setInterval(() => {
+    if (!wateringSystem.manual) exports.run()
+}, 1000)
 
 /**
  * Run logic and act upon states.
  * 
- * The following logic has been coded with the minimum amount of floaters in mind.
- * For example, instead of checking if floaters 1, 2 and 3 are full to turn the pump on, floater 3 is enough to enable it.
- * This has pros and cons.
- * A pro being that it relies on less floaters and so a smaller chance of being a floater that breaks.
- * A con being that on some cases, if a floater breaks, the system may break completely.
- * 
- * Here's a list of said examples:
  * Floaters 1, 3 and 4 will trigger both valves 6 and 7 (pump and transfer)
  * Floaters 1, 3, 4 and 5 will trigger valve 7 on and off (transfer)
  */
 exports.run = () => {
+    /* --- Check for impossible situations --- */
+    if (!ws.floater1 && ws.floater2) return toggle.status('WARNING - One of the following floaters might not be working as expected: 1 or 2.<br>Manual mode activated for safety reasons.', true, true)
+    else if (!ws.floater1 && ws.floater3) return toggle.status('WARNING - One of the following floaters might not be working as expected: 1 or 3.<br>Manual mode activated for safety reasons.', true, true)
+    else if (!ws.floater2 && ws.floater3) return toggle.status('WARNING - One of the following floaters might not be working as expected: 2 or 3.<br>Manual mode activated for safety reasons.', true, true)
+    else if (!ws.floater4 && ws.floater5) return toggle.status('WARNING - One of the following floaters might not be working as expected: 4 or 5.<br>Manual mode activated for safety reasons.', true, true)
+    else toggle.status('All seems good! :)', false, false)
+
     /* --- valve1 to valve4 --- */
     // If any valve1 to valve4 is enabled
     if (ws.valve1 || ws.valve2 || ws.valve3 || ws.valve4) {
@@ -34,18 +36,22 @@ exports.run = () => {
         }
     }
 
+    // TODO: Logic of this shit.
+    // TODO: Maybe if only 4 is enabled, turn on Valve 5 and 7 (tap water and transfer water)
     /* --- tapWater --- */
     // If tapWater and rain are disabled
     if (!ws.tapWater && !ws.rain) {
-        // If floater1 and 4 are false, enable tapWater
-        if (!ws.floater1 && !ws.floater4) toggle.tapWater(true)
+        // If floater1 is false, enable tapWater
+        if (!ws.floater1) toggle.tapWater(true)
     }
     // If tapWater is enabled
     else if (ws.tapWater) {
         // If rain is enabled
         if (ws.rain) toggle.tapWater(false)
-        // If floater1 and 4 are true, disable tapWater
-        else if (ws.floater1 || ws.floater4) toggle.tapWater(false)
+        // If floater1 is true and floater2 is false
+        if (ws.floater1 && !ws.floater2) toggle.tapWater(false)
+        // If floater 1 and 4 are true and floater2 is false, disable tapWater
+        else if (ws.floater1 && !ws.floater2 && ws.floater4) toggle.tapWater(false)
     }
 
     /* --- pumpWaterUp --- */
@@ -72,13 +78,6 @@ exports.run = () => {
         if (!ws.floater4 || ws.floater3) toggle.transferWaterDown(false)
     }
 }
-
-// TODO: Check for 'force' in lib/toggleStates.js
-// TODO: A way to fix it, is by simply enabling manual when running anything from /test. 
-// TODO: User has to actively disable manual again after they're done (or after x mins).
-// TODO: Button should not be disabled then
-// Run logic every x amount of time
-if (!wateringSystem.ignoreLogic) setInterval(exports.run, 1000)
 
 /**
  * Run logic related to `valve1`
