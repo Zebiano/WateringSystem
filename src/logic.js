@@ -1,27 +1,30 @@
 // Require: Libs
 const toggle = require(`./lib/toggleStates`)
+const sockets = require(`./sockets`)
 
 // Variables
 const ws = wateringSystem.states
 
+// Run logic every x amount of time if not in manual mode
+setInterval(() => {
+    if (!wateringSystem.manual) exports.run()
+}, 500)
+
 /**
  * Run logic and act upon states.
- * 
- * The following logic has been coded with the minimum amount of floaters in mind.
- * For example, instead of checking if floaters 1, 2 and 3 are full to turn the pump on, floater 3 is enough to enable it.
- * This has pros and cons.
- * A pro being that it relies on less floaters and so a smaller chance of being a floater that breaks.
- * A con being that on some cases, if a floater breaks, the system may break completely.
- * 
- * Here's a list of said examples:
- * Floaters 1, 3 and 4 will trigger both valves 6 and 7 (pump and transfer)
- * Floaters 1, 3, 4 and 5 will trigger valve 7 on and off (transfer)
  */
 exports.run = () => {
+    /* --- Check for impossible situations --- */
+    if (!ws.floater1 && ws.floater2) return toggle.status('<b>WARNING</b> - One of the following floaters might not be working as expected: <b>1</b> or <b>2</b>.<br>Manual mode activated for safety reasons.', true, true)
+    else if (!ws.floater1 && ws.floater3) return toggle.status('<b>WARNING</b> - One of the following floaters might not be working as expected: <b>1</b> or <b>3</b>.<br>Manual mode activated for safety reasons.', true, true)
+    else if (!ws.floater2 && ws.floater3) return toggle.status('<b>WARNING</b> - One of the following floaters might not be working as expected: <b>2</b> or <b>3</b>.<br>Manual mode activated for safety reasons.', true, true)
+    else if (!ws.floater4 && ws.floater5) return toggle.status('<b>WARNING</b> - One of the following floaters might not be working as expected: <b>4</b> or <b>5</b>.<br>Manual mode activated for safety reasons.', true, true)
+    else toggle.status('All seems good! :)', false, false)
+
     /* --- valve1 to valve4 --- */
     // If any valve1 to valve4 is enabled
     if (ws.valve1 || ws.valve2 || ws.valve3 || ws.valve4) {
-        // If floater1 is false, disable all valve1 to valve4
+        // If floater1 is false, disable all valves 1 to 4
         if (!ws.floater1) {
             toggle.valve1(false)
             toggle.valve2(false)
@@ -32,16 +35,16 @@ exports.run = () => {
 
     /* --- tapWater --- */
     // If tapWater and rain are disabled
-    if (!ws.tapWater && !ws.rain) {
-        // If floater1 and 4 are false, enable tapWater
-        if (!ws.floater1 && !ws.floater4) toggle.tapWater(true)
+    if (!ws.tapWater) {
+        // If floater1 and rain are false, enable tapWater
+        if (!ws.floater1 && !ws.rain) toggle.tapWater(true)
     }
     // If tapWater is enabled
     else if (ws.tapWater) {
         // If rain is enabled
         if (ws.rain) toggle.tapWater(false)
-        // If floater1 and 4 are true, disable tapWater
-        else if (ws.floater1 || ws.floater4) toggle.tapWater(false)
+        // If floater1 is true and floater2 is false
+        else if (ws.floater1) toggle.tapWater(false)
     }
 
     /* --- pumpWaterUp --- */
@@ -64,8 +67,8 @@ exports.run = () => {
     }
     // If transferWaterDown is enabled
     else if (ws.transferWaterDown) {
-        // If floater4 is false or floater3 true, disable transferWaterDown
-        if (!ws.floater4 || ws.floater3) toggle.transferWaterDown(false)
+        // If floater4 is false or floater2 true, disable transferWaterDown
+        if (!ws.floater4 || ws.floater2) toggle.transferWaterDown(false)
     }
 }
 
@@ -78,7 +81,7 @@ exports.valve1 = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // valve1 cannot be enabled if floater 1 is false
-        if (!ws.floater1) return { stateAllowed: false, msg: 'Reservatorio 1 vazio!' }
+        if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve1 to '${desiredState}'.` }
     }
     // Rest is always OK
@@ -94,7 +97,7 @@ exports.valve2 = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // valve2 cannot be enabled if floater 1 is false
-        if (!ws.floater1) return { stateAllowed: false, msg: 'Reservatorio 1 vazio!' }
+        if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve2 to '${desiredState}'.` }
     }
     // Rest is always OK
@@ -110,7 +113,7 @@ exports.valve3 = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // valve3 cannot be enabled if floater 1 is false
-        if (!ws.floater1) return { stateAllowed: false, msg: 'Reservatorio 1 vazio!' }
+        if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve3 to '${desiredState}'.` }
     }
     // Rest is always OK
@@ -126,7 +129,7 @@ exports.valve4 = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // valve4 cannot be enabled if floater 1 is false
-        if (!ws.floater1) return { stateAllowed: false, msg: 'Reservatorio 1 vazio!' }
+        if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve4 to '${desiredState}'.` }
     }
     // Rest is always OK
@@ -142,13 +145,13 @@ exports.tapWater = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // tapWater cannot be enabled if floater5 and floater3 are true
-        if (ws.floater3 && ws.floater5) return { stateAllowed: false, msg: 'Reservatorios cheios!' }
+        if (ws.floater3 && ws.floater5) return { stateAllowed: false, msg: 'Tanks are full!' }
         else return { stateAllowed: true, msg: `Set tapWater to '${desiredState}'.` }
     }
     // If desiredState is false
     else if (!desiredState) {
         // tapWater cannot be disabled if floater1 and floater4 are false
-        if (!ws.floater1 && !ws.floater4) return { stateAllowed: false, msg: 'Reservatorios vazios!' }
+        if (!ws.floater1 && !ws.floater4) return { stateAllowed: false, msg: 'Tanks are empty!' }
         else return { stateAllowed: true, msg: `Set tapWater to '${desiredState}'.` }
     }
 }
@@ -162,9 +165,9 @@ exports.pumpWaterUp = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // pumpWaterUp cannot be enabled if floater5 is true
-        if (ws.floater5) return { stateAllowed: false, msg: 'Reservatorio 2 cheio!' }
+        if (ws.floater5) return { stateAllowed: false, msg: 'Tank 2 full!' }
         // pumpWaterUp cannot be enabled if floater1 is false
-        else if (!ws.floater1) return { stateAllowed: false, msg: 'Reservatorio 1 vazio!' }
+        else if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set pumpWaterUp to '${desiredState}'.` }
     }
     // Rest is always OK
@@ -180,7 +183,7 @@ exports.transferWaterDown = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // transferWaterDown cannot be enabled if floater4 is false
-        if (!ws.floater4) return { stateAllowed: false, msg: 'Reservatorio 2 vazio!' }
+        if (!ws.floater4) return { stateAllowed: false, msg: 'Tank 2 is empty!' }
         else return { stateAllowed: true, msg: `Set transferWaterDown to '${desiredState}'.` }
     }
     // Rest is always OK

@@ -15,4 +15,5 @@ Here's an example for the `.env` file:
 ```
 WS_ENV=test
 WS_PORT=3000
+WS_MANUAL_TIMEOUT=21600
 ```

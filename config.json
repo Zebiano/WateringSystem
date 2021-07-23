@@ -1,5 +1,5 @@
 {
-    "ignoreLogic": false,
+    "manual": false,
     "states": {
         "valve1": false,
         "valve2": false,
@@ -8,21 +8,24 @@
         "tapWater": false,
         "pumpWaterUp": false,
         "transferWaterDown": false,
-        "rain": false,
         "floater1": false,
         "floater2": false,
         "floater3": false,
         "floater4": false,
-        "floater5": false
+        "floater5": false,
+        "rain": false
+    },
+    "status": {
+        "msg": "All seems good! :)"
     },
     "rpiGpioPins": {
         "valve1": 11,
         "valve2": 0,
         "valve3": 5,
         "valve4": 6,
-        "valve5": 13,
-        "valve6": 19,
-        "valve7": 26,
+        "tapWater": 13,
+        "pumpWaterUp": 19,
+        "transferWaterDown": 26,
         "floater1": 14,
         "floater2": 15,
         "floater3": 18,
