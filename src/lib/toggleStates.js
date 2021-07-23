@@ -28,6 +28,27 @@ exports.all = (state) => {
     wateringSystem.states.pumpWaterUp = state
     wateringSystem.states.transferWaterDown = state
     wateringSystem.states.rain = state
+
+    // Change hardware states as well
+    if (hardware) {
+        if (state) {
+            hardware.valve1.digitalWrite(1)
+            hardware.valve2.digitalWrite(1)
+            hardware.valve3.digitalWrite(1)
+            hardware.valve4.digitalWrite(1)
+            hardware.tapWater.digitalWrite(1)
+            hardware.pumpWaterUp.digitalWrite(1)
+            hardware.transferWaterDown.digitalWrite(1)
+        } else {
+            hardware.valve1.digitalWrite(0)
+            hardware.valve2.digitalWrite(0)
+            hardware.valve3.digitalWrite(0)
+            hardware.valve4.digitalWrite(0)
+            hardware.tapWater.digitalWrite(0)
+            hardware.pumpWaterUp.digitalWrite(0)
+            hardware.transferWaterDown.digitalWrite(0)
+        }
+    }
 }
 
 /**
