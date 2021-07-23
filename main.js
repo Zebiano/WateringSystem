@@ -1,5 +1,6 @@
 // Require: Packages
 require('dotenv').config()
+const cleanup = require('node-cleanup')
 const express = require('express')
 const app = express()
 const server = require('http').createServer(app)
@@ -13,6 +14,7 @@ global.wateringSystem = JSON.parse(fs.readFileSync(`./config.json`, 'utf8'))
 
 // Require: Lib
 const scream = require(`./src/lib/scream`)
+const toggle = require(`./src/lib/toggleStates`)
 if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') require(`./src/hardware`)
 
 // Middleware
@@ -29,4 +31,9 @@ require(`./src/logic`)
 // Start server
 server.listen(process.env.WS_PORT, () => {
     scream.success(`Listening on http://localhost:${process.env.WS_PORT}/test`)
+})
+
+// When exiting, turn off relays
+cleanup(() => {
+    toggle.all(false)
 })

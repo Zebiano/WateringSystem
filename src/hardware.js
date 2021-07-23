@@ -5,7 +5,7 @@ const gpio = require('pigpio').Gpio
 const toggle = require(`./lib/toggleStates`)
 
 // TODO: GPIO 13 is on by default
-// TODO: Reset pins to default states (off) when program exits (good or bad)
+// TODO: When exiting node, everything should be set as false
 
 // Floater 1
 const floater1 = new gpio(wateringSystem.rpiGpioPins.floater1, {
