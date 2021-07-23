@@ -28,5 +28,5 @@ require(`./src/logic`)
 
 // Start server
 server.listen(process.env.WS_PORT, () => {
-    scream.success(`Listening on http://localhost:${process.env.WS_PORT}`)
+    scream.success(`Listening on http://localhost:${process.env.WS_PORT}/test`)
 })

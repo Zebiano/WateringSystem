@@ -8,7 +8,7 @@ const ws = wateringSystem.states
 // Run logic every x amount of time if not in manual mode
 setInterval(() => {
     if (!wateringSystem.manual) exports.run()
-}, 1000)
+}, 500)
 
 /**
  * Run logic and act upon states.
@@ -18,10 +18,10 @@ setInterval(() => {
  */
 exports.run = () => {
     /* --- Check for impossible situations --- */
-    if (!ws.floater1 && ws.floater2) return toggle.status('WARNING - One of the following floaters might not be working as expected: 1 or 2.<br>Manual mode activated for safety reasons.', true, true)
-    else if (!ws.floater1 && ws.floater3) return toggle.status('WARNING - One of the following floaters might not be working as expected: 1 or 3.<br>Manual mode activated for safety reasons.', true, true)
-    else if (!ws.floater2 && ws.floater3) return toggle.status('WARNING - One of the following floaters might not be working as expected: 2 or 3.<br>Manual mode activated for safety reasons.', true, true)
-    else if (!ws.floater4 && ws.floater5) return toggle.status('WARNING - One of the following floaters might not be working as expected: 4 or 5.<br>Manual mode activated for safety reasons.', true, true)
+    if (!ws.floater1 && ws.floater2) return toggle.status('<b>WARNING</b> - One of the following floaters might not be working as expected: <b>1</b> or <b>2</b>.<br>Manual mode activated for safety reasons.', true, true)
+    else if (!ws.floater1 && ws.floater3) return toggle.status('<b>WARNING</b> - One of the following floaters might not be working as expected: <b>1</b> or <b>3</b>.<br>Manual mode activated for safety reasons.', true, true)
+    else if (!ws.floater2 && ws.floater3) return toggle.status('<b>WARNING</b> - One of the following floaters might not be working as expected: <b>2</b> or <b>3</b>.<br>Manual mode activated for safety reasons.', true, true)
+    else if (!ws.floater4 && ws.floater5) return toggle.status('<b>WARNING</b> - One of the following floaters might not be working as expected: <b>4</b> or <b>5</b>.<br>Manual mode activated for safety reasons.', true, true)
     else toggle.status('All seems good! :)', false, false)
 
     /* --- valve1 to valve4 --- */
@@ -36,22 +36,18 @@ exports.run = () => {
         }
     }
 
-    // TODO: Logic of this shit.
-    // TODO: Maybe if only 4 is enabled, turn on Valve 5 and 7 (tap water and transfer water)
     /* --- tapWater --- */
     // If tapWater and rain are disabled
-    if (!ws.tapWater && !ws.rain) {
-        // If floater1 is false, enable tapWater
-        if (!ws.floater1) toggle.tapWater(true)
+    if (!ws.tapWater) {
+        // If floater1 and rain are false, enable tapWater
+        if (!ws.floater1 && !ws.rain) toggle.tapWater(true)
     }
     // If tapWater is enabled
     else if (ws.tapWater) {
         // If rain is enabled
         if (ws.rain) toggle.tapWater(false)
         // If floater1 is true and floater2 is false
-        if (ws.floater1 && !ws.floater2) toggle.tapWater(false)
-        // If floater 1 and 4 are true and floater2 is false, disable tapWater
-        else if (ws.floater1 && !ws.floater2 && ws.floater4) toggle.tapWater(false)
+        else if (ws.floater1) toggle.tapWater(false)
     }
 
     /* --- pumpWaterUp --- */
@@ -74,8 +70,8 @@ exports.run = () => {
     }
     // If transferWaterDown is enabled
     else if (ws.transferWaterDown) {
-        // If floater4 is false or floater3 true, disable transferWaterDown
-        if (!ws.floater4 || ws.floater3) toggle.transferWaterDown(false)
+        // If floater4 is false or floater2 true, disable transferWaterDown
+        if (!ws.floater4 || ws.floater2) toggle.transferWaterDown(false)
     }
 }
 
