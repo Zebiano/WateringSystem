@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 
     <!-- TODO: Create time boxes for users to insert how long they want tapwater to run (in h) -->
-    <!-- TODO: Create max time for manual mode -->
-    <!-- TODO: Max time for valves 1 to 4 is 2 mins. Valve 6 and 7 max 20. If is over before action is done, turn off whole system (which is basically turn on manual mode with everything in false), should only be usable in Manual mode -->
 </head>
 
 <body>
     <div class="container">
+        <h4 id="textStatus"></h4>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="switchManual" onclick="toggleManual(this.checked)">
             <label class="form-check-label" for="switchManual">Manual mode</label>

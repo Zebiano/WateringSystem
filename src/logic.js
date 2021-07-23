@@ -12,9 +12,6 @@ setInterval(() => {
 
 /**
  * Run logic and act upon states.
- * 
- * Floaters 1, 3 and 4 will trigger both valves 6 and 7 (pump and transfer)
- * Floaters 1, 3, 4 and 5 will trigger valve 7 on and off (transfer)
  */
 exports.run = () => {
     /* --- Check for impossible situations --- */
@@ -84,7 +81,7 @@ exports.valve1 = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // valve1 cannot be enabled if floater 1 is false
-        if (!ws.floater1) return { stateAllowed: false, msg: 'Reservatorio 1 vazio!' }
+        if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve1 to '${desiredState}'.` }
     }
     // Rest is always OK
@@ -100,7 +97,7 @@ exports.valve2 = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // valve2 cannot be enabled if floater 1 is false
-        if (!ws.floater1) return { stateAllowed: false, msg: 'Reservatorio 1 vazio!' }
+        if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve2 to '${desiredState}'.` }
     }
     // Rest is always OK
@@ -116,7 +113,7 @@ exports.valve3 = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // valve3 cannot be enabled if floater 1 is false
-        if (!ws.floater1) return { stateAllowed: false, msg: 'Reservatorio 1 vazio!' }
+        if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve3 to '${desiredState}'.` }
     }
     // Rest is always OK
@@ -132,7 +129,7 @@ exports.valve4 = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // valve4 cannot be enabled if floater 1 is false
-        if (!ws.floater1) return { stateAllowed: false, msg: 'Reservatorio 1 vazio!' }
+        if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve4 to '${desiredState}'.` }
     }
     // Rest is always OK
@@ -148,13 +145,13 @@ exports.tapWater = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // tapWater cannot be enabled if floater5 and floater3 are true
-        if (ws.floater3 && ws.floater5) return { stateAllowed: false, msg: 'Reservatorios cheios!' }
+        if (ws.floater3 && ws.floater5) return { stateAllowed: false, msg: 'Tanks are full!' }
         else return { stateAllowed: true, msg: `Set tapWater to '${desiredState}'.` }
     }
     // If desiredState is false
     else if (!desiredState) {
         // tapWater cannot be disabled if floater1 and floater4 are false
-        if (!ws.floater1 && !ws.floater4) return { stateAllowed: false, msg: 'Reservatorios vazios!' }
+        if (!ws.floater1 && !ws.floater4) return { stateAllowed: false, msg: 'Tanks are empty!' }
         else return { stateAllowed: true, msg: `Set tapWater to '${desiredState}'.` }
     }
 }
@@ -168,9 +165,9 @@ exports.pumpWaterUp = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // pumpWaterUp cannot be enabled if floater5 is true
-        if (ws.floater5) return { stateAllowed: false, msg: 'Reservatorio 2 cheio!' }
+        if (ws.floater5) return { stateAllowed: false, msg: 'Tank 2 full!' }
         // pumpWaterUp cannot be enabled if floater1 is false
-        else if (!ws.floater1) return { stateAllowed: false, msg: 'Reservatorio 1 vazio!' }
+        else if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set pumpWaterUp to '${desiredState}'.` }
     }
     // Rest is always OK
@@ -186,7 +183,7 @@ exports.transferWaterDown = (desiredState) => {
     // If desiredState is true
     if (desiredState) {
         // transferWaterDown cannot be enabled if floater4 is false
-        if (!ws.floater4) return { stateAllowed: false, msg: 'Reservatorio 2 vazio!' }
+        if (!ws.floater4) return { stateAllowed: false, msg: 'Tank 2 is empty!' }
         else return { stateAllowed: true, msg: `Set transferWaterDown to '${desiredState}'.` }
     }
     // Rest is always OK

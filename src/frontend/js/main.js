@@ -12,6 +12,7 @@ function updateStates() {
     socket.emit("states", (ws) => {
         // TODO: Would be cool to have switches disabled so the user cannot move them when it's stupid to move them
         // Update states frontend
+        document.getElementById('textStatus').innerHTML = ws.status.msg
         document.getElementById('switchManual').checked = ws.manual
 
         document.getElementById('switchValve1').checked = ws.states.valve1
