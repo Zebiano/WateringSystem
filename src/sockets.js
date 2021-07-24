@@ -12,6 +12,7 @@ const toggle = require('./toggleStates')
 const logic = require('./logic')
 
 // Variables
+const timerManual = new tinyTimer()
 const timerValve1 = new tinyTimer()
 const timerValve2 = new tinyTimer()
 const timerValve3 = new tinyTimer()
@@ -30,6 +31,22 @@ io.on('connection', (socket) => {
     // Ignore logic
     socket.on('manual', (state, callback) => {
         toggle.manual(state)
+
+        // Check if timer is already running and stop it
+        if (timerManual) timerManual.stop()
+
+        // Run timer if necessary
+        if (state) {
+            // Events
+            timerManual.on('done', () => {
+                toggle.manual(false)
+                toggle.status(`<b>WARNING</b> - Manual mode has been running for ${helper.msToHours(process.env.WS_MANUAL_TIMEOUT)} hours!<br>Manual mode deactivated for safety reasons.`, false, false)
+            })
+
+            // Start timer
+            timerManual.start(Number(process.env.WS_MANUAL_TIMEOUT), 1000)
+        }
+        
         callback({ stateAllowed: true, msg: `Set manual to '${state}'.` })
     })
 
@@ -95,7 +112,7 @@ io.on('connection', (socket) => {
             timerValve2.on('tick', (ms) => io.emit('valve2Duration', helper.msToSeconds(ms)))
             timerValve2.on('done', () => {
                 toggle.valve2(false)
-                io.emit('valve2Duration', helper.msToSeconds(process.env.WS_VALVE1_TIMEOUT))
+                io.emit('valve2Duration', helper.msToSeconds(process.env.WS_VALVE2_TIMEOUT))
             })
 
             // Start timer
@@ -132,7 +149,7 @@ io.on('connection', (socket) => {
             timerValve3.on('tick', (ms) => io.emit('valve3Duration', helper.msToSeconds(ms)))
             timerValve3.on('done', () => {
                 toggle.valve3(false)
-                io.emit('valve3Duration', helper.msToSeconds(process.env.WS_VALVE1_TIMEOUT))
+                io.emit('valve3Duration', helper.msToSeconds(process.env.WS_VALVE3_TIMEOUT))
             })
 
             // Start timer
@@ -169,7 +186,7 @@ io.on('connection', (socket) => {
             timerValve4.on('tick', (ms) => io.emit('valve4Duration', helper.msToSeconds(ms)))
             timerValve4.on('done', () => {
                 toggle.valve4(false)
-                io.emit('valve4Duration', helper.msToSeconds(process.env.WS_VALVE1_TIMEOUT))
+                io.emit('valve4Duration', helper.msToSeconds(process.env.WS_VALVE4_TIMEOUT))
             })
 
             // Start timer

@@ -29,6 +29,7 @@ WS_TRANSFER_TIMEOUT=1200000
 ## Default timeouts
 | Designation | Time     | `ms`      |
 | ----------- | -------- | --------- |
+| Manual mode | 8 hours  | 28800000  |
 | Valve 1     | 2 mins   | 120000    |
 | Valve 2     | 2 mins   | 120000    |
 | Valve 3     | 2 mins   | 120000    |
@@ -36,4 +37,3 @@ WS_TRANSFER_TIMEOUT=1200000
 | Tap water   | 48 hours | 172800000 |
 | Pump        | 20 mins  | 1200000   |
 | Transfer    | 20 mins  | 1200000   |
-| Manual mode | 8 hours  | 28800000  |
