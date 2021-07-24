@@ -1,8 +1,8 @@
 // Require: Packages
 const gpio = require('pigpio').Gpio
 
-// Require: Libs
-const toggle = require(`./lib/toggleStates`)
+// Require: Files
+const toggle = require(`./toggleStates`)
 
 // Floater 1
 const floater1 = new gpio(wateringSystem.rpiGpioPins.floater1, {

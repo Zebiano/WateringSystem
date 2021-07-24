@@ -4,6 +4,12 @@ var socket = io()
 // Refresh states every second
 setInterval(updateStates, 1000)
 
+// Update timers
+socket.on('valve1Duration', (duration) => document.getElementById('valve1Duration').value = duration)
+socket.on('valve2Duration', (duration) => document.getElementById('valve2Duration').value = duration)
+socket.on('valve3Duration', (duration) => document.getElementById('valve3Duration').value = duration)
+socket.on('valve4Duration', (duration) => document.getElementById('valve4Duration').value = duration)
+
 /**
  * Send request to server to get states and update frontend accordingly
  */
@@ -47,10 +53,11 @@ function updateStates() {
  * Toggle valve1
  * @param {boolean} state
  */
-function toggleValve1(state) {
-    io().emit('valve1', state, (res) => {
+ function toggleValve1(state) {
+    const duration = document.getElementById('valve1Duration').value * 1000
+    io().emit('valve1', state, duration, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -59,9 +66,10 @@ function toggleValve1(state) {
  * @param {boolean} state
  */
 function toggleValve2(state) {
-    io().emit('valve2', state, (res) => {
+    const duration = document.getElementById('valve2Duration').value * 1000
+    io().emit('valve2', state, duration, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -70,9 +78,10 @@ function toggleValve2(state) {
  * @param {boolean} state
  */
 function toggleValve3(state) {
-    io().emit('valve3', state, (res) => {
+    const duration = document.getElementById('valve3Duration').value * 1000
+    io().emit('valve3', state, duration, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -81,9 +90,10 @@ function toggleValve3(state) {
  * @param {boolean} state
  */
 function toggleValve4(state) {
-    io().emit('valve4', state, (res) => {
+    const duration = document.getElementById('valve4Duration').value * 1000
+    io().emit('valve4', state, duration, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -94,7 +104,7 @@ function toggleValve4(state) {
 function toggleTapWater(state) {
     io().emit('tapWater', state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -105,7 +115,7 @@ function toggleTapWater(state) {
 function togglePumpWaterUp(state) {
     io().emit('pumpWaterUp', state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -116,7 +126,7 @@ function togglePumpWaterUp(state) {
 function toggleTransferWaterDown(state) {
     io().emit('transferWaterDown', state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -127,7 +137,7 @@ function toggleTransferWaterDown(state) {
 function toggleRain(state) {
     io().emit('rain', state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -138,7 +148,7 @@ function toggleRain(state) {
 function toggleFloater1(state) {
     io().emit('floater1', state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -149,7 +159,7 @@ function toggleFloater1(state) {
 function toggleFloater2(state) {
     io().emit('floater2', state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -160,7 +170,7 @@ function toggleFloater2(state) {
 function toggleFloater3(state) {
     io().emit('floater3', state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -171,7 +181,7 @@ function toggleFloater3(state) {
 function toggleFloater4(state) {
     io().emit('floater4', state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }
 
@@ -182,6 +192,6 @@ function toggleFloater4(state) {
 function toggleFloater5(state) {
     io().emit('floater5', state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
-        updateStates(true)
+        updateStates()
     })
 }

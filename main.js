@@ -6,9 +6,9 @@ const app = express()
 const server = require('http').createServer(app)
 const fs = require('fs')
 
-// TODO: Implement home.openweathermap.org for weather forecast to control rain automatically
+// TODO: Implement home.openweathermap.org for weather forecast to control rain automatically (https://findanyanswer.com/how-much-mm-of-rain-is-a-lot)
 // TODO: Create max time for manual mode
-// TODO: Max time for valves 1 to 4 is 2 mins. Valve 6 and 7 max 20. If is over before action is done, turn off whole system (which is basically turn on manual mode with everything in false), should only be usable in Manual mode
+// TODO: If is over before action is done, turn off whole system (which is basically turn on manual mode with everything in false), should only be usable in Manual mode
 
 // Export server
 module.exports = server
@@ -18,7 +18,7 @@ global.wateringSystem = JSON.parse(fs.readFileSync(`./config.json`, 'utf8'))
 
 // Require: Lib
 const scream = require(`./src/lib/scream`)
-const toggle = require(`./src/lib/toggleStates`)
+const toggle = require(`./src/toggleStates`)
 if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') require(`./src/hardware`)
 
 // Middleware
@@ -39,4 +39,4 @@ server.listen(process.env.WS_PORT, () => {
 })
 
 // When exiting, turn off relays
-cleanup(() => { toggle.all(false) })
+cleanup(() => { toggle.allFalse() })

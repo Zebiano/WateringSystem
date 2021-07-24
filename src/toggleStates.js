@@ -1,7 +1,5 @@
 // Require: Files
-const logic = require('../logic')
-let hardware = null
-if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') hardware = require(`../hardware`)
+const hardware = (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') ? require(`./hardware`) : null
 
 /**
  * Toggle manual
@@ -16,38 +14,27 @@ exports.manual = (state, neverExit) => {
 }
 
 /**
- * Set state of every user changeable state entry
- * @param {boolean} state 
+ * Set state of every user changeable state entry to false
  */
-exports.all = (state) => {
-    wateringSystem.states.valve1 = state
-    wateringSystem.states.valve2 = state
-    wateringSystem.states.valve3 = state
-    wateringSystem.states.valve4 = state
-    wateringSystem.states.tapWater = state
-    wateringSystem.states.pumpWaterUp = state
-    wateringSystem.states.transferWaterDown = state
-    wateringSystem.states.rain = state
+exports.allFalse = () => {
+    wateringSystem.states.valve1 = false
+    wateringSystem.states.valve2 = false
+    wateringSystem.states.valve3 = false
+    wateringSystem.states.valve4 = false
+    wateringSystem.states.tapWater = false
+    wateringSystem.states.pumpWaterUp = false
+    wateringSystem.states.transferWaterDown = false
+    wateringSystem.states.rain = false
 
     // Change hardware states as well
     if (hardware) {
-        if (state) {
-            hardware.valve1.digitalWrite(1)
-            hardware.valve2.digitalWrite(1)
-            hardware.valve3.digitalWrite(1)
-            hardware.valve4.digitalWrite(1)
-            hardware.tapWater.digitalWrite(1)
-            hardware.pumpWaterUp.digitalWrite(1)
-            hardware.transferWaterDown.digitalWrite(1)
-        } else {
-            hardware.valve1.digitalWrite(0)
-            hardware.valve2.digitalWrite(0)
-            hardware.valve3.digitalWrite(0)
-            hardware.valve4.digitalWrite(0)
-            hardware.tapWater.digitalWrite(0)
-            hardware.pumpWaterUp.digitalWrite(0)
-            hardware.transferWaterDown.digitalWrite(0)
-        }
+        hardware.valve1.digitalWrite(0)
+        hardware.valve2.digitalWrite(0)
+        hardware.valve3.digitalWrite(0)
+        hardware.valve4.digitalWrite(0)
+        hardware.tapWater.digitalWrite(0)
+        hardware.pumpWaterUp.digitalWrite(0)
+        hardware.transferWaterDown.digitalWrite(0)
     }
 }
 
@@ -61,13 +48,14 @@ exports.status = (msg, manual, neverExit) => {
     wateringSystem.status.msg = msg
     if (manual) {
         exports.manual(true, neverExit)
-        exports.all(false)
+        exports.allFalse()
     }
 }
 
 /**
  * Toggle valve 1
  * @param {boolean} state
+ * @param {number} duration in ms
  */
 exports.valve1 = (state) => {
     wateringSystem.states.valve1 = state
