@@ -1,5 +1,5 @@
-// Require: Libs
-const toggle = require(`./lib/toggleStates`)
+// Require: Files
+const toggle = require(`./toggleStates`)
 const sockets = require(`./sockets`)
 
 // Variables
