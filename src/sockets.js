@@ -203,7 +203,10 @@ io.on('connection', (socket) => {
         // Run timer if necessary
         if (state && logicRes.stateAllowed) {
             // Events
-            timerTapWater.on('done', () => toggle.tapWater(false))
+            timerTapWater.on('done', () => {
+                toggle.tapWater(false)
+                toggle.status(`<b>WARNING</b> - Tap water (valve 5) has been running for ${helper.msToHours(process.env.WS_TAPWATER_TIMEOUT)} hours!<br>Manual mode activated for safety reasons.`, true, true)
+            })
 
             // Start timer
             timerTapWater.start(Number(process.env.WS_TAPWATER_TIMEOUT), 1000)
@@ -235,7 +238,10 @@ io.on('connection', (socket) => {
         // Run timer if necessary
         if (state && logicRes.stateAllowed) {
             // Events
-            timerPump.on('done', () => toggle.pumpWaterUp(false))
+            timerPump.on('done', () => {
+                toggle.pumpWaterUp(false)
+                toggle.status(`<b>WARNING</b> - Pump (valve 6) has been running for ${helper.msToMinutes(process.env.WS_PUMP_TIMEOUT)} minutes!<br>Manual mode activated for safety reasons.`, true, true)
+            })
 
             // Start timer
             timerPump.start(Number(process.env.WS_PUMP_TIMEOUT), 1000)
@@ -267,7 +273,10 @@ io.on('connection', (socket) => {
         // Run timer if necessary
         if (state && logicRes.stateAllowed) {
             // Events
-            timerTransfer.on('done', () => toggle.transferWaterDown(false))
+            timerTransfer.on('done', () => {
+                toggle.transferWaterDown(false)
+                toggle.status(`<b>WARNING</b> - Transfer water down (valve 7) has been running for ${helper.msToMinutes(process.env.WS_TRANSFER_TIMEOUT)} minutes!<br>Manual mode activated for safety reasons.`, true, true)
+            })
 
             // Start timer
             timerTransfer.start(Number(process.env.WS_TRANSFER_TIMEOUT), 1000)
