@@ -34,41 +34,50 @@ exports.run = () => {
     }
 
     /* --- tapWater --- */
-    // If tapWater and rain are disabled
-    if (!ws.tapWater) {
-        // If floater1 and rain are false, enable tapWater
-        if (!ws.floater1 && !ws.rain) toggle.tapWater(true)
-    }
-    // If tapWater is enabled
-    else if (ws.tapWater) {
-        // If rain is enabled
-        if (ws.rain) toggle.tapWater(false)
-        // If floater1 is true and floater2 is false
-        else if (ws.floater1) toggle.tapWater(false)
+    // If timer is not running
+    if (sockets.timerTapWater.status == 'stopped') {
+        // If tapWater and rain are disabled
+        if (!ws.tapWater) {
+            // If floater1 and rain are false, enable tapWater
+            if (!ws.floater1 && !ws.rain) toggle.tapWater(true)
+        }
+        // If tapWater is enabled
+        else if (ws.tapWater) {
+            // If rain is enabled
+            if (ws.rain) toggle.tapWater(false)
+            // If floater1 is true and floater2 is false
+            else if (ws.floater1) toggle.tapWater(false)
+        }
     }
 
     /* --- pumpWaterUp --- */
-    // If pumpWaterUp is disabled
-    if (!ws.pumpWaterUp) {
-        // If floater3 is true and floater5 false, enable pumpWaterUp
-        if (ws.floater3 && !ws.floater5) toggle.pumpWaterUp(true)
-    }
-    // If pumpWaterUp is enabled
-    else if (ws.pumpWaterUp) {
-        // If floater5 is true or floater3 false, disable pumpWaterUp
-        if (ws.floater5 || !ws.floater3) toggle.pumpWaterUp(false)
+    // If timer is not running
+    if (sockets.timerPump.status == 'stopped') {
+        // If pumpWaterUp is disabled
+        if (!ws.pumpWaterUp) {
+            // If floater3 is true and floater5 false, enable pumpWaterUp
+            if (ws.floater3 && !ws.floater5) toggle.pumpWaterUp(true)
+        }
+        // If pumpWaterUp is enabled
+        else if (ws.pumpWaterUp) {
+            // If floater5 is true or floater3 false, disable pumpWaterUp
+            if (ws.floater5 || !ws.floater3) toggle.pumpWaterUp(false)
+        }
     }
 
     /* --- transferWaterDown --- */
-    // If transferWaterDown is disabled
-    if (!ws.transferWaterDown) {
-        // If floater2 is false and floater4 or floater5 are true, enable transferWaterDown
-        if (!ws.floater2 && ws.floater4) toggle.transferWaterDown(true)
-    }
-    // If transferWaterDown is enabled
-    else if (ws.transferWaterDown) {
-        // If floater4 is false or floater2 true, disable transferWaterDown
-        if (!ws.floater4 || ws.floater2) toggle.transferWaterDown(false)
+    // If timer is not running
+    if (sockets.timerTransfer.status == 'stopped') {
+        // If transferWaterDown is disabled
+        if (!ws.transferWaterDown) {
+            // If floater2 is false and floater4 or floater5 are true, enable transferWaterDown
+            if (!ws.floater2 && ws.floater4) toggle.transferWaterDown(true)
+        }
+        // If transferWaterDown is enabled
+        else if (ws.transferWaterDown) {
+            // If floater4 is false or floater2 true, disable transferWaterDown
+            if (!ws.floater4 || ws.floater2) toggle.transferWaterDown(false)
+        }
     }
 }
 
@@ -78,9 +87,11 @@ exports.run = () => {
  * @returns {object}
  */
 exports.valve1 = (desiredState) => {
+    // If manual mode is active
+    if (wateringSystem.manual) return { stateAllowed: true, msg: `Allowed state '${desiredState}' to be forcefully set for valve1.` }
     // If desiredState is true
-    if (desiredState) {
-        // valve1 cannot be enabled if floater 1 is false
+    else if (desiredState) {
+        // valve1 cannot be enabled if floater1 is false
         if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve1 to '${desiredState}'.` }
     }
@@ -94,9 +105,11 @@ exports.valve1 = (desiredState) => {
  * @returns {object}
  */
 exports.valve2 = (desiredState) => {
+    // If manual mode is active
+    if (wateringSystem.manual) return { stateAllowed: true, msg: `Allowed state '${desiredState}' to be forcefully set for valve2.` }
     // If desiredState is true
-    if (desiredState) {
-        // valve2 cannot be enabled if floater 1 is false
+    else if (desiredState) {
+        // valve2 cannot be enabled if floater1 is false
         if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve2 to '${desiredState}'.` }
     }
@@ -110,9 +123,11 @@ exports.valve2 = (desiredState) => {
  * @returns {object}
  */
 exports.valve3 = (desiredState) => {
+    // If manual mode is active
+    if (wateringSystem.manual) return { stateAllowed: true, msg: `Allowed state '${desiredState}' to be forcefully set for valve3.` }
     // If desiredState is true
-    if (desiredState) {
-        // valve3 cannot be enabled if floater 1 is false
+    else if (desiredState) {
+        // valve3 cannot be enabled if floater1 is false
         if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve3 to '${desiredState}'.` }
     }
@@ -126,9 +141,11 @@ exports.valve3 = (desiredState) => {
  * @returns {object}
  */
 exports.valve4 = (desiredState) => {
+    // If manual mode is active
+    if (wateringSystem.manual) return { stateAllowed: true, msg: `Allowed state '${desiredState}' to be forcefully set for valve4.` }
     // If desiredState is true
-    if (desiredState) {
-        // valve4 cannot be enabled if floater 1 is false
+    else if (desiredState) {
+        // valve4 cannot be enabled if floater1 is false
         if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
         else return { stateAllowed: true, msg: `Set valve4 to '${desiredState}'.` }
     }
@@ -142,10 +159,13 @@ exports.valve4 = (desiredState) => {
  * @returns {object}
  */
 exports.tapWater = (desiredState) => {
+    // If manual mode is active
+    if (wateringSystem.manual) return { stateAllowed: true, msg: `Allowed state '${desiredState}' to be forcefully set for tapWater.` }
     // If desiredState is true
-    if (desiredState) {
+    else if (desiredState) {
         // tapWater cannot be enabled if floater5 and floater3 are true
         if (ws.floater3 && ws.floater5) return { stateAllowed: false, msg: 'Tanks are full!' }
+        else if (ws.rain) return { stateAllowed: false, msg: 'It is raining!' }
         else return { stateAllowed: true, msg: `Set tapWater to '${desiredState}'.` }
     }
     // If desiredState is false
@@ -162,8 +182,10 @@ exports.tapWater = (desiredState) => {
  * @returns {object}
  */
 exports.pumpWaterUp = (desiredState) => {
+    // If manual mode is active
+    if (wateringSystem.manual) return { stateAllowed: true, msg: `Allowed state '${desiredState}' to be forcefully set for pumpWaterUp.` }
     // If desiredState is true
-    if (desiredState) {
+    else if (desiredState) {
         // pumpWaterUp cannot be enabled if floater5 is true
         if (ws.floater5) return { stateAllowed: false, msg: 'Tank 2 full!' }
         // pumpWaterUp cannot be enabled if floater1 is false
@@ -180,8 +202,10 @@ exports.pumpWaterUp = (desiredState) => {
  * @returns {object}
  */
 exports.transferWaterDown = (desiredState) => {
+    // If manual mode is active
+    if (wateringSystem.manual) return { stateAllowed: true, msg: `Allowed state '${desiredState}' to be forcefully set for transferWaterDown.` }
     // If desiredState is true
-    if (desiredState) {
+    else if (desiredState) {
         // transferWaterDown cannot be enabled if floater4 is false
         if (!ws.floater4) return { stateAllowed: false, msg: 'Tank 2 is empty!' }
         else return { stateAllowed: true, msg: `Set transferWaterDown to '${desiredState}'.` }

@@ -11,6 +11,15 @@ This project consists of a Raspberry Pi 4 running Ubuntu server (x64) that is co
 
 GPIO pins are always written in [BCM pin numbers](https://www.raspberrypi.org/documentation/usage/gpio/images/GPIO-Pinout-Diagram-2.png).
 
+## Running
+**You need to run this with `root`.** Else GPIO access won't be granted. I've configured [`pm2`](https://pm2.keymetrics.io/) to start the process on startup with sudo:
+```sh
+sudo -s
+pm2 startup
+pm2 start main.js --name "Watering System" --watch
+pm2 save
+```
+
 ## `.env`
 Here's an example for the `.env` file:
 ```

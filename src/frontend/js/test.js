@@ -15,12 +15,21 @@ socket.on('valve4Duration', (duration) => document.getElementById('valve4Duratio
  */
 function updateStates() {
     // Ask for states
-    socket.emit("states", (ws) => {
-        // TODO: Would be cool to have switches disabled so the user cannot move them when it's stupid to move them
-        // Update states frontend
+    socket.emit("states", (ws, valve1, valve2, valve3, valve4, tapWater, pumpWaterUp, transferWaterDown) => {
+        // Disable or enable checkboxes
+        document.getElementById('switchValve1').disabled = !valve1.stateAllowed ? true : false
+        document.getElementById('switchValve2').disabled = !valve2.stateAllowed ? true : false
+        document.getElementById('switchValve3').disabled = !valve3.stateAllowed ? true : false
+        document.getElementById('switchValve4').disabled = !valve4.stateAllowed ? true : false
+        document.getElementById('switchTapWater').disabled = !tapWater.stateAllowed ? true : false
+        document.getElementById('switchPumpWaterUp').disabled = !pumpWaterUp.stateAllowed ? true : false
+        document.getElementById('switchTransferWaterDown').disabled = !transferWaterDown.stateAllowed ? true : false
+        
+        // Status message and manual mode
         document.getElementById('textStatus').innerHTML = ws.status.msg
         document.getElementById('switchManual').checked = ws.manual
 
+        // Valves
         document.getElementById('switchValve1').checked = ws.states.valve1
         document.getElementById('switchValve2').checked = ws.states.valve2
         document.getElementById('switchValve3').checked = ws.states.valve3
@@ -28,8 +37,11 @@ function updateStates() {
         document.getElementById('switchTapWater').checked = ws.states.tapWater
         document.getElementById('switchPumpWaterUp').checked = ws.states.pumpWaterUp
         document.getElementById('switchTransferWaterDown').checked = ws.states.transferWaterDown
+
+        // Rain
         document.getElementById('switchRain').checked = ws.states.rain
 
+        // Floaters
         document.getElementById('switchFloater1').checked = ws.states.floater1
         document.getElementById('switchFloater2').checked = ws.states.floater2
         document.getElementById('switchFloater3').checked = ws.states.floater3
