@@ -7,8 +7,6 @@ const server = require('http').createServer(app)
 const fs = require('fs')
 
 // TODO: Implement home.openweathermap.org for weather forecast to control rain automatically (https://findanyanswer.com/how-much-mm-of-rain-is-a-lot)
-// TODO: Create max time for manual mode
-// TODO: If is over before action is done, turn off whole system (which is basically turn on manual mode with everything in false), should only be usable in Manual mode
 
 // Export server
 module.exports = server

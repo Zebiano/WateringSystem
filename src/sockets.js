@@ -67,7 +67,10 @@ io.on('connection', (socket) => {
         }
 
         // Check if timer is already running and stop it
-        if (timerValve1) timerValve1.stop()
+        if (timerValve1) {
+            timerValve1.stop()
+            io.emit('valve1Duration', helper.msToSeconds(process.env.WS_VALVE1_TIMEOUT))
+        }
 
         // Run timer if necessary
         if (state && logicRes.stateAllowed) {
@@ -104,7 +107,10 @@ io.on('connection', (socket) => {
         }
 
         // Check if timer is already running and stop it
-        if (timerValve2) timerValve2.stop()
+        if (timerValve2) {
+            timerValve2.stop()
+            io.emit('valve2Duration', helper.msToSeconds(process.env.WS_VALVE2_TIMEOUT))
+        }
 
         // Run timer if necessary
         if (state && logicRes.stateAllowed) {
@@ -141,7 +147,10 @@ io.on('connection', (socket) => {
         }
 
         // Check if timer is already running and stop it
-        if (timerValve3) timerValve3.stop()
+        if (timerValve3) {
+            timerValve3.stop()
+            io.emit('valve3Duration', helper.msToSeconds(process.env.WS_VALVE3_TIMEOUT))
+        }
 
         // Run timer if necessary
         if (state && logicRes.stateAllowed) {
@@ -178,7 +187,10 @@ io.on('connection', (socket) => {
         }
 
         // Check if timer is already running and stop it
-        if (timerValve4) timerValve4.stop()
+        if (timerValve4) {
+            timerValve4.stop()
+            io.emit('valve4Duration', helper.msToSeconds(process.env.WS_VALVE4_TIMEOUT))
+        }
 
         // Run timer if necessary
         if (state && logicRes.stateAllowed) {
