@@ -10,6 +10,8 @@ setInterval(() => {
     if (!wateringSystem.manual) exports.run()
 }, 500)
 
+// TODO: Floater 5 is turning on when pump water is on or off (with all the other valves on)
+
 /**
  * Run logic and act upon states.
  */
