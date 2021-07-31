@@ -79,41 +79,41 @@ floater5.glitchFilter(10000)
 // Valve 1
 exports.valve1 = new gpio(wateringSystem.rpiGpioPins.valve1, {
     mode: gpio.INPUT,
-    pullUpDown: Gpio.PUD_DOWN
+    pullUpDown: Gpio.PUD_UP
 })
 
 // Valve 2
 exports.valve2 = new gpio(wateringSystem.rpiGpioPins.valve2, {
     mode: gpio.INPUT,
-    pullUpDown: Gpio.PUD_DOWN
+    pullUpDown: Gpio.PUD_UP
 })
 
 // Valve 3
 exports.valve3 = new gpio(wateringSystem.rpiGpioPins.valve3, {
     mode: gpio.INPUT,
-    pullUpDown: Gpio.PUD_DOWN
+    pullUpDown: Gpio.PUD_UP
 })
 
 // Valve 4
 exports.valve4 = new gpio(wateringSystem.rpiGpioPins.valve4, {
     mode: gpio.INPUT,
-    pullUpDown: Gpio.PUD_DOWN
+    pullUpDown: Gpio.PUD_UP
 })
 
 // Valve 5
 exports.tapWater = new gpio(wateringSystem.rpiGpioPins.tapWater, {
     mode: gpio.INPUT,
-    pullUpDown: Gpio.PUD_DOWN
+    pullUpDown: Gpio.PUD_UP
 })
 
 // Valve 6
 exports.pumpWaterUp = new gpio(wateringSystem.rpiGpioPins.pumpWaterUp, {
     mode: gpio.INPUT,
-    pullUpDown: Gpio.PUD_DOWN
+    pullUpDown: Gpio.PUD_UP
 })
 
 // Valve 7
 exports.transferWaterDown = new gpio(wateringSystem.rpiGpioPins.transferWaterDown, {
     mode: gpio.INPUT,
-    pullUpDown: Gpio.PUD_DOWN
+    pullUpDown: Gpio.PUD_UP
 })
