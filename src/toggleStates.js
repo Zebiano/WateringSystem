@@ -110,6 +110,7 @@ exports.tapWater = (state) => {
     if (hardware) {
         if (state) {
             console.log('yes i wanna turn it on')
+            console.log(wateringSystem.relaysNaturallyOff)
             if (wateringSystem.relaysNaturallyOff) {
                 console.log('puta')
                 hardware.tapWater.digitalWrite(1)
