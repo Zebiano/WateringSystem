@@ -27,10 +27,10 @@
         "tapWater": 25,
         "pumpWaterUp": 24,
         "transferWaterDown": 23,
-        "floater1": 14,
-        "floater2": 15,
-        "floater3": 18,
-        "floater4": 23,
-        "floater5": 24
+        "floater1": 26,
+        "floater2": 19,
+        "floater3": 13,
+        "floater4": 6,
+        "floater5": 5
     }
 }
