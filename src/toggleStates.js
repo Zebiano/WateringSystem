@@ -108,24 +108,8 @@ exports.valve4 = (state) => {
 exports.tapWater = (state) => {
     wateringSystem.states.tapWater = state
     if (hardware) {
-        if (state) {
-            console.log('yes i wanna turn it on')
-            hardware.tapWater.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
-            /* console.log(wateringSystem.relaysNaturallyOff)
-            if (wateringSystem.relaysNaturallyOff) {
-                console.log('puta')
-                hardware.tapWater.digitalWrite(1)
-            } else {
-                console.log('puta2')
-                hardware.tapWater.digitalWrite(0)
-            } */
-        }
-        else {
-            console.log('no')
-            hardware.tapWater.digitalWrite(1)
-            /* if (wateringSystem.relaysNaturallyOff) hardware.tapWater.digitalWrite(0)
-            else hardware.tapWater.digitalWrite(1) */
-        }
+        if (state) hardware.tapWater.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
+        else hardware.tapWater.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
     }
 }
 
