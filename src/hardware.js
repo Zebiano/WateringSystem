@@ -98,7 +98,7 @@ exports.valve4 = new gpio(wateringSystem.rpiGpioPins.valve4, {
 
 // Valve 5
 exports.tapWater = new gpio(wateringSystem.rpiGpioPins.tapWater, {
-    mode: gpio.INPUT
+    mode: gpio.OUTPUT
 })
 
 // Valve 6
