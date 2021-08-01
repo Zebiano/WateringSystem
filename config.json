@@ -1,4 +1,5 @@
 {
+    "relaysNaturallyOff": "false",
     "manual": false,
     "states": {
         "valve1": true,
