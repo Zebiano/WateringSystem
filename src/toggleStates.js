@@ -28,13 +28,13 @@ exports.allFalse = () => {
 
     // Change hardware states as well
     if (hardware) {
-        hardware.valve1.digitalWrite(0)
-        hardware.valve2.digitalWrite(0)
-        hardware.valve3.digitalWrite(0)
-        hardware.valve4.digitalWrite(0)
-        hardware.tapWater.digitalWrite(0)
-        hardware.pumpWaterUp.digitalWrite(0)
-        hardware.transferWaterDown.digitalWrite(0)
+        hardware.valve1.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
+        hardware.valve2.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
+        hardware.valve3.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
+        hardware.valve4.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
+        hardware.tapWater.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
+        hardware.pumpWaterUp.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
+        hardware.transferWaterDown.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
     }
 }
 
@@ -60,8 +60,8 @@ exports.status = (msg, manual, neverExit) => {
 exports.valve1 = (state) => {
     wateringSystem.states.valve1 = state
     if (hardware) {
-        if (state) hardware.valve1.digitalWrite(1)
-        else hardware.valve1.digitalWrite(0)
+        if (state) hardware.valve1.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
+        else hardware.valve1.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
     }
 }
 
@@ -72,8 +72,8 @@ exports.valve1 = (state) => {
 exports.valve2 = (state) => {
     wateringSystem.states.valve2 = state
     if (hardware) {
-        if (state) hardware.valve2.digitalWrite(1)
-        else hardware.valve2.digitalWrite(0)
+        if (state) hardware.valve2.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
+        else hardware.valve2.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
     }
 }
 
@@ -84,8 +84,8 @@ exports.valve2 = (state) => {
 exports.valve3 = (state) => {
     wateringSystem.states.valve3 = state
     if (hardware) {
-        if (state) hardware.valve3.digitalWrite(1)
-        else hardware.valve3.digitalWrite(0)
+        if (state) hardware.valve3.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
+        else hardware.valve3.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
     }
 }
 
@@ -96,8 +96,8 @@ exports.valve3 = (state) => {
 exports.valve4 = (state) => {
     wateringSystem.states.valve4 = state
     if (hardware) {
-        if (state) hardware.valve4.digitalWrite(1)
-        else hardware.valve4.digitalWrite(0)
+        if (state) hardware.valve4.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
+        else hardware.valve4.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
     }
 }
 
@@ -120,8 +120,8 @@ exports.tapWater = (state) => {
 exports.pumpWaterUp = (state) => {
     wateringSystem.states.pumpWaterUp = state
     if (hardware) {
-        if (state) hardware.pumpWaterUp.digitalWrite(1)
-        else hardware.pumpWaterUp.digitalWrite(0)
+        if (state) hardware.pumpWaterUp.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
+        else hardware.pumpWaterUp.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
     }
 }
 
@@ -132,8 +132,8 @@ exports.pumpWaterUp = (state) => {
 exports.transferWaterDown = (state) => {
     wateringSystem.states.transferWaterDown = state
     if (hardware) {
-        if (state) hardware.transferWaterDown.digitalWrite(1)
-        else hardware.transferWaterDown.digitalWrite(0)
+        if (state) hardware.transferWaterDown.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
+        else hardware.transferWaterDown.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
     }
 }
 
