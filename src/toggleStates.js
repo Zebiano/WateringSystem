@@ -108,9 +108,8 @@ exports.valve4 = (state) => {
 exports.tapWater = (state) => {
     wateringSystem.states.tapWater = state
     if (hardware) {
-        hardware.tapWater.digitalWrite(1)
-        hardware.tapWater.digitalWrite(0)
-        console.log(wateringSystem.relaysNaturallyOff)
+        hardware.tapWater.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
+        // hardware.tapWater.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
         /* if (state) hardware.tapWater.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
         else hardware.tapWater.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1) */
     }
