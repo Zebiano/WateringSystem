@@ -39,6 +39,19 @@ exports.allFalse = () => {
 }
 
 /**
+ * Set all floater states
+ */
+exports.readAllFloaters = () => {
+    if (hardware) {
+        exports.floater1(Boolean(hardware.floater1.digitalRead()))
+        exports.floater2(Boolean(hardware.floater2.digitalRead()))
+        exports.floater3(Boolean(hardware.floater3.digitalRead()))
+        exports.floater4(Boolean(hardware.floater4.digitalRead()))
+        exports.floater5(Boolean(hardware.floater5.digitalRead()))
+    }
+}
+
+/**
  * Set status data
  * @param {string} msg 
  * @param {boolean} manual 
