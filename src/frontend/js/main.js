@@ -51,6 +51,13 @@ function updateStates() {
 }
 
 /**
+ * Toggle reboot
+ */
+ function toggleReboot() {
+    io().emit('reboot')
+}
+
+/**
  * Toggle manual
  * @param {boolean} state
  */

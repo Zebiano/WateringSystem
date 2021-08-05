@@ -24,3 +24,11 @@ exports.msToMinutes = (ms) => {
 exports.msToHours = (ms) => {
     return ((ms / 1000) / 60) / 60
 }
+
+/**
+ * Reboot raspberry pi
+ */
+exports.reboot = () => {
+    if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production')
+        require('child_process').exec('reboot')
+}

@@ -15,6 +15,10 @@
     <div class="container">
         <h4 id="textStatus"></h4>
         <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchReboot" onclick="toggleReboot(this.checked)">
+            <label class="form-check-label" for="switchReboot">Reboot</label>
+        </div>
+        <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="switchManual" onclick="toggleManual(this.checked)">
             <label class="form-check-label" for="switchManual">Manual mode</label>
         </div>
