@@ -2,7 +2,7 @@
 const gpio = require('pigpio').Gpio
 
 // Require: Files
-exports.toggle = require(`./toggleStates`)
+const toggle = require(`./toggleStates`)
 
 // Floater 1
 exports.floater1 = new gpio(wateringSystem.rpiGpioPins.floater1, {
