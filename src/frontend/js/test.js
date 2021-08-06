@@ -24,7 +24,7 @@ function updateStates() {
         document.getElementById('switchTapWater').disabled = !tapWater.stateAllowed ? true : false
         document.getElementById('switchPumpWaterUp').disabled = !pumpWaterUp.stateAllowed ? true : false
         document.getElementById('switchTransferWaterDown').disabled = !transferWaterDown.stateAllowed ? true : false
-        
+
         // Status message and manual mode
         document.getElementById('textStatus').innerHTML = ws.status.msg
         document.getElementById('switchManual').checked = ws.manual
@@ -51,10 +51,17 @@ function updateStates() {
 }
 
 /**
+ * Toggle reboot
+ */
+function toggleReboot() {
+    io().emit('reboot')
+}
+
+/**
  * Toggle manual
  * @param {boolean} state
  */
- function toggleManual(state) {
+function toggleManual(state) {
     io().emit('manual', state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
@@ -65,7 +72,7 @@ function updateStates() {
  * Toggle valve1
  * @param {boolean} state
  */
- function toggleValve1(state) {
+function toggleValve1(state) {
     const duration = document.getElementById('valve1Duration').value * 1000
     io().emit('valve1', state, duration, (res) => {
         if (!res.stateAllowed) alert(res.msg)

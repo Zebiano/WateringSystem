@@ -37,7 +37,12 @@ io.on('connection', (socket) => {
         )
     })
 
-    // Ignore logic
+    // Reboot
+    socket.on('reboot', () => {
+        helper.reboot()
+    })
+
+    // Manual mode
     socket.on('manual', (state, callback) => {
         toggle.manual(state)
         if (state) toggle.status('Manual mode active!', false, false)
