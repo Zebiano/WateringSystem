@@ -1,5 +1,5 @@
 // Require: Packages
-exports.gpio = require('pigpio').Gpio
+const gpio = require('pigpio').Gpio
 
 // Require: Files
 exports.toggle = require(`./toggleStates`)
