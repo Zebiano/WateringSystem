@@ -11,10 +11,6 @@ exports.floater1 = new gpio(wateringSystem.rpiGpioPins.floater1, {
     alert: true
 })
 
-// Read state
-// console.log(toggle)
-// toggle.floater1(Boolean(floater1.digitalRead()))
-
 // Set floater1 state when updated
 exports.floater1.on('alert', (level) => {
     if (level == 0) toggle.floater1(true)
