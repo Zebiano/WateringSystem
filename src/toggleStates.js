@@ -44,7 +44,7 @@ exports.allFalse = () => {
 exports.readAllFloaters = () => {
     if (hardware) {
         console.log('Buenos')
-        console.log(hardware.floater1)
+        console.log(hardware.floater1.digitalRead())
         // console.log(Boolean(hardware.floater1.digitalRead()))
         // exports.floater1(Boolean(hardware.valve1.digitalRead()))
         /* exports.floater1(Boolean(hardware.floater1.digitalRead()))
