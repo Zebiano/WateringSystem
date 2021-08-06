@@ -11,6 +11,8 @@ const floater1 = new gpio(wateringSystem.rpiGpioPins.floater1, {
     alert: true
 })
 
+console.log('fds: ' + floater1.digitalRead())
+
 // Set floater1 state when updated
 floater1.on('alert', (level) => {
     if (level == 0) toggle.floater1(true)
@@ -23,8 +25,6 @@ const floater2 = new gpio(wateringSystem.rpiGpioPins.floater2, {
     pullUpDown: gpio.PUD_UP,
     alert: true
 })
-
-console.log('fds: ' + floater2.digitalRead())
 
 // Set floater2 state when updated
 floater2.on('alert', (level) => {
