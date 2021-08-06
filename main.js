@@ -20,12 +20,6 @@ const scream = require(`./src/lib/scream`)
 const toggle = require(`./src/toggleStates`)
 if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') require(`./src/hardware`)
 
-// Set everything to false
-toggle.allFalse()
-
-// Read Floater states
-toggle.readAllFloaters()
-
 // Middleware
 app.use('/', require(`./src/routes`))
 app.use('/bootstrap', express.static(`./node_modules/bootstrap/dist`))
