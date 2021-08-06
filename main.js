@@ -18,13 +18,13 @@ global.wateringSystem = JSON.parse(fs.readFileSync(`./config.json`, 'utf8'))
 // Require: Lib
 const scream = require(`./src/lib/scream`)
 const toggle = require(`./src/toggleStates`)
-// if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') require(`./src/hardware`)
+if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') require(`./src/hardware`)
 
 // Set everything to false
 toggle.allFalse()
 
 // Read Floater states
-toggle.readAllFloaters()
+// toggle.readAllFloaters()
 
 // Middleware
 app.use('/', require(`./src/routes`))
