@@ -28,6 +28,7 @@ exports.allFalse = () => {
 
     // Change hardware states as well
     if (hardware) {
+        console.log('Boas')
         hardware.valve1.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
         hardware.valve2.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
         hardware.valve3.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
