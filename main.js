@@ -24,7 +24,7 @@ if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production') require(
 toggle.allFalse()
 
 // Read Floater states
-// toggle.readAllFloaters()
+toggle.readAllFloaters()
 
 // Middleware
 app.use('/', require(`./src/routes`))
