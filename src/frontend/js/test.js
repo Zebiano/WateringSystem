@@ -54,7 +54,6 @@ function updateStates() {
  * Toggle reboot
  */
 function toggleReboot() {
-    // location.reload()
     io().emit('reboot')
 }
 
