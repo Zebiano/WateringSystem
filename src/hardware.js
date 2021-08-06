@@ -12,7 +12,8 @@ const floater1 = new gpio(wateringSystem.rpiGpioPins.floater1, {
 })
 
 // Read state
-toggle.floater1(Boolean(floater1.digitalRead()))
+console.log(toggle)
+// toggle.floater1(Boolean(floater1.digitalRead()))
 
 // Set floater1 state when updated
 floater1.on('alert', (level) => {
