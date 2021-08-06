@@ -43,6 +43,11 @@ exports.allFalse = () => {
  */
 exports.readAllFloaters = () => {
     if (hardware) {
+        console.log(Boolean(hardware.floater1.digitalRead()))
+        console.log(Boolean(hardware.floater2.digitalRead()))
+        console.log(Boolean(hardware.floater3.digitalRead()))
+        console.log(Boolean(hardware.floater4.digitalRead()))
+        console.log(Boolean(hardware.floater5.digitalRead()))
         exports.floater1(Boolean(hardware.floater1.digitalRead()))
         exports.floater2(Boolean(hardware.floater2.digitalRead()))
         exports.floater3(Boolean(hardware.floater3.digitalRead()))
