@@ -1,6 +1,6 @@
 {
   "name": "wateringsystem",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Automatic watering system for our garden",
   "main": "main.js",
   "scripts": {
