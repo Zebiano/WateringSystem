@@ -42,10 +42,8 @@ exports.allFalse = () => {
  * Set all floater states
  */
 exports.readAllFloaters = () => {
-    console.log('crl')
     if (hardware) {
-        console.log('crl2')
-        console.log(hardware.valve1.digitalRead())
+        console.log(Boolean(hardware.valve1.digitalRead()))
         /* exports.floater1(Boolean(hardware.floater1.digitalRead()))
         exports.floater2(Boolean(hardware.floater2.digitalRead()))
         exports.floater3(Boolean(hardware.floater3.digitalRead()))
