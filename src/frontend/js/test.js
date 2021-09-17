@@ -18,7 +18,7 @@ function updateStates() {
     socket.emit("states", (ws, valve1, valve2, valve3, valve4, tapWater, pumpWaterUp, transferWaterDown) => {
         // Disable or enable checkboxes
         document.getElementById('switchValve1').disabled = !valve1.stateAllowed ? true : false
-        // document.getElementById('switchValve2').disabled = !valve2.stateAllowed ? true : false
+        document.getElementById('switchValve2').disabled = !valve2.stateAllowed ? true : false
         document.getElementById('switchValve3').disabled = !valve3.stateAllowed ? true : false
         document.getElementById('switchValve4').disabled = !valve4.stateAllowed ? true : false
         document.getElementById('switchTapWater').disabled = !tapWater.stateAllowed ? true : false
