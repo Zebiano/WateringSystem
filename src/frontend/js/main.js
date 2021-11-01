@@ -43,7 +43,9 @@ function updateStates() {
       document.getElementById("switchValve1").disabled = !valve1.stateAllowed
         ? true
         : false;
-      // document.getElementById('switchValve2').disabled = !valve2.stateAllowed ? true : false
+      document.getElementById("switchValve2").disabled = !valve2.stateAllowed
+        ? true
+        : false;
       document.getElementById("switchValve3").disabled = !valve3.stateAllowed
         ? true
         : false;
