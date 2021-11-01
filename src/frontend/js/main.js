@@ -64,6 +64,7 @@ function updateStates() {
       document.getElementById("switchManual").checked = ws.manual;
 
       if (ws.status.msg.substring(3, 10) == "WARNING") {
+        
         document.getElementById("textStatus").className = "warning";
         counter = 0;
       } else {
