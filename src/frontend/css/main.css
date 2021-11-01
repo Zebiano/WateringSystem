@@ -1,0 +1,800 @@
+/* Fonts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@900&family=Ubuntu:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
+/* General %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+body {
+  margin: 0;
+  background-color: #003638;
+}
+
+div {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+label {
+  margin: 0;
+}
+
+input {
+  margin: 0;
+}
+
+img {
+  margin: 0;
+}
+
+/* Text Status %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+#textStatus {
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 7px 0;
+  color: #000000;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.hide {
+  position: absolute;
+  top: -100px;
+  opacity: 0;
+  transition: top 0.7s, opacity 0.8s, background-color 0.7s;
+  transition-delay: background-color 1s;
+}
+
+.information {
+  position: sticky;
+  top: 0;
+  background-color: #14dd40;
+  opacity: 100%;
+  text-align: center;
+  transition: top 0.8s, opacity 0.8s, background-color 0.5s;
+}
+
+.warning {
+  position: sticky;
+  top: 0;
+  background-color: #ce1212;
+  opacity: 100%;
+  text-align: justify;
+  transition: top 0.8s, opacity 0.8s, background-color 0.5s;
+}
+
+/* Sructure %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+.website-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.landing-container {
+  height: 100vh;
+  width: 100%;
+}
+
+.scroll-container {
+  position: absolute;
+  height: 80px;
+  width: 100%;
+}
+
+.absolute-content-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+}
+
+/* Top Row %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+.top-row-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background-color: #055052;
+}
+
+.app-label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  right: 20%;
+  transform: translate(0, -50%);
+  font-size: 1.2rem;
+  font-family: "Ubuntu", sans-serif;
+  letter-spacing: 3px;
+  color: #d5e3e4;
+}
+
+.app-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(0, -50%);
+  height: 60%;
+  width: auto;
+}
+
+/* Floaters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+.floater-container {
+  position: absolute;
+  top: 55px;
+  bottom: 55%;
+  left: 40px;
+  right: 40px;
+}
+
+.floater-box-level-1 {
+  position: absolute;
+  bottom: 0;
+  background-color: #d5e3e4;
+  border: solid 6px #055052;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.floaters-1-2-3 {
+  left: 0;
+  right: 53%;
+  top: 0;
+}
+
+.floaters-4-5 {
+  right: 0;
+  left: 53%;
+  top: 33.33%;
+}
+
+.floater-box-level-2 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: #d5e3e4;
+}
+
+#floater1 {
+  bottom: 0;
+  height: 33.33%;
+}
+
+#floater2 {
+  bottom: 33.33%;
+  height: 33.33%;
+}
+
+#floater3 {
+  top: 0;
+  height: 33.33%;
+}
+
+#floater4 {
+  bottom: 0;
+  height: 50%;
+}
+
+#floater5 {
+  top: 0;
+  height: 50%;
+}
+
+.floater-checkbox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 3;
+}
+
+.floater-checkbox-background {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin: 0;
+  height: 0px;
+  width: 100%;
+  background-color: #53b8bb;
+  transition: height 0.6s;
+}
+
+.floater-checkbox:checked ~ .floater-checkbox-background {
+  height: 100%;
+}
+
+.floater-label-box {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  border: solid 3px #003638;
+  border-radius: 10px;
+}
+
+.floater-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: "Roboto", sans-serif;
+  color: #003638;
+}
+
+/* Swipeable Content %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+.swipe-area-box {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 48%;
+  bottom: 20px;
+  background-color: #055052;
+  border-radius: 15px;
+  overflow-x: hidden;
+  z-index: 0;
+}
+
+.content-container {
+  position: absolute;
+  top: 0;
+  bottom: 8%;
+  transition: left 0.6s ease-out, right 0.6s ease-out;
+}
+
+.left {
+  left: -100%;
+  right: 100%;
+}
+
+.center {
+  left: 0;
+  right: 0;
+}
+
+.right {
+  left: 100%;
+  right: -100%;
+}
+
+.content-indicator-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 92%;
+  bottom: 15px;
+}
+
+.indicator-1,
+.indicator-2 {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: auto;
+  aspect-ratio: 1/1;
+  background-color: #003638;
+  border-radius: 100%;
+  transition: border-width 0.5s;
+}
+
+.indicator-1 {
+  right: 53%;
+}
+
+.indicator-2 {
+  left: 53%;
+}
+
+.active {
+  border: solid 4px #d5e3e4;
+}
+
+/* Valves %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+.valve-box {
+  position: absolute;
+  border-radius: 15px;
+  background-color: #d5e3e4;
+  overflow: hidden;
+}
+
+.valve-1 {
+  top: 20px;
+  left: 20px;
+  right: 53%;
+  bottom: 53%;
+}
+
+.valve-2 {
+  top: 20px;
+  right: 20px;
+  left: 53%;
+  bottom: 53%;
+}
+
+.valve-3 {
+  bottom: 20px;
+  left: 20px;
+  top: 53%;
+  right: 53%;
+}
+
+.valve-4 {
+  bottom: 20px;
+  right: 20px;
+  top: 53%;
+  left: 53%;
+}
+
+.valve-checkbox {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  bottom: 22%;
+  transform: translate(-50%, 0);
+  height: 50px;
+  width: 80%;
+  margin: 0;
+  opacity: 0;
+  z-index: 6;
+}
+
+.valve-checkbox-background {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 48%;
+  bottom: 22%;
+  background-color: #14dd40;
+  border: solid 4px #252727;
+  border-radius: 15px;
+  transition: bottom 0.6s ease-out, top 0.6s ease-out, background-color 0.3s;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.valve-checkbox:disabled ~ .valve-checkbox-background {
+  top: 170%;
+  bottom: -100%;
+}
+
+.valve-checkbox:checked ~ .valve-checkbox-background {
+  background-color: #da361a;
+}
+
+.valve-checkbox-background img {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: auto;
+  transition: left 0.6s;
+}
+
+.valve-checkbox-notChecked-icon {
+  left: 50%;
+}
+
+.valve-checkbox:checked
+  ~ .valve-checkbox-background
+  .valve-checkbox-notChecked-icon {
+  left: 150%;
+}
+
+.valve-checkbox-isChecked-icon {
+  left: -50%;
+}
+
+.valve-checkbox:checked
+  ~ .valve-checkbox-background
+  .valve-checkbox-isChecked-icon {
+  left: 50%;
+}
+
+.valve-checkbox-disabled-icon {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  bottom: 22%;
+  transform: translate(-50%, 0);
+  height: 30%;
+  z-index: 4;
+}
+
+.valve-counter-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 55%;
+  background-color: #d5e3e4;
+  border: solid 4px #252727;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.valve-counter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 55%;
+  padding: 0;
+  padding-right: 3px;
+  background: transparent;
+  border: none;
+  text-align: right;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.7rem;
+  letter-spacing: 3px;
+  color: #252727;
+}
+
+.valve-text-sec-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 60%;
+}
+
+.valve-text-sec {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translate(0, -50%);
+  padding: 0;
+  padding-left: 5px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  color: #252727;
+}
+
+.valve-label {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  top: 80%;
+  bottom: 5px;
+  border-radius: 15px;
+  padding: 3px 0;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: #252727;
+}
+
+/* Switches %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+.switch-container {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+.switch-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: #d5e3e4;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.switch-box-TapWater {
+  top: 0;
+  bottom: 80%;
+}
+
+.switch-box-WaterUp {
+  top: 25%;
+  bottom: 55%;
+}
+
+.switch-box-WaterDown {
+  top: 50%;
+  bottom: 30%;
+}
+
+.switch-box-Rain {
+  top: 75%;
+  bottom: 5%;
+}
+
+.switch-checkbox {
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  right: 10px;
+  transform: translate(0, -50%);
+  width: 20%;
+  height: 90%;
+  opacity: 0;
+  z-index: 6;
+}
+
+.switch-checkbox-background {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 80%;
+  right: 10px;
+  background-color: #da361a;
+  border: solid 3px #252727;
+  border-radius: 15px;
+  transition: background-color 0.4s, right 0.7s, left 0.7s;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.switch-checkbox:disabled ~ .switch-checkbox-background {
+  left: 100%;
+  right: -20%;
+}
+
+.switch-checkbox:checked ~ .switch-checkbox-background {
+  background-color: #14dd40;
+}
+
+.switch-checkbox-background p {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+  transition: left 0.3s;
+}
+
+.switch-checkbox-notChecked-icon {
+  left: 50%;
+}
+
+.switch-checkbox:checked
+  ~ .switch-checkbox-background
+  .switch-checkbox-notChecked-icon {
+  left: 150%;
+}
+
+.switch-checkbox-isChecked-icon {
+  left: -50%;
+}
+
+.switch-checkbox:checked
+  ~ .switch-checkbox-background
+  .switch-checkbox-isChecked-icon {
+  left: 50%;
+}
+
+.switch-checkbox-disabled-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(0, -50%);
+  height: 55%;
+  z-index: 3;
+}
+
+.switch-label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  right: 25%;
+  transform: translate(0, -50%);
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  color: #252727;
+}
+
+/* Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+.settings-box {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  height: 30%;
+  width: 33%;
+  background-color: #d5e3e4;
+  border: solid 7px #252727;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.settings-box-reboot {
+  right: 6%;
+}
+
+.settings-box-manualMode {
+  left: 6%;
+}
+
+.settings-checkbox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 6;
+}
+
+.settings-label {
+  position: absolute;
+  top: 50%;
+  left: 7%;
+  transform: translate(0, -50%);
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #252727;
+}
+
+.settings-toggle-box {
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  left: 70%;
+  transform: translate(0, -50%);
+  height: 50%;
+  background-color: #ce1212;
+  border-radius: 30px;
+}
+
+.settings-toggle-indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: #252727;
+  border-radius: 100%;
+}
+
+.settings-checkbox:checked ~ .settings-toggle-box {
+  background-color: #14dd40;
+}
+
+.settings-checkbox:checked ~ .settings-toggle-box .settings-toggle-indicator {
+  right: 0;
+  left: auto;
+}
+
+/* Responsive Design %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+/* Smartphone Viewport sizes
+   Portrait Mode [Minimal Height = 460px // Minimal Width = 360px]
+   Landscape Mode [Minimal Height = ???px // Minimal Width = ???px] */
+
+/* General */
+@media (orientation: landscape) {
+  .floater-container {
+    top: 55px;
+    bottom: 20px;
+    left: 40px;
+    right: 55%;
+  }
+
+  .swipe-area-box {
+    left: 48%;
+    right: 40px;
+    top: 55px;
+    bottom: 20px;
+  }
+}
+
+/* Text Status */
+@media (max-height: 520px) {
+  #textStatus {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 300px) {
+  #textStatus {
+    font-size: 0.8rem;
+  }
+}
+
+/* Sructure */
+/* Top Row */
+@media (max-width: 300px) {
+  .app-label {
+    font-size: 0.8rem;
+  }
+
+  .app-icon {
+    height: 50%;
+  }
+}
+
+/* Floaters */
+@media (max-height: 600px) {
+  .floater-label {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-height: 520px) {
+  .floater-label {
+    font-size: 1rem;
+  }
+}
+
+/* Swipeable Content */
+/* Valves */
+@media (max-height: 600px) {
+  .valve-counter {
+    font-size: 1rem;
+  }
+
+  .valve-text-sec {
+    font-size: 1rem;
+  }
+
+  .valve-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .valve-counter {
+    font-size: 1rem;
+  }
+
+  .valve-text-sec {
+    font-size: 0.9rem;
+  }
+}
+/* Switches */
+@media (max-width: 480px) {
+  .switch-checkbox-background p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .switch-checkbox-background p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-height: 720px) {
+  .switch-checkbox-background p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-height: 630px) {
+  .switch-checkbox-background p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Settings */
+@media (max-width: 430px) {
+  .settings-label {
+    font-size: 0.8rem;
+  }
+}
