@@ -7,8 +7,6 @@ This project consists of a Raspberry Pi 4 running Ubuntu server (x64) that is co
 - Letting water fall back down from tank 2 to 1 is done with Valve 7
 - There are 5 floaters, three in the first tank and two in the second
 
-> I suck at design and I don't fancy writing `html`, so if you enjoy doing that feel free to make the frontend of this project prettier! I'd be really thankful :)
-
 GPIO pins are always written in [BCM pin numbers](https://www.raspberrypi.org/documentation/usage/gpio/images/GPIO-Pinout-Diagram-2.png).
 
 ## Running

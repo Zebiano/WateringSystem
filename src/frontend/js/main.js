@@ -1,14 +1,62 @@
-// Variables
-var socket = io()
+// Variables: var
+var socket = io() // Might have to be a 'var'... Not sure anymore.
+
+// Variables: const
+const containerSwipe = document.querySelector(".swipe-area-box")
+const content1 = document.querySelector(".content-1-js")
+const content2 = document.querySelector(".content-2-js")
+const point1 = document.querySelector(".indicator-1")
+const point2 = document.querySelector(".indicator-2")
+
+// Variables: let
+let startSwipeMenu = null
+let counter = 0
 
 // Refresh states every second
 setInterval(updateStates, 1000)
 
 // Update timers
-socket.on('valve1Duration', (duration) => document.getElementById('valve1Duration').value = duration)
-socket.on('valve2Duration', (duration) => document.getElementById('valve2Duration').value = duration)
-socket.on('valve3Duration', (duration) => document.getElementById('valve3Duration').value = duration)
-socket.on('valve4Duration', (duration) => document.getElementById('valve4Duration').value = duration)
+socket.on("valve1Duration", (duration) => (document.getElementById("valve1Duration").value = duration))
+socket.on("valve2Duration", (duration) => (document.getElementById("valve2Duration").value = duration))
+socket.on("valve3Duration", (duration) => (document.getElementById("valve3Duration").value = duration))
+socket.on("valve4Duration", (duration) => (document.getElementById("valve4Duration").value = duration))
+
+// CSS Swipe-Menu touch start event
+containerSwipe.addEventListener("touchstart", function (event) {
+    // Just one finger touched
+    if (event.touches.length === 1) startSwipeMenu = event.touches.item(0).clientX
+    // A second finger hit the screen 
+    else startSwipeMenu = null
+})
+
+// CSS Swipe-Menu touch end event
+containerSwipe.addEventListener("touchend", function (event) {
+    // Variables
+    let offset = 50
+
+    // The finger left the screen
+    if (startSwipeMenu) {
+        let end = event.changedTouches.item(0).clientX
+
+        // Left
+        if (end > startSwipeMenu + offset) {
+            content1.classList.replace("left", "center")
+            content2.classList.replace("center", "right")
+
+            point1.classList.replace("non-active", "active")
+            point2.classList.replace("active", "non-active")
+        }
+
+        // Right
+        if (end < startSwipeMenu - offset) {
+            content1.classList.replace("center", "left")
+            content2.classList.replace("right", "center")
+
+            point1.classList.replace("active", "non-active")
+            point2.classList.replace("non-active", "active")
+        }
+    }
+})
 
 /**
  * Send request to server to get states and update frontend accordingly
@@ -17,36 +65,48 @@ function updateStates() {
     // Ask for states
     socket.emit("states", (ws, valve1, valve2, valve3, valve4, tapWater, pumpWaterUp, transferWaterDown) => {
         // Disable or enable checkboxes
-        document.getElementById('switchValve1').disabled = !valve1.stateAllowed ? true : false
-        // document.getElementById('switchValve2').disabled = !valve2.stateAllowed ? true : false
-        document.getElementById('switchValve3').disabled = !valve3.stateAllowed ? true : false
-        document.getElementById('switchValve4').disabled = !valve4.stateAllowed ? true : false
-        document.getElementById('switchTapWater').disabled = !tapWater.stateAllowed ? true : false
-        document.getElementById('switchPumpWaterUp').disabled = !pumpWaterUp.stateAllowed ? true : false
-        document.getElementById('switchTransferWaterDown').disabled = !transferWaterDown.stateAllowed ? true : false
+        document.getElementById("switchValve1").disabled = !valve1.stateAllowed ? true : false
+        document.getElementById("switchValve2").disabled = !valve2.stateAllowed ? true : false
+        document.getElementById("switchValve3").disabled = !valve3.stateAllowed ? true : false
+        document.getElementById("switchValve4").disabled = !valve4.stateAllowed ? true : false
+        document.getElementById("switchTapWater").disabled = !tapWater.stateAllowed ? true : false
+        document.getElementById("switchPumpWaterUp").disabled = !pumpWaterUp.stateAllowed ? true : false
+        document.getElementById("switchTransferWaterDown").disabled = !transferWaterDown.stateAllowed ? true : false
 
         // Status message and manual mode
-        document.getElementById('textStatus').innerHTML = ws.status.msg
-        document.getElementById('switchManual').checked = ws.manual
+        document.getElementById("textStatus").innerHTML = ws.status.msg
+        document.getElementById("switchManual").checked = ws.manual
+
+        // If status message is Warning
+        if (ws.status.msg.includes("WARNING")) {
+            document.getElementById("textStatus").className = "warning"
+            counter = 0
+        }
+        // Status message is not a Warning
+        else {
+            document.getElementById("textStatus").className = "information"
+            if (counter >= 5) document.getElementById("textStatus").className = "hide"
+            else counter += 1
+        }
 
         // Valves
-        document.getElementById('switchValve1').checked = ws.states.valve1
-        document.getElementById('switchValve2').checked = ws.states.valve2
-        document.getElementById('switchValve3').checked = ws.states.valve3
-        document.getElementById('switchValve4').checked = ws.states.valve4
-        document.getElementById('switchTapWater').checked = ws.states.tapWater
-        document.getElementById('switchPumpWaterUp').checked = ws.states.pumpWaterUp
-        document.getElementById('switchTransferWaterDown').checked = ws.states.transferWaterDown
+        document.getElementById("switchValve1").checked = ws.states.valve1
+        document.getElementById("switchValve2").checked = ws.states.valve2
+        document.getElementById("switchValve3").checked = ws.states.valve3
+        document.getElementById("switchValve4").checked = ws.states.valve4
+        document.getElementById("switchTapWater").checked = ws.states.tapWater
+        document.getElementById("switchPumpWaterUp").checked = ws.states.pumpWaterUp
+        document.getElementById("switchTransferWaterDown").checked = ws.states.transferWaterDown
 
         // Rain
-        document.getElementById('switchRain').checked = ws.states.rain
+        document.getElementById("switchRain").checked = ws.states.rain
 
         // Floaters
-        document.getElementById('switchFloater1').checked = ws.states.floater1
-        document.getElementById('switchFloater2').checked = ws.states.floater2
-        document.getElementById('switchFloater3').checked = ws.states.floater3
-        document.getElementById('switchFloater4').checked = ws.states.floater4
-        document.getElementById('switchFloater5').checked = ws.states.floater5
+        document.getElementById("switchFloater1").checked = ws.states.floater1
+        document.getElementById("switchFloater2").checked = ws.states.floater2
+        document.getElementById("switchFloater3").checked = ws.states.floater3
+        document.getElementById("switchFloater4").checked = ws.states.floater4
+        document.getElementById("switchFloater5").checked = ws.states.floater5
     })
 }
 
@@ -54,7 +114,7 @@ function updateStates() {
  * Toggle reboot
  */
 function toggleReboot() {
-    io().emit('reboot')
+    io().emit("reboot")
 }
 
 /**
@@ -62,7 +122,7 @@ function toggleReboot() {
  * @param {boolean} state
  */
 function toggleManual(state) {
-    io().emit('manual', state, (res) => {
+    io().emit("manual", state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -73,8 +133,8 @@ function toggleManual(state) {
  * @param {boolean} state
  */
 function toggleValve1(state) {
-    const duration = document.getElementById('valve1Duration').value * 1000
-    io().emit('valve1', state, duration, (res) => {
+    const duration = document.getElementById("valve1Duration").value * 1000
+    io().emit("valve1", state, duration, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -85,8 +145,8 @@ function toggleValve1(state) {
  * @param {boolean} state
  */
 function toggleValve2(state) {
-    const duration = document.getElementById('valve2Duration').value * 1000
-    io().emit('valve2', state, duration, (res) => {
+    const duration = document.getElementById("valve2Duration").value * 1000
+    io().emit("valve2", state, duration, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -97,8 +157,8 @@ function toggleValve2(state) {
  * @param {boolean} state
  */
 function toggleValve3(state) {
-    const duration = document.getElementById('valve3Duration').value * 1000
-    io().emit('valve3', state, duration, (res) => {
+    const duration = document.getElementById("valve3Duration").value * 1000
+    io().emit("valve3", state, duration, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -109,8 +169,8 @@ function toggleValve3(state) {
  * @param {boolean} state
  */
 function toggleValve4(state) {
-    const duration = document.getElementById('valve4Duration').value * 1000
-    io().emit('valve4', state, duration, (res) => {
+    const duration = document.getElementById("valve4Duration").value * 1000
+    io().emit("valve4", state, duration, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -121,7 +181,7 @@ function toggleValve4(state) {
  * @param {boolean} state
  */
 function toggleTapWater(state) {
-    io().emit('tapWater', state, (res) => {
+    io().emit("tapWater", state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -132,7 +192,7 @@ function toggleTapWater(state) {
  * @param {boolean} state
  */
 function togglePumpWaterUp(state) {
-    io().emit('pumpWaterUp', state, (res) => {
+    io().emit("pumpWaterUp", state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -143,7 +203,7 @@ function togglePumpWaterUp(state) {
  * @param {boolean} state
  */
 function toggleTransferWaterDown(state) {
-    io().emit('transferWaterDown', state, (res) => {
+    io().emit("transferWaterDown", state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -154,7 +214,7 @@ function toggleTransferWaterDown(state) {
  * @param {boolean} state
  */
 function toggleRain(state) {
-    io().emit('rain', state, (res) => {
+    io().emit("rain", state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -165,7 +225,7 @@ function toggleRain(state) {
  * @param {boolean} state
  */
 function toggleFloater1(state) {
-    io().emit('floater1', state, (res) => {
+    io().emit("floater1", state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -176,7 +236,7 @@ function toggleFloater1(state) {
  * @param {boolean} state
  */
 function toggleFloater2(state) {
-    io().emit('floater2', state, (res) => {
+    io().emit("floater2", state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -187,7 +247,7 @@ function toggleFloater2(state) {
  * @param {boolean} state
  */
 function toggleFloater3(state) {
-    io().emit('floater3', state, (res) => {
+    io().emit("floater3", state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -198,7 +258,7 @@ function toggleFloater3(state) {
  * @param {boolean} state
  */
 function toggleFloater4(state) {
-    io().emit('floater4', state, (res) => {
+    io().emit("floater4", state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
@@ -209,7 +269,7 @@ function toggleFloater4(state) {
  * @param {boolean} state
  */
 function toggleFloater5(state) {
-    io().emit('floater5', state, (res) => {
+    io().emit("floater5", state, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })
