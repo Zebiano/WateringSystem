@@ -6,9 +6,7 @@ const sockets = require(`./sockets`)
 const ws = wateringSystem.states
 
 // Run logic every x amount of time if not in manual mode
-setInterval(() => {
-    if (!wateringSystem.manual) exports.run()
-}, 500)
+setInterval(() => { if (!wateringSystem.manual) exports.run() }, 500)
 
 /**
  * Run logic and act upon states.
