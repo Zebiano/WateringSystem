@@ -1,38 +1,38 @@
 {
-    "relaysNaturallyOff": false,
-    "manual": false,
-    "states": {
-        "valve1": false,
-        "valve2": false,
-        "valve3": false,
-        "valve4": false,
-        "tapWater": false,
-        "pumpWaterUp": false,
-        "transferWaterDown": false,
-        "floater1": false,
-        "floater2": false,
-        "floater3": false,
-        "floater4": false,
-        "floater5": false,
-        "rain": false
-    },
-    "status": {
-        "msg": "All seems good! :)"
-    },
-    "rpiGpioPins": {
-        "valve1": 12,
-        "valve2": 1,
-        "valve3": 7,
-        "valve4": 8,
-        "tapWater": 25,
-        "pumpWaterUp": 24,
-        "transferWaterDown": 23,
-        "valve8": 18,
-        "valve9": 15,
-        "floater1": 26,
-        "floater2": 19,
-        "floater3": 13,
-        "floater4": 6,
-        "floater5": 5
-    }
+  "relaysNaturallyOff": false,
+  "manual": false,
+  "states": {
+    "valve1": false,
+    "valve2": false,
+    "valve3": false,
+    "valve4": false,
+    "tapWater": false,
+    "pumpWaterUp": false,
+    "transferWaterDown": false,
+    "floater1": false,
+    "floater2": false,
+    "floater3": false,
+    "floater4": false,
+    "floater5": false,
+    "rain": false
+  },
+  "status": {
+    "msg": "All seems good! :)"
+  },
+  "rpiGpioPins": {
+    "valve1": 12,
+    "valve2": 1,
+    "valve3": 7,
+    "valve4": 8,
+    "tapWater": 25,
+    "pumpWaterUp": 24,
+    "transferWaterDown": 23,
+    "valve8": 18,
+    "valve9": 15,
+    "floater1": 26,
+    "floater2": 19,
+    "floater3": 13,
+    "floater4": 6,
+    "floater5": 5
+  }
 }

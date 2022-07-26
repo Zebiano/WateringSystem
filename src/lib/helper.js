@@ -4,7 +4,7 @@
  * @returns seconds
  */
 exports.msToSeconds = (ms) => {
-    return Math.floor(ms / 1000)
+  return Math.floor(ms / 1000)
 }
 
 /**
@@ -13,7 +13,7 @@ exports.msToSeconds = (ms) => {
  * @returns minutes
  */
 exports.msToMinutes = (ms) => {
-    return ((ms / 1000) / 60).toFixed(2)
+  return ((ms / 1000) / 60).toFixed(2)
 }
 
 /**
@@ -22,13 +22,13 @@ exports.msToMinutes = (ms) => {
  * @returns hours
  */
 exports.msToHours = (ms) => {
-    return ((ms / 1000) / 60) / 60
+  return ((ms / 1000) / 60) / 60
 }
 
 /**
  * Reboot raspberry pi
  */
 exports.reboot = () => {
-    if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production')
-        require('child_process').exec('reboot')
+  if (process.env.WS_ENV == 'prod' || process.env.WS_ENV == 'production')
+    require('child_process').exec('reboot')
 }

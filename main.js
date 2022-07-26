@@ -39,8 +39,8 @@ require(`./src/logic`)
 
 // Start server
 server.listen(process.env.WS_PORT, () => {
-    scream.info('Please run me with sudo.')
-    scream.success(`Listening on http://localhost:${process.env.WS_PORT}/test`)
+  scream.info('Please run me with sudo.')
+  scream.success(`Listening on http://localhost:${process.env.WS_PORT}/test`)
 })
 
 // When exiting, turn off relays
