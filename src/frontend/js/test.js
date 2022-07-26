@@ -12,18 +12,22 @@ socket.on("valve1Duration", (duration) => (document.getElementById("valve1Durati
 socket.on("valve2Duration", (duration) => (document.getElementById("valve2Duration").value = duration))
 socket.on("valve3Duration", (duration) => (document.getElementById("valve3Duration").value = duration))
 socket.on("valve4Duration", (duration) => (document.getElementById("valve4Duration").value = duration))
+socket.on("valve8Duration", (duration) => (document.getElementById("valve8Duration").value = duration))
+socket.on("valve9Duration", (duration) => (document.getElementById("valve9Duration").value = duration))
 
 /**
  * Send request to server to get states and update frontend accordingly
  */
 function updateStates() {
     // Ask for states
-    socket.emit("states", (ws, valve1, valve2, valve3, valve4, tapWater, pumpWaterUp, transferWaterDown) => {
+    socket.emit("states", (ws, valve1, valve2, valve3, valve4, valve8, valve9, tapWater, pumpWaterUp, transferWaterDown) => {
         // Disable or enable checkboxes
         document.getElementById("switchValve1").disabled = !valve1.stateAllowed ? true : false
         document.getElementById("switchValve2").disabled = !valve2.stateAllowed ? true : false
         document.getElementById("switchValve3").disabled = !valve3.stateAllowed ? true : false
         document.getElementById("switchValve4").disabled = !valve4.stateAllowed ? true : false
+        document.getElementById("switchValve8").disabled = !valve8.stateAllowed ? true : false
+        document.getElementById("switchValve9").disabled = !valve9.stateAllowed ? true : false
         document.getElementById("switchTapWater").disabled = !tapWater.stateAllowed ? true : false
         document.getElementById("switchPumpWaterUp").disabled = !pumpWaterUp.stateAllowed ? true : false
         document.getElementById("switchTransferWaterDown").disabled = !transferWaterDown.stateAllowed ? true : false
@@ -49,6 +53,8 @@ function updateStates() {
         document.getElementById("switchValve2").checked = ws.states.valve2
         document.getElementById("switchValve3").checked = ws.states.valve3
         document.getElementById("switchValve4").checked = ws.states.valve4
+        document.getElementById("switchValve8").checked = ws.states.valve8
+        document.getElementById("switchValve9").checked = ws.states.valve9
         document.getElementById("switchTapWater").checked = ws.states.tapWater
         document.getElementById("switchPumpWaterUp").checked = ws.states.pumpWaterUp
         document.getElementById("switchTransferWaterDown").checked = ws.states.transferWaterDown
@@ -126,6 +132,30 @@ function toggleValve3(state) {
 function toggleValve4(state) {
     const duration = document.getElementById("valve4Duration").value * 1000
     io().emit("valve4", state, duration, (res) => {
+        if (!res.stateAllowed) alert(res.msg)
+        updateStates()
+    })
+}
+
+/**
+ * Toggle valve8
+ * @param {boolean} state
+ */
+ function toggleValve8(state) {
+    const duration = document.getElementById("valve8Duration").value * 1000
+    io().emit("valve8", state, duration, (res) => {
+        if (!res.stateAllowed) alert(res.msg)
+        updateStates()
+    })
+}
+
+/**
+ * Toggle valve9
+ * @param {boolean} state
+ */
+ function toggleValve9(state) {
+    const duration = document.getElementById("valve9Duration").value * 1000
+    io().emit("valve9", state, duration, (res) => {
         if (!res.stateAllowed) alert(res.msg)
         updateStates()
     })

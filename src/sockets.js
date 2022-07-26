@@ -17,6 +17,8 @@ exports.timerValve1 = new tinyTimer()
 exports.timerValve2 = new tinyTimer()
 exports.timerValve3 = new tinyTimer()
 exports.timerValve4 = new tinyTimer()
+exports.timerValve8 = new tinyTimer()
+exports.timerValve9 = new tinyTimer()
 exports.timerTapWater = new tinyTimer()
 exports.timerPump = new tinyTimer()
 exports.timerTransfer = new tinyTimer()
@@ -31,6 +33,8 @@ io.on('connection', (socket) => {
             logic.valve2(!wateringSystem.states.valve2),
             logic.valve3(!wateringSystem.states.valve3),
             logic.valve4(!wateringSystem.states.valve4),
+            logic.valve8(!wateringSystem.states.valve8),
+            logic.valve9(!wateringSystem.states.valve9),
             logic.tapWater(!wateringSystem.states.tapWater),
             logic.pumpWaterUp(!wateringSystem.states.pumpWaterUp),
             logic.transferWaterDown(!wateringSystem.states.transferWaterDown)
@@ -203,6 +207,74 @@ io.on('connection', (socket) => {
         callback(logicRes)
     })
 
+    // Valve 8
+    socket.on('valve8', (state, duration, callback) => {
+        // Variables
+        logicRes = logic.valve8(state)
+
+        // If manual is true and simply execute toggle
+        if (wateringSystem.manual) toggle.valve8(state)
+        // Check for logic if manual is false and execute toggle if possible
+        else if (logicRes.stateAllowed) toggle.valve8(state)
+
+        // Check if timer is already running and stop it
+        if (exports.timerValve8.status != 'stopped') {
+            exports.timerValve8.stop()
+            io.emit('valve8Duration', helper.msToSeconds(process.env.WS_VALVE8_TIMEOUT))
+        }
+
+        // Run timer if necessary
+        if (state && logicRes.stateAllowed) {
+            // Events
+            exports.timerValve8.on('tick', (ms) => io.emit('valve8Duration', helper.msToSeconds(ms)))
+            exports.timerValve8.on('done', () => {
+                toggle.valve8(false)
+                io.emit('valve8Duration', helper.msToSeconds(process.env.WS_VALVE8_TIMEOUT))
+            })
+
+            // Start timer
+            if (duration) exports.timerValve8.start(Number(duration), 1000)
+            else exports.timerValve8.start(Number(process.env.WS_VALVE8_TIMEOUT), 1000)
+        }
+
+        // Return callback
+        callback(logicRes)
+    })
+
+    // Valve 9
+    socket.on('valve9', (state, duration, callback) => {
+        // Variables
+        logicRes = logic.valve9(state)
+
+        // If manual is true and simply execute toggle
+        if (wateringSystem.manual) toggle.valve9(state)
+        // Check for logic if manual is false and execute toggle if possible
+        else if (logicRes.stateAllowed) toggle.valve9(state)
+
+        // Check if timer is already running and stop it
+        if (exports.timerValve9.status != 'stopped') {
+            exports.timerValve9.stop()
+            io.emit('valve9Duration', helper.msToSeconds(process.env.WS_VALVE9_TIMEOUT))
+        }
+
+        // Run timer if necessary
+        if (state && logicRes.stateAllowed) {
+            // Events
+            exports.timerValve9.on('tick', (ms) => io.emit('valve9Duration', helper.msToSeconds(ms)))
+            exports.timerValve9.on('done', () => {
+                toggle.valve9(false)
+                io.emit('valve9Duration', helper.msToSeconds(process.env.WS_VALVE9_TIMEOUT))
+            })
+
+            // Start timer
+            if (duration) exports.timerValve9.start(Number(duration), 1000)
+            else exports.timerValve9.start(Number(process.env.WS_VALVE9_TIMEOUT), 1000)
+        }
+
+        // Return callback
+        callback(logicRes)
+    })
+
     // Tap Water
     socket.on('tapWater', (state, callback) => {
         // Variables
@@ -356,7 +428,7 @@ io.on('connection', (socket) => {
     })
 })
 
-/* --- Function --- */
+/* --- Functions --- */
 /**
  * Reset everything as if the raspberry pi has been restarted
  */
@@ -367,6 +439,8 @@ const resetEverything = () => {
     exports.timerValve2.stop()
     exports.timerValve3.stop()
     exports.timerValve4.stop()
+    exports.timerValve8.stop()
+    exports.timerValve9.stop()
     exports.timerTapWater.stop()
     exports.timerPump.stop()
     exports.timerTransfer.stop()
@@ -374,4 +448,6 @@ const resetEverything = () => {
     io.emit('valve2Duration', helper.msToSeconds(process.env.WS_VALVE2_TIMEOUT))
     io.emit('valve3Duration', helper.msToSeconds(process.env.WS_VALVE3_TIMEOUT))
     io.emit('valve4Duration', helper.msToSeconds(process.env.WS_VALVE4_TIMEOUT))
+    io.emit('valve8Duration', helper.msToSeconds(process.env.WS_VALVE8_TIMEOUT))
+    io.emit('valve9Duration', helper.msToSeconds(process.env.WS_VALVE9_TIMEOUT))
 }

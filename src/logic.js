@@ -19,15 +19,17 @@ exports.run = () => {
     else if (!ws.floater4 && ws.floater5) return toggle.status('<b>WARNING</b> - One of the following floaters might not be working as expected: <b>4</b> or <b>5</b>.<br>Manual mode activated for safety reasons.', true, true)
     else toggle.status('All seems good! :)', false, false)
 
-    /* --- valve1 to valve4 --- */
-    // If any valve1 to valve4 is enabled
-    if (ws.valve1 || ws.valve2 || ws.valve3 || ws.valve4) {
-        // If floater1 is false, disable all valves 1 to 4
+    /* --- valve1 to valve4, valve8, valve9 --- */
+    // If any valve1 to valve4, or valve8 or valve9 is enabled
+    if (ws.valve1 || ws.valve2 || ws.valve3 || ws.valve4 || ws.valve8 || ws.valve9) {
+        // If floater1 is false, disable all valves 1 to 4, 8 and 9
         if (!ws.floater1) {
             toggle.valve1(false)
             toggle.valve2(false)
             toggle.valve3(false)
             toggle.valve4(false)
+            toggle.valve8(false)
+            toggle.valve9(false)
         }
     }
 
@@ -149,6 +151,42 @@ exports.valve4 = (desiredState) => {
     }
     // Rest is always OK
     else return { stateAllowed: true, msg: `Set valve4 to '${desiredState}'.` }
+}
+
+/**
+ * Run logic related to `valve8`
+ * @param {boolean} desiredState
+ * @returns {object}
+ */
+ exports.valve8 = (desiredState) => {
+    // If manual mode is active
+    if (wateringSystem.manual) return { stateAllowed: true, msg: `Allowed state '${desiredState}' to be forcefully set for valve8.` }
+    // If desiredState is true
+    else if (desiredState) {
+        // valve8 cannot be enabled if floater1 is false
+        if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
+        else return { stateAllowed: true, msg: `Set valve8 to '${desiredState}'.` }
+    }
+    // Rest is always OK
+    else return { stateAllowed: true, msg: `Set valve8 to '${desiredState}'.` }
+}
+
+/**
+ * Run logic related to `valve9`
+ * @param {boolean} desiredState
+ * @returns {object}
+ */
+ exports.valve9 = (desiredState) => {
+    // If manual mode is active
+    if (wateringSystem.manual) return { stateAllowed: true, msg: `Allowed state '${desiredState}' to be forcefully set for valve9.` }
+    // If desiredState is true
+    else if (desiredState) {
+        // valve9 cannot be enabled if floater1 is false
+        if (!ws.floater1) return { stateAllowed: false, msg: 'Tank 1 is empty!' }
+        else return { stateAllowed: true, msg: `Set valve9 to '${desiredState}'.` }
+    }
+    // Rest is always OK
+    else return { stateAllowed: true, msg: `Set valve9 to '${desiredState}'.` }
 }
 
 /**

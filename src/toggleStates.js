@@ -21,6 +21,8 @@ exports.allFalse = () => {
     wateringSystem.states.valve2 = false
     wateringSystem.states.valve3 = false
     wateringSystem.states.valve4 = false
+    wateringSystem.states.valve8 = false
+    wateringSystem.states.valve9 = false
     wateringSystem.states.tapWater = false
     wateringSystem.states.pumpWaterUp = false
     wateringSystem.states.transferWaterDown = false
@@ -32,6 +34,8 @@ exports.allFalse = () => {
         hardware.valve2.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
         hardware.valve3.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
         hardware.valve4.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
+        hardware.valve8.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
+        hardware.valve9.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
         hardware.tapWater.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
         hardware.pumpWaterUp.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
         hardware.transferWaterDown.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
@@ -111,6 +115,30 @@ exports.valve4 = (state) => {
     if (hardware) {
         if (state) hardware.valve4.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
         else hardware.valve4.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
+    }
+}
+
+/**
+ * Toggle valve 8
+ * @param {boolean} state
+ */
+ exports.valve8 = (state) => {
+    wateringSystem.states.valve8 = state
+    if (hardware) {
+        if (state) hardware.valve8.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
+        else hardware.valve8.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
+    }
+}
+
+/**
+ * Toggle valve 9
+ * @param {boolean} state
+ */
+ exports.valve9 = (state) => {
+    wateringSystem.states.valve9 = state
+    if (hardware) {
+        if (state) hardware.valve9.digitalWrite(wateringSystem.relaysNaturallyOff ? 1 : 0)
+        else hardware.valve9.digitalWrite(wateringSystem.relaysNaturallyOff ? 0 : 1)
     }
 }
 

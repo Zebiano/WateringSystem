@@ -27,6 +27,8 @@
         "tapWater": 25,
         "pumpWaterUp": 24,
         "transferWaterDown": 23,
+        "valve8": 18,
+        "valve9": 15,
         "floater1": 26,
         "floater2": 19,
         "floater3": 13,
