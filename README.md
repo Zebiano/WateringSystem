@@ -1,6 +1,6 @@
 # Automatic garden watering system
 This project consists of a Raspberry Pi 4 running Ubuntu server (x64) that is connected to various floaters inside 2 water tanks and to various relays that control solenoid valves. Here's some specific info:
-- Valves 1 - 4 are for watering the garden
+- Valves 1 - 4, 8 and 9 are for watering the garden
 - Rain is a property set to define that it will or is currently raining for certain conditions to occur
 - Tap water can be manually activated or deactivated, equals to Valve 5
 - Pump is to manually activate or deactivate it, equals to Valve 6
@@ -28,6 +28,8 @@ WS_VALVE1_TIMEOUT=120000
 WS_VALVE2_TIMEOUT=120000
 WS_VALVE3_TIMEOUT=120000
 WS_VALVE4_TIMEOUT=120000
+WS_VALVE8_TIMEOUT=120000
+WS_VALVE9_TIMEOUT=120000
 WS_TAPWATER_TIMEOUT=172800000
 WS_PUMP_TIMEOUT=1200000
 WS_TRANSFER_TIMEOUT=1200000
@@ -41,6 +43,8 @@ WS_TRANSFER_TIMEOUT=1200000
 | Valve 2     | 2 mins   | 120000    |
 | Valve 3     | 2 mins   | 120000    |
 | Valve 4     | 2 mins   | 120000    |
+| Valve 8     | 2 mins   | 120000    |
+| Valve 9     | 2 mins   | 120000    |
 | Tap water   | 48 hours | 172800000 |
 | Pump        | 20 mins  | 1200000   |
 | Transfer    | 20 mins  | 1200000   |

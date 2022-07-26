@@ -1,134 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watering System</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Watering System</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-</head>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    </head>
 
-<body>
-    <div class="container">
-        <h4 id="textStatus"></h4>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchReboot" onclick="toggleReboot(this.checked)">
-            <label class="form-check-label" for="switchReboot">Reboot</label>
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchManual" onclick="toggleManual(this.checked)">
-            <label class="form-check-label" for="switchManual">Manual mode</label>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-2">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="switchValve1"
-                        onclick="toggleValve1(this.checked)">
-                    <label class="form-check-label" for="switchValve1">Valve 1</label>
+    <body>
+        <div class="container">
+            <h4 id="textStatus"></h4>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchReboot" onclick="toggleReboot(this.checked)">
+                <label class="form-check-label" for="switchReboot">Reboot</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchManual" onclick="toggleManual(this.checked)">
+                <label class="form-check-label" for="switchManual">Manual mode</label>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="switchValve1" onclick="toggleValve1(this.checked)">
+                        <label class="form-check-label" for="switchValve1">Valve 1</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div>
+                        <input type="number" id="valve1Duration" placeholder="120">
+                        <label for="valve1Duration">Seconds</label>
+                    </div>
                 </div>
             </div>
-            <div class="col-3">
-                <div>
-                    <input type="number" id="valve1Duration" placeholder="120">
-                    <label for="valve1Duration">Seconds</label>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="switchValve2" onclick="toggleValve2(this.checked)">
+                        <label class="form-check-label" for="switchValve2">Valve 2</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div>
+                        <input type="number" id="valve2Duration" placeholder="120">
+                        <label for="valve2Duration">Seconds</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="switchValve2"
-                        onclick="toggleValve2(this.checked)">
-                    <label class="form-check-label" for="switchValve2">Valve 2</label>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="switchValve3" onclick="toggleValve3(this.checked)">
+                        <label class="form-check-label" for="switchValve3">Valve 3</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div>
+                        <input type="number" id="valve3Duration" placeholder="120">
+                        <label for="valve3Duration">Seconds</label>
+                    </div>
                 </div>
             </div>
-            <div class="col-3">
-                <div>
-                    <input type="number" id="valve2Duration" placeholder="120">
-                    <label for="valve2Duration">Seconds</label>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="switchValve4" onclick="toggleValve4(this.checked)">
+                        <label class="form-check-label" for="switchValve4">Valve 4</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div>
+                        <input type="number" id="valve4Duration" placeholder="120">
+                        <label for="valve4Duration">Seconds</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="switchValve3"
-                        onclick="toggleValve3(this.checked)">
-                    <label class="form-check-label" for="switchValve3">Valve 3</label>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="switchValve8" onclick="toggleValve8(this.checked)">
+                        <label class="form-check-label" for="switchValve8">Valve 8</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div>
+                        <input type="number" id="valve8Duration" placeholder="120">
+                        <label for="valve8Duration">Seconds</label>
+                    </div>
                 </div>
             </div>
-            <div class="col-3">
-                <div>
-                    <input type="number" id="valve3Duration" placeholder="120">
-                    <label for="valve3Duration">Seconds</label>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="switchValve9" onclick="toggleValve9(this.checked)">
+                        <label class="form-check-label" for="switchValve9">Valve 9</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div>
+                        <input type="number" id="valve9Duration" placeholder="120">
+                        <label for="valve9Duration">Seconds</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="switchValve4"
-                        onclick="toggleValve4(this.checked)">
-                    <label class="form-check-label" for="switchValve4">Valve 4</label>
-                </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchTapWater" onclick="toggleTapWater(this.checked)">
+                <label class="form-check-label" for="switchTapWater">TapWater (Valve 5)</label>
             </div>
-            <div class="col-3">
-                <div>
-                    <input type="number" id="valve4Duration" placeholder="120">
-                    <label for="valve4Duration">Seconds</label>
-                </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchPumpWaterUp" onclick="togglePumpWaterUp(this.checked)">
+                <label class="form-check-label" for="switchPumpWaterUp">Pump water up (Valve 6)</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchTransferWaterDown" onclick="toggleTransferWaterDown(this.checked)">
+                <label class="form-check-label" for="switchTransferWaterDown">Transfer water down (Valve 7)</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchRain" onclick="toggleRain(this.checked)">
+                <label class="form-check-label" for="switchRain">Rain</label>
+            </div>
+            <hr>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchFloater5" onclick="toggleFloater5(this.checked)">
+                <label class="form-check-label" for="switchFloater5">Floater 5</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchFloater4" onclick="toggleFloater4(this.checked)">
+                <label class="form-check-label" for="switchFloater4">Floater 4</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchFloater3" onclick="toggleFloater3(this.checked)">
+                <label class="form-check-label" for="switchFloater3">Floater 3</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchFloater2" onclick="toggleFloater2(this.checked)">
+                <label class="form-check-label" for="switchFloater2">Floater 2</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchFloater1" onclick="toggleFloater1(this.checked)">
+                <label class="form-check-label" for="switchFloater1">Floater 1</label>
             </div>
         </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchTapWater" onclick="toggleTapWater(this.checked)">
-            <label class="form-check-label" for="switchTapWater">TapWater (Valve 5)</label>
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchPumpWaterUp"
-                onclick="togglePumpWaterUp(this.checked)">
-            <label class="form-check-label" for="switchPumpWaterUp">Pump water up (Valve 6)</label>
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchTransferWaterDown"
-                onclick="toggleTransferWaterDown(this.checked)">
-            <label class="form-check-label" for="switchTransferWaterDown">Transfer water down (Valve 7)</label>
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchRain" onclick="toggleRain(this.checked)">
-            <label class="form-check-label" for="switchRain">Rain</label>
-        </div>
-        <hr>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFloater5" onclick="toggleFloater5(this.checked)">
-            <label class="form-check-label" for="switchFloater5">Floater 5</label>
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFloater4" onclick="toggleFloater4(this.checked)">
-            <label class="form-check-label" for="switchFloater4">Floater 4</label>
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFloater3" onclick="toggleFloater3(this.checked)">
-            <label class="form-check-label" for="switchFloater3">Floater 3</label>
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFloater2" onclick="toggleFloater2(this.checked)">
-            <label class="form-check-label" for="switchFloater2">Floater 2</label>
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFloater1" onclick="toggleFloater1(this.checked)">
-            <label class="form-check-label" for="switchFloater1">Floater 1</label>
-        </div>
-    </div>
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Scripts -->
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/frontend/js/test.js"></script>
-</body>
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Scripts -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/frontend/js/test.js"></script>
+    </body>
 
 </html>

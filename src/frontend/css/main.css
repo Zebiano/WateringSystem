@@ -67,7 +67,7 @@ img {
   transition: top 0.8s, opacity 0.8s, background-color 0.5s;
 }
 
-/* Sructure %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/* Structure %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 .website-container {
   position: absolute;
   top: 0;
@@ -283,7 +283,8 @@ img {
 }
 
 .indicator-1,
-.indicator-2 {
+.indicator-2,
+.indicator-3 {
   position: absolute;
   bottom: 0;
   height: 100%;
@@ -295,11 +296,15 @@ img {
 }
 
 .indicator-1 {
-  right: 53%;
+  left: 35%;
 }
 
 .indicator-2 {
-  left: 53%;
+  left: 50%;
+}
+
+.indicator-3 {
+  left: 65%;
 }
 
 .active {
