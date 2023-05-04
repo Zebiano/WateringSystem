@@ -34,7 +34,7 @@
     "node-cleanup": "^2.1.2",
     "nodemon": "^2.0.15",
     "pigpio": "^3.3.1",
-    "socket.io": "^4.5.3",
+    "socket.io": "^4.6.1",
     "tiny-timer": "^1.6.0"
   }
 }
