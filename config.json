@@ -20,6 +20,7 @@
     "msg": "All seems good! :)"
   },
   "rpiGpioPins": {
+    "Pins that do not work anymore/have been used before": "5,6,13,20",
     "valve1": 12,
     "valve2": 1,
     "valve3": 7,
@@ -33,6 +34,6 @@
     "floater2": 19,
     "floater3": 21,
     "floater4": 16,
-    "floater5": 20
+    "floater5": 0
   }
 }

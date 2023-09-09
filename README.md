@@ -7,7 +7,9 @@ This project consists of a Raspberry Pi 4 running Ubuntu server (x64) that is co
 - Letting water fall back down from tank 2 to 1 is done with Valve 7
 - There are 5 floaters, three in the first tank and two in the second
 
-GPIO pins are always written in [BCM pin numbers](https://www.raspberrypi.org/documentation/usage/gpio/images/GPIO-Pinout-Diagram-2.png).
+GPIO pins are always written in [BCM pin numbers](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#gpio-and-the-40-pin-header).
+
+![RPIO pins](image.png)
 
 ## Running
 **You need to run this with `root`.** Else GPIO access won't be granted. I've configured [`pm2`](https://pm2.keymetrics.io/) to start the process on startup with sudo:
