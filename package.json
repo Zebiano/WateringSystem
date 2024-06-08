@@ -29,7 +29,7 @@
     "bootstrap-icons": "^1.8.1",
     "chalk": "^4.1.2",
     "dotenv": "^10.0.0",
-    "express": "^4.17.3",
+    "express": "^4.19.2",
     "fs": "0.0.2",
     "node-cleanup": "^2.1.2",
     "nodemon": "^2.0.15",
