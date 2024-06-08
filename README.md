@@ -1,4 +1,14 @@
-# Automatic garden watering system
+# Automatic garden watering system <!-- omit in toc -->
+
+## Table of contents <!-- omit in toc -->
+
+- [General](#general)
+- [Running](#running)
+- [`.env`](#env)
+- [Default timeouts](#default-timeouts)
+- [Debugging](#debugging)
+
+## General
 
 This project consists of a Raspberry Pi 4 running Ubuntu server (x64) that is connected to various floaters inside 2 water tanks and to various relays that control solenoid valves. Here's some specific info:
 - Valves 1 - 4, 8 and 9 are for watering the garden
@@ -56,3 +66,7 @@ WS_TRANSFER_TIMEOUT=1200000
 | Tap water   | 48 hours | 172800000 |
 | Pump        | 20 mins  | 1200000   |
 | Transfer    | 20 mins  | 1200000   |
+
+## Debugging
+
+The PI sends a 3.3V current from the GPIO pins and is capable of measuring if a circuit is closed or not when the other end connects to Ground. The voltage is so minimal that you do not feel it on your hands, so it's safe to work with it. You should therefore be able to check the various connections of the floaters circuit for 3.3V (not the circuit after the relays, which is connected to 24V), and whenever a voltage doesn't make sense, you'd be closer to the source of the problem.
