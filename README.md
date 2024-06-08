@@ -1,4 +1,5 @@
 # Automatic garden watering system
+
 This project consists of a Raspberry Pi 4 running Ubuntu server (x64) that is connected to various floaters inside 2 water tanks and to various relays that control solenoid valves. Here's some specific info:
 - Valves 1 - 4, 8 and 9 are for watering the garden
 - Rain is a property set to define that it will or is currently raining for certain conditions to occur
@@ -12,8 +13,10 @@ GPIO pins are always written in [BCM pin numbers](https://www.raspberrypi.com/do
 ![RPIO pins](image.png)
 
 ## Running
+
 **You need to run this with `root`.** Else GPIO access won't be granted. I've configured [`pm2`](https://pm2.keymetrics.io/) to start the process on startup with sudo:
-```sh
+
+```shell
 sudo -s
 pm2 startup
 pm2 start main.js --name "Watering System" --watch
@@ -21,8 +24,10 @@ pm2 save
 ```
 
 ## `.env`
+
 Here's an example for the `.env` file:
-```
+
+```env
 WS_ENV=test
 WS_PORT=3000
 WS_MANUAL_TIMEOUT=28800000
@@ -38,6 +43,7 @@ WS_TRANSFER_TIMEOUT=1200000
 ```
 
 ## Default timeouts
+
 | Designation | Time     | `ms`      |
 | ----------- | -------- | --------- |
 | Manual mode | 8 hours  | 28800000  |
