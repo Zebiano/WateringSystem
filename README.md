@@ -5,7 +5,7 @@
 - [General](#general)
 - [Running](#running)
 - [`.env`](#env)
-- [Default timeouts](#default-timeouts)
+- [Timeouts](#timeouts)
 - [Debugging](#debugging)
 
 ## General
@@ -52,7 +52,7 @@ WS_PUMP_TIMEOUT=1200000
 WS_TRANSFER_TIMEOUT=1200000
 ```
 
-## Default timeouts
+## Timeouts
 
 | Designation | Time     | `ms`      |
 | ----------- | -------- | --------- |
