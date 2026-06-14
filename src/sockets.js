@@ -17,11 +17,11 @@ exports.timerValve1 = new tinyTimer()
 exports.timerValve2 = new tinyTimer()
 exports.timerValve3 = new tinyTimer()
 exports.timerValve4 = new tinyTimer()
-exports.timerValve8 = new tinyTimer()
-exports.timerValve9 = new tinyTimer()
 exports.timerTapWater = new tinyTimer()
 exports.timerPump = new tinyTimer()
 exports.timerTransfer = new tinyTimer()
+exports.timerValve8 = new tinyTimer()
+exports.timerValve9 = new tinyTimer()
 
 // Start io server
 io.on('connection', (socket) => {
@@ -435,15 +435,18 @@ io.on('connection', (socket) => {
 const resetEverything = () => {
   toggle.allFalse()
   timerManual.stop()
+
   exports.timerValve1.stop()
   exports.timerValve2.stop()
   exports.timerValve3.stop()
   exports.timerValve4.stop()
-  exports.timerValve8.stop()
-  exports.timerValve9.stop()
+
   exports.timerTapWater.stop()
   exports.timerPump.stop()
   exports.timerTransfer.stop()
+  exports.timerValve8.stop()
+  exports.timerValve9.stop()
+
   io.emit('valve1Duration', helper.msToSeconds(process.env.WS_VALVE1_TIMEOUT))
   io.emit('valve2Duration', helper.msToSeconds(process.env.WS_VALVE2_TIMEOUT))
   io.emit('valve3Duration', helper.msToSeconds(process.env.WS_VALVE3_TIMEOUT))

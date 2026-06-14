@@ -22,6 +22,28 @@ GPIO pins are always written in [BCM pin numbers](https://www.raspberrypi.com/do
 
 ![RPIO pins](image.png)
 
+GPIO pins also have a default state when booting the PI, which affects the temporary state of a relay switch until this project is running, which overwrites the default states to the desired ones. [Here's a good read about it](https://roboticsbackend.com/raspberry-pi-gpios-default-state/), as well as the [technical file](https://www.raspberrypi.org/app/uploads/2012/02/BCM2835-ARM-Peripherals.pdf#page=102). In short:
+> HIGH for GPIOs up to 8, and LOW for GPIOs starting from 9.
+
+On top of this, certain GPIO pins have special functions, and its best to not use those. So, after chatting with an AI, here are the supposed ideal GPIO pins:
+
+| Function            | GPIO Pin | Notes               | Physical Pin |
+| ------------------- | -------- | ------------------- | ------------ |
+| Floater 1           | GPIO 4   | Input with pull-up  | Pin 7        |
+| Floater 2           | GPIO 17  | Input with pull-up  | Pin 11       |
+| Floater 3           | GPIO 27  | Input with pull-up  | Pin 13       |
+| Floater 4           | GPIO 22  | Input with pull-up  | Pin 15       |
+| Floater 5           | GPIO 5   | Input with pull-up  | Pin 29       |
+| Valve 1             | GPIO 26  | Output, default LOW | Pin 37       |
+| Valve 2             | GPIO 18  | Output, default LOW | Pin 12       |
+| Valve 3             | GPIO 23  | Output, default LOW | Pin 16       |
+| Valve 4             | GPIO 24  | Output, default LOW | Pin 18       |
+| Tap water           | GPIO 6   | Output, default LOW | Pin 31       |
+| Pump water up       | GPIO 13  | Output, default LOW | Pin 33       |
+| Transfer water down | GPIO 19  | Output, default LOW | Pin 35       |
+| Valve 8             | GPIO 25  | Output, default LOW | Pin 22       |
+| Valve 9             | GPIO 20  | Output, default LOW | Pin 38       |
+
 ## Running
 
 **You need to run this with `root`.** Else GPIO access won't be granted. I've configured [`pm2`](https://pm2.keymetrics.io/) to start the process on startup with sudo:
@@ -45,11 +67,11 @@ WS_VALVE1_TIMEOUT=120000
 WS_VALVE2_TIMEOUT=120000
 WS_VALVE3_TIMEOUT=120000
 WS_VALVE4_TIMEOUT=120000
-WS_VALVE8_TIMEOUT=120000
-WS_VALVE9_TIMEOUT=120000
 WS_TAPWATER_TIMEOUT=172800000
 WS_PUMP_TIMEOUT=1200000
 WS_TRANSFER_TIMEOUT=1200000
+WS_VALVE8_TIMEOUT=120000
+WS_VALVE9_TIMEOUT=120000
 ```
 
 ## Timeouts
@@ -61,11 +83,11 @@ WS_TRANSFER_TIMEOUT=1200000
 | Valve 2     | 2 mins   | 120000    |
 | Valve 3     | 2 mins   | 120000    |
 | Valve 4     | 2 mins   | 120000    |
-| Valve 8     | 2 mins   | 120000    |
-| Valve 9     | 2 mins   | 120000    |
 | Tap water   | 48 hours | 172800000 |
 | Pump        | 20 mins  | 1200000   |
 | Transfer    | 20 mins  | 1200000   |
+| Valve 8     | 2 mins   | 120000    |
+| Valve 9     | 2 mins   | 120000    |
 
 ## Debugging
 
