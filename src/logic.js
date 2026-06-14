@@ -5,11 +5,14 @@ const sockets = require(`./sockets`)
 // Variables
 const ws = wateringSystem.states
 
-// Run logic every x amount of time if not in manual mode
+// Run logic every X amount of time if not in manual mode
 setInterval(() => { if (!wateringSystem.manual) exports.run() }, 500)
 
 /**
  * Run logic and act upon states.
+ * Runs every 500ms if not in manual mode.
+ * Comments mention conditions that are not being written in code, which are conditions that are "impossible".
+ * These conditions are therefore not being tested for, as they already enable manual mode anyway.
  */
 exports.run = () => {
   /* --- Check for impossible situations --- */

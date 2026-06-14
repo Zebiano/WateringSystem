@@ -4,6 +4,8 @@
 
 - [General](#general)
 - [Running](#running)
+  - [Production](#production)
+  - [Testing without RPI](#testing-without-rpi)
 - [`.env`](#env)
 - [Timeouts](#timeouts)
 - [Debugging](#debugging)
@@ -46,6 +48,10 @@ On top of this, certain GPIO pins have special functions, and its best to not us
 
 ## Running
 
+### Production
+
+Make sure the `.env` file is set to `prod`.
+
 **You need to run this with `root`.** Else GPIO access won't be granted. I've configured [`pm2`](https://pm2.keymetrics.io/) to start the process on startup with sudo:
 
 ```shell
@@ -54,6 +60,10 @@ pm2 startup
 pm2 start main.js --name "Watering System" --watch
 pm2 save
 ```
+
+### Testing without RPI
+
+Copy the `.env` file example below as is, execute `npm i` and then `npm run start`. Requires `sudo apt-get install build-essential`.
 
 ## `.env`
 
