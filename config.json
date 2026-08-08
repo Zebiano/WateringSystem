@@ -1,5 +1,5 @@
 {
-  "relaysNaturallyOff": false,
+  "relaysNaturallyOff": true,
   "manual": false,
   "states": {
     "floater1": false,
@@ -22,19 +22,19 @@
     "msg": "All seems good! :)"
   },
   "rpiGpioPins": {
-    "floater1": 4,
-    "floater2": 17,
-    "floater3": 27,
-    "floater4": 22,
-    "floater5": 5,
-    "valve1": 26,
-    "valve2": 18,
-    "valve3": 23,
-    "valve4": 24,
-    "tapWater": 6,
-    "pumpWaterUp": 13,
-    "transferWaterDown": 19,
-    "valve8": 25,
-    "valve9": 20
+    "floater1": 25,
+    "floater2": 12,
+    "floater3": 16,
+    "floater4": 20,
+    "floater5": 21,
+    "valve1": 17,
+    "valve2": 27,
+    "valve3": 22,
+    "valve4": 10,
+    "tapWater": 9,
+    "pumpWaterUp": 11,
+    "transferWaterDown": 13,
+    "valve8": 19,
+    "valve9": 26
   }
 }
