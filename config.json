@@ -1,5 +1,5 @@
 {
-  "relaysNaturallyOff": true,
+  "relaysNaturallyOff": false,
   "manual": false,
   "states": {
     "floater1": false,
